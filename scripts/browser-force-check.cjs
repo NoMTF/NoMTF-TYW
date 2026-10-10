@@ -19,7 +19,7 @@ async (page) => {
   return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
  });
  await page.goto('http://127.0.0.1:4174/');await page.locator('#wallet').click();await page.getByRole('button',{name:'连接 MetaMask',exact:true}).click();
- await page.waitForFunction(()=>document.querySelector('#quote-details').textContent.includes('预计获得'));
+ await page.waitForFunction(()=>!document.querySelector('#quote-details').hidden&&!document.querySelector('#trade').disabled&&document.querySelector('#quote-details').textContent.includes('预计获得'));
  await page.evaluate(()=>{window.__mockGas='0x1dcd6500';});
  await page.getByRole('button',{name:'确认买入 TYW',exact:true}).click();await page.waitForFunction(()=>document.getElementById('force-dialog').open);
  if(!(await page.locator('#force-fee').innerText()).includes('USDT'))throw Error('Fee not shown');
@@ -30,9 +30,9 @@ async (page) => {
  const sent=await page.evaluate(()=>window.__mockSent[0]);if(sent.to.toLowerCase()!=='0xae7ea21fbf3613ffc17fe962ee66bfe03015fba7'||!sent.data||BigInt(sent.gasPrice)!==1000000000n)throw Error('Wrong explicit fee/contract');
  if(await page.evaluate(()=>document.getElementById('force-dialog').open))throw Error('Reopened after pending submission');
  await page.goto('http://127.0.0.1:4174/');await page.locator('#wallet').click();await page.getByRole('button',{name:'连接 MetaMask',exact:true}).click();await page.locator('#sell-tab').click();
- await page.waitForFunction(()=>document.querySelector('#quote-details').textContent.includes('最低到账'));
+ await page.waitForFunction(()=>!document.querySelector('#quote-details').hidden&&!document.querySelector('#trade').disabled&&document.querySelector('#quote-details').textContent.includes('最低到账'));
  await page.evaluate(()=>{window.__mockGas='0x1dcd6500';});await page.getByRole('button',{name:'确认卖出 TYW',exact:true}).click();await page.waitForFunction(()=>document.getElementById('force-dialog').open);
  if(await page.evaluate(()=>window.__mockSent.length)!==0)throw Error('Sale sent before consent');
  await page.getByRole('button',{name:'仍然强制卖出',exact:true}).click();await page.waitForFunction(()=>window.__mockSent.length===1,{},{timeout:30000});
- console.log(JSON.stringify({mockWalletOnly:true,realTransactionsSent:false,highFeePopup:true,estimatedFeesShown:true,cancelDoesNotSend:true,forceBypassesFeeAdvisory:true,oneSubmission:true}));
+ return {mockWalletOnly:true,realTransactionsSent:false,highFeePopup:true,estimatedFeesShown:true,cancelDoesNotSend:true,forceBypassesFeeAdvisory:true,buyAndSell:true,oneSubmission:true};
 }
