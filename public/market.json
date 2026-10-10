@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T08:37:56.022Z",
+  "at": "2026-10-10T18:43:39.163Z",
   "chainId": 56,
   "dex": "PancakeSwap Infinity CL",
   "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
@@ -65,5 +65,14 @@
   "maximumTrancheNavUsdt": "1900",
   "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
   "independentExit": "https://xyn.lgbt/exit.html",
-  "independentExitMirror": "https://nomtf.github.io/NoMTF-TYW/"
+  "independentExitMirror": "https://nomtf.github.io/NoMTF-TYW/",
+  "minimumAutomaticAdditionValueUsdt": "20",
+  "maximumAutomaticAdditionGasBps": 50,
+  "contractMinimumInventoryNavUsdt": "1.1",
+  "feeCollector": "0x37f2964B322e014c8EA33D700bC94f28Fe7C9432",
+  "feeCollectorRuntimeHash": "0xe8198e5bc6a51432c7967de2e5abe0819ed788fcda818a55530e3d146cf8a210",
+  "feeRecipient": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "feeReinvestment": "Fees of treasury-owned LP positions only. Economic claims return to the original treasury; a later eligible round splits and adds inventory.",
+  "feeClaimMaximumGasBps": 50,
+  "lpPrincipalMayBeWithdrawnByCollector": false
 }

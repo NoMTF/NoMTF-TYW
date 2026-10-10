@@ -1,5 +1,5 @@
 import fs from 'node:fs';import path from 'node:path';import solc from 'solc';
-const names=['PoolSpreadHook.sol','TreasuryInfinityLiquidity.sol','TreasuryAutoLiquidity.sol'];
+const names=['PoolSpreadHook.sol','TreasuryInfinityLiquidity.sol','TreasuryAutoLiquidity.sol','TreasuryFeeCollector.sol'];
 const sources=Object.fromEntries(names.map(n=>[n,{content:fs.readFileSync('contracts/'+n,'utf8')}]));
 const input={language:'Solidity',sources,settings:{optimizer:{enabled:true,runs:200},viaIR:true,evmVersion:'shanghai',outputSelection:{'*':{'*':['abi','evm.bytecode.object','evm.deployedBytecode.object']}}}};
 const output=JSON.parse(solc.compile(JSON.stringify(input),{import:p=>{try{return{contents:fs.readFileSync(path.join('node_modules',p),'utf8')}}catch{return{error:'Missing import '+p}}}}));

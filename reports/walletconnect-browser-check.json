@@ -1,14 +1,15 @@
 {
-  "at": "2026-10-10T13:34:22.818Z",
+  "at": "2026-10-10T18:47:28.109Z",
   "site": "https://xyn.lgbt/",
   "status": "PASSED",
-  "catalogCount": 20,
+  "catalogCount": 21,
   "qr": {
     "present": true,
     "uriReady": true,
     "svg": true
   },
   "checks": [
+    "Keeper entry and verified official site",
     "Real relay-backed QR renders",
     "Named Binance Wallet connection and QR",
     "Cancel and retry restore controls",
@@ -19,48 +20,8 @@
   ],
   "requests": [
     {
-      "host": "fonts.reown.com",
-      "path": "/KHTeka-Regular.woff2",
-      "status": 200
-    },
-    {
-      "host": "fonts.reown.com",
-      "path": "/KHTeka-Light.woff2",
-      "status": 200
-    },
-    {
-      "host": "fonts.reown.com",
-      "path": "/KHTekaMono-Regular.woff2",
-      "status": 200
-    },
-    {
-      "host": "fonts.reown.com",
-      "path": "/KHTeka-Light.woff",
-      "status": 200
-    },
-    {
-      "host": "fonts.reown.com",
-      "path": "/KHTeka-Regular.woff",
-      "status": 200
-    },
-    {
-      "host": "fonts.reown.com",
-      "path": "/KHTekaMono-Regular.woff",
-      "status": 200
-    },
-    {
-      "host": "fonts.reown.com",
-      "path": "/KHTeka-Medium.woff2",
-      "status": 200
-    },
-    {
       "host": "api.web3modal.org",
-      "path": "/public/getAssetImage/bba2c8be-7fd1-463e-42b1-796ecb0ad200",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWallets",
+      "path": "/public/getAssetImage/ef1a1fcf-7fe8-4d69-bd6d-fda1345b4400",
       "status": 200
     },
     {
@@ -70,22 +31,42 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/41869009-80c0-4daa-ebfb-edfedfec1700",
+      "path": "/public/getAssetImage/bba2c8be-7fd1-463e-42b1-796ecb0ad200",
       "status": 200
     },
     {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
+      "host": "fonts.reown.com",
+      "path": "/KHTekaMono-Regular.woff",
       "status": 200
     },
     {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Regular.woff",
       "status": 200
     },
     {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Light.woff",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Regular.woff2",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTekaMono-Regular.woff2",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Light.woff2",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Medium.woff2",
       "status": 200
     },
     {
@@ -100,27 +81,72 @@
     },
     {
       "host": "api.web3modal.org",
+      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
       "path": "/getWalletImage/41869009-80c0-4daa-ebfb-edfedfec1700",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
       "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
       "path": "/appkit/v1/config",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/82e4f722-232b-45a1-b91e-bd42f466b421",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/0196afd7-4a41-4492-b169-8f0b58678a11",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/2b653196-1ded-4984-a757-3aa72fc63e88",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/e44ce04e-a207-4d49-ac4d-b8d61ef800df",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/41869009-80c0-4daa-ebfb-edfedfec1700",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
       "status": 200
     },
     {
@@ -170,22 +196,7 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/45f2f08e-fc0c-4d62-3e63-404e72170500",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/a7f416de-aa03-4c5e-3280-ab49269aef00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
       "path": "/getWalletImage/bff9cf1f-df19-42ce-f62a-87f04df13c00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/73f6f52f-7862-49e7-bb85-ba93ab72cc00",
       "status": 200
     },
     {
@@ -195,12 +206,17 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/3e60118c-b9a9-43df-7975-33ebc8014400",
+      "path": "/getWalletImage/73f6f52f-7862-49e7-bb85-ba93ab72cc00",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/c84b4d9d-9525-4bb5-b373-934b46eafc00",
+      "path": "/getWalletImage/a7f416de-aa03-4c5e-3280-ab49269aef00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/3e60118c-b9a9-43df-7975-33ebc8014400",
       "status": 200
     },
     {
@@ -210,17 +226,7 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/3cdfc77d-fcb6-4a17-239c-5785fe847b00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/bd78de7e-36da-4552-ebdd-2e420ba05900",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/dfe0e3e3-5746-4e2b-12ad-704608531500",
+      "path": "/getWalletImage/45f2f08e-fc0c-4d62-3e63-404e72170500",
       "status": 200
     },
     {
@@ -230,12 +236,12 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/4c16cad4-cac9-4643-6726-c696efaf5200",
+      "path": "/getWalletImage/92f1ead4-0bc4-4932-10d3-761c509b4d00",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500",
+      "path": "/getWalletImage/215158d2-614b-49c9-410f-77aa661c3900",
       "status": 200
     },
     {
@@ -245,37 +251,7 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/7601bec3-144f-4c9d-30a1-2d4a372ede00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/b6ec7b81-bb4f-427d-e290-7631e6e50d00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/a03bfa44-ce98-4883-9b2a-75e2b68f5700",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/b9e64f74-0176-44fd-c603-673a45ed5b00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/62040f22-2ffd-4942-92fc-71ce68c64300",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/34c0e38d-66c4-470e-1aed-a6fabe2d1e00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/6133c399-ae32-4eba-0c5a-0fb84492bf00",
+      "path": "/getWalletImage/ee242aea-3ffd-4ad8-db88-e29a1ccd2000",
       "status": 200
     },
     {
@@ -285,17 +261,32 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/a78c4d48-32c1-4a9d-52f2-ec7ee08ce200",
+      "path": "/getWalletImage/594627bd-6d35-406a-8d2b-31e0b5f03c00",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/8cecad66-73e3-46ee-f45f-01503c032f00",
+      "path": "/getWalletImage/b9e64f74-0176-44fd-c603-673a45ed5b00",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/215158d2-614b-49c9-410f-77aa661c3900",
+      "path": "/getWalletImage/b6ec7b81-bb4f-427d-e290-7631e6e50d00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/0153454e-9313-4441-b6cf-838e3d023000",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/c84b4d9d-9525-4bb5-b373-934b46eafc00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/dfe0e3e3-5746-4e2b-12ad-704608531500",
       "status": 200
     },
     {
@@ -310,42 +301,12 @@
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/95c9f957-b1e4-4619-fa7c-a77569d2fe00",
+      "path": "/getWalletImage/34c0e38d-66c4-470e-1aed-a6fabe2d1e00",
       "status": 200
     },
     {
       "host": "api.web3modal.org",
-      "path": "/getWalletImage/2fc9a263-56c0-4e00-2fd8-dadb9d9ad400",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/0153454e-9313-4441-b6cf-838e3d023000",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/785e20ef-c68c-4a85-6cb9-053443871e00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/92f1ead4-0bc4-4932-10d3-761c509b4d00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/594627bd-6d35-406a-8d2b-31e0b5f03c00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/8fa87652-b043-4992-3a45-78e438d1cd00",
-      "status": 200
-    },
-    {
-      "host": "api.web3modal.org",
-      "path": "/getWalletImage/ee242aea-3ffd-4ad8-db88-e29a1ccd2000",
+      "path": "/getWalletImage/a03bfa44-ce98-4883-9b2a-75e2b68f5700",
       "status": 200
     },
     {
@@ -355,7 +316,97 @@
     },
     {
       "host": "api.web3modal.org",
+      "path": "/getWalletImage/2fc9a263-56c0-4e00-2fd8-dadb9d9ad400",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7601bec3-144f-4c9d-30a1-2d4a372ede00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/6133c399-ae32-4eba-0c5a-0fb84492bf00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/8fa87652-b043-4992-3a45-78e438d1cd00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/95c9f957-b1e4-4619-fa7c-a77569d2fe00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/a78c4d48-32c1-4a9d-52f2-ec7ee08ce200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/4c16cad4-cac9-4643-6726-c696efaf5200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/62040f22-2ffd-4942-92fc-71ce68c64300",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/785e20ef-c68c-4a85-6cb9-053443871e00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/bd78de7e-36da-4552-ebdd-2e420ba05900",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/8cecad66-73e3-46ee-f45f-01503c032f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/3cdfc77d-fcb6-4a17-239c-5785fe847b00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
       "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/82e4f722-232b-45a1-b91e-bd42f466b421",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/99012fd8-5870-4219-99ea-b037ae69e8b1",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/61936afa-5973-4d58-9ad3-9dcbd4c72650",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/99242880-0057-44d5-a1fd-66c53117e462",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/e96e5f32-7b73-432d-bb91-8056ba76aa32",
       "status": 200
     },
     {
@@ -381,6 +432,11 @@
     {
       "host": "verify.walletconnect.org",
       "path": "/v3/attestation",
+      "status": 200
+    },
+    {
+      "host": "",
+      "path": "https://xyn.lgbt/e8322c78-8e31-4f57-a721-ead9e4047c8f",
       "status": 200
     }
   ],

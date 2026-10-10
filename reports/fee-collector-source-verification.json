@@ -1,0 +1,34 @@
+{
+  "at": "2026-10-10T18:43:04.228Z",
+  "address": "0x37f2964B322e014c8EA33D700bC94f28Fe7C9432",
+  "httpStatus": 202,
+  "body": {
+    "verificationId": "52c499bc-ae1d-463c-8e9b-827b599c77a2"
+  },
+  "url": "https://repo.sourcify.dev/56/0x37f2964B322e014c8EA33D700bC94f28Fe7C9432",
+  "completedJob": {
+    "isJobCompleted": true,
+    "verificationId": "52c499bc-ae1d-463c-8e9b-827b599c77a2",
+    "jobStartTime": "2026-10-10T18:43:04Z",
+    "jobFinishTime": "2026-10-10T18:43:04Z",
+    "compilationTime": "470",
+    "externalVerifications": {
+      "etherscan": {
+        "verificationId": "zlm3pzszktnrkpxuvqntmqmaabw6cs5vpigl6dpxsrtxyhcvsk",
+        "statusUrl": "https://api.etherscan.io/v2/api?chainid=56&module=contract&action=checkverifystatus&guid=zlm3pzszktnrkpxuvqntmqmaabw6cs5vpigl6dpxsrtxyhcvsk",
+        "explorerUrl": "https://bscscan.com//address/0x37f2964B322e014c8EA33D700bC94f28Fe7C9432",
+        "contractApiUrl": "https://api.etherscan.io/v2/api?chainid=56&module=contract&action=getabi&address=0x37f2964B322e014c8EA33D700bC94f28Fe7C9432"
+      }
+    },
+    "contract": {
+      "match": "exact_match",
+      "creationMatch": "exact_match",
+      "runtimeMatch": "exact_match",
+      "chainId": "56",
+      "address": "0x37f2964B322e014c8EA33D700bC94f28Fe7C9432",
+      "verifiedAt": "2026-10-10T18:43:04Z",
+      "matchId": "55889385"
+    }
+  },
+  "status": "EXACT_MATCH"
+}

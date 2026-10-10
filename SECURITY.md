@@ -35,6 +35,26 @@ HTTP requests cannot invoke the keeper or obtain signatures. The treasury key st
 Gas above budget, insufficient gas funds, unsafe prices, expensive conversions or small
 inventory postpone additions; funds remain in treasury rather than being discarded.
 
+The automatic minimum is 20 USDT of approved inventory valued at vault NAV, and the padded
+gas budget must be at most 0.5% of the addition's value. Contract minima remain unchanged.
+The shared gas-only signer caps each operation at 0.00015 BNB and total daily spend at
+0.0002 BNB, preserving at least 0.00002 BNB for gas. Fee collection and additions share
+these budgets and the same durable pending-transaction journal.
+
+TreasuryFeeCollector accepts only sorted unique batches of up to 32 treasury-owned position
+NFTs for the fixed USDT/TYW pair and CL manager. Its only state-changing entry point runs
+zero-liquidity increases to collect accrued fees, then pays both tokens to the immutable
+treasury. It exposes no NFT transfer, decrease-liquidity, principal withdrawal, arbitrary
+recipient/call, upgrade, or owner powers. The treasury grants NFT operator approval and
+may revoke it; this approval does not expose a principal-transfer path in this collector.
+The Worker pins its runtime hash and recipient, tracks newly minted treasury positions,
+and only claims when fees can pay their own bounded gas and combined inventory can qualify
+for an addition. Fees do not include the full principal of a user's pool swap.
+
+Claiming and reinvestment are separate transactions, on separate eligible rounds. Successful
+collection pays the treasury even if a subsequent quote is unavailable; it never promises
+immediate or perpetual liquidity. Idle funds and unclaimed fees wait without being spent.
+
 ## Independent exit
 
 Use `public/exit.html` (fully self-contained), the GitHub Pages mirror, a compatible chain

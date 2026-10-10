@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T08:29:49.438Z",
+  "at": "2026-10-10T19:00:03.052Z",
   "realTransactionsSent": false,
   "compilerFingerprint": "cd0f65a260d49adae6209ec8bd3f003a3bbf77898089fe84001cd072b7b3e61d",
   "checks": [
@@ -18,9 +18,9 @@
       "operation": "REDEEM_EXCESS_TYW",
       "cashBefore": "0.0",
       "tokensBefore": "7.0",
-      "cashAfterConversion": "3.453737086430044611",
-      "tokensAfterConversion": "3.536629925689085729",
-      "gasUsed": "1374242",
+      "cashAfterConversion": "3.480324883357083443",
+      "tokensAfterConversion": "3.513477182059531925",
+      "gasUsed": "1435934",
       "lpTreasury": true
     },
     {
@@ -28,9 +28,9 @@
       "operation": "MINT_EXCESS_USDT",
       "cashBefore": "8.0",
       "tokensBefore": "0.0",
-      "cashAfterConversion": "3.952660354311304578",
-      "tokensAfterConversion": "4.047269308143602777",
-      "gasUsed": "1439927",
+      "cashAfterConversion": "3.979118585820436413",
+      "tokensAfterConversion": "4.016741880635851038",
+      "gasUsed": "1466252",
       "lpTreasury": true
     },
     {
@@ -38,28 +38,51 @@
       "operation": "MINT_EXCESS_USDT",
       "cashBefore": "5.0",
       "tokensBefore": "3.0",
-      "cashAfterConversion": "3.954740962500547521",
-      "tokensAfterConversion": "4.045241857170788477",
-      "gasUsed": "1429283",
+      "cashAfterConversion": "3.982725202623996116",
+      "tokensAfterConversion": "4.016239610565777723",
+      "gasUsed": "1455608",
       "lpTreasury": true
     }
   ],
   "status": "PASSED",
-  "block": 126795994,
+  "block": 126879980,
+  "fixtureBlocks": [
+    126880043,
+    126880125,
+    126880206,
+    126880289,
+    126880368,
+    126880436,
+    126880502,
+    126880583
+  ],
+  "stage": "fixture-8",
+  "keeperBelowMinimum": {
+    "at": 1791659037087,
+    "status": "WAITING_FOR_MINIMUM_VALUE",
+    "inventoryValueUsdt": "6.997665842552666666",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
+  },
   "keeperStarted": {
-    "at": 1791621201549,
+    "at": 1791659067463,
     "status": "PENDING",
-    "operation": "REDEEM_EXCESS_TYW",
-    "hash": "0xe266bbb1b9e96d38b96edc74351f35181cde4fff767bf139f82b12ae2d7d5184",
+    "hash": "0xb6a2326e867293a4ad84ccf6d224adbc1b5262aa27d2302b96e553b27b92bcd0",
     "matchedUsdt": "0",
-    "matchedTyw": "7"
+    "matchedTyw": "25",
+    "inventoryValueUsdt": "24.99166372340238095",
+    "maximumGasCostUsdt": "0.07088398583420124",
+    "operation": "REDEEM_EXCESS_TYW",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
   },
   "keeperDone": {
-    "at": 1791621250463,
+    "at": 1791659074260,
     "status": "ADDED",
-    "hash": "0xe266bbb1b9e96d38b96edc74351f35181cde4fff767bf139f82b12ae2d7d5184",
-    "blockNumber": "126796000",
-    "gasSpentWei": "3755848735986"
+    "operation": "REDEEM_EXCESS_TYW",
+    "hash": "0xb6a2326e867293a4ad84ccf6d224adbc1b5262aa27d2302b96e553b27b92bcd0",
+    "blockNumber": "126880512",
+    "gasSpentWei": "62822112500000"
   },
   "shutdownRedemption": {
     "assets": [

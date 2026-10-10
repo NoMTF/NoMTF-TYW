@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-10T18:40:23.543Z",
+  "realTransactionsSent": false,
+  "compilerFingerprint": "c230ab90204c5874813e2ba11730ee9ad05c18d46d4fab241a9cee7c33fab534",
+  "checks": [
+    "No collection without explicit treasury NFT approval",
+    "Only sorted unique batches of 1–32 treasury-owned positions for the fixed pair are accepted",
+    "Zero liquidity delta collects accrued fees to the fixed original treasury",
+    "LP liquidity, pool metadata and NFT ownership remain unchanged",
+    "No arbitrary recipient, NFT transfer, principal withdrawal, token custody, or upgrade entry point",
+    "A second collection returns zero",
+    "Production Worker waits for economic minimum without signing",
+    "Synthetic local router swaps accrue real fees; Worker collects with bounded gas and unchanged principal",
+    "Next Worker round splits and reinvests idle inventory plus collected fees; new NFT belongs to treasury and is tracked",
+    "Treasury can revoke collector approval"
+  ],
+  "status": "PASSED",
+  "blockNumber": 126877362,
+  "fees": {
+    "usdt": "0.051664078786554997",
+    "tyw": "0.005498349999999999",
+    "gasUsed": "260872"
+  },
+  "positionsUnchanged": [
+    {
+      "id": "1571663",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "203261577377164360005",
+      "info": "[[\"0x55d398326f99059fF775485246999027B3197955\",\"0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7\",\"0xC146249412d9eB47a5e6719b29fE37e443fB4870\",\"0xa0FfB9c1CE1Fe56963B0321B32E7A0302114058b\",\"8388608\",\"0x00000000000000000000000000000000000000000000000000000000000a0041\"],\"98885516643804573654983285437233982522573514804899975352934169744770936477184\"]"
+    },
+    {
+      "id": "1571939",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "157319400093772036189",
+      "info": "[[\"0x55d398326f99059fF775485246999027B3197955\",\"0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7\",\"0xC146249412d9eB47a5e6719b29fE37e443fB4870\",\"0xa0FfB9c1CE1Fe56963B0321B32E7A0302114058b\",\"8388608\",\"0x00000000000000000000000000000000000000000000000000000000000a0041\"],\"98885516643804573654983285437233982522573514804899975352934169744770936477184\"]"
+    }
+  ],
+  "runtimeCodeHash": "0xe8198e5bc6a51432c7967de2e5abe0819ed788fcda818a55530e3d146cf8a210",
+  "stage": "worker-reinvest",
+  "waiting": {
+    "at": 1791657632590,
+    "status": "WAITING_FOR_INVENTORY_PRICE_OR_QUOTES",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
+  },
+  "collectionStarted": {
+    "at": 1791657653094,
+    "status": "PENDING",
+    "hash": "0x86d46fa58188708cb6039761d02645e662aee3f17212e888007bd1450af8d4cd",
+    "matchedUsdt": "1.428149999999999999",
+    "matchedTyw": "1.399388659497463955",
+    "inventoryValueUsdt": "2.826967440589287228",
+    "maximumGasCostUsdt": "0.008602029078717431",
+    "operation": "COLLECT_FEES",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
+  },
+  "collectionDone": {
+    "at": 1791657656733,
+    "status": "FEES_COLLECTED",
+    "operation": "COLLECT_FEES",
+    "hash": "0x86d46fa58188708cb6039761d02645e662aee3f17212e888007bd1450af8d4cd",
+    "blockNumber": "126877385",
+    "gasSpentWei": "9344431250000"
+  },
+  "additionStarted": {
+    "at": 1791657656925,
+    "status": "PENDING",
+    "hash": "0x21518bf38caf66cb9814eacf4427fffeac18792dc7be536ac26adc9fdcbbad79",
+    "matchedUsdt": "21.479814078786554996",
+    "matchedTyw": "1.411043209171075981",
+    "inventoryValueUsdt": "22.890281311758408143",
+    "maximumGasCostUsdt": "0.06375249548716374",
+    "operation": "MINT_EXCESS_USDT",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
+  },
+  "additionDone": {
+    "at": 1791657667570,
+    "status": "ADDED",
+    "operation": "MINT_EXCESS_USDT",
+    "hash": "0x21518bf38caf66cb9814eacf4427fffeac18792dc7be536ac26adc9fdcbbad79",
+    "blockNumber": "126877386",
+    "gasSpentWei": "56493072511596"
+  }
+}

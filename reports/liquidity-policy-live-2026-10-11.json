@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-10T18:46:15.431Z",
+  "status": "PASSED",
+  "readOnly": true,
+  "site": "https://xyn.lgbt",
+  "appBuild": "ab745ffe2840cbffa5af112dd805e523b8152a29304bd6673ef70dde3ae97bae",
+  "policy": {
+    "minimum": "20",
+    "maximumGasBps": 50
+  },
+  "feeCollector": "0x37f2964B322e014c8EA33D700bC94f28Fe7C9432",
+  "sourceRuntimeMatch": "exact_match",
+  "feeCollectorApproved": true,
+  "positions": [
+    {
+      "id": "1571663",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "203261577377164360005"
+    },
+    {
+      "id": "1571939",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "157319400093772036189"
+    }
+  ],
+  "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+  "rates": {
+    "buy": 5,
+    "sell": 5,
+    "directPlatformFeeBps": 0
+  },
+  "navUsdt": "0.999616719319733293",
+  "keeper": {
+    "at": 1791657915050,
+    "status": "WAITING_FOR_INVENTORY_PRICE_OR_QUOTES",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
+  },
+  "feeCollection": {
+    "at": 1791657915050,
+    "status": "WAITING_FOR_FEE_VALUE",
+    "minimumValueUsdt": "20",
+    "maximumGasBps": 50
+  }
+}

@@ -54,7 +54,7 @@ export class PortfolioCoordinator extends DurableObject<Env>{
         this.budget.take(key,heavy);return json({ok:true});
       }
       if(url.pathname==='/__liquidity_tick'&&request.method==='POST')return json(await this.work('liquidity-tick',()=>liquidityTick(this.env,this.ctx.storage)));
-      if(url.pathname==='/api/liquidity'&&request.method==='GET')return json({...await this.work('liquidity-info',()=>liquidityInfo(this.env)),keeper:await this.ctx.storage.get('liquidity:last')||null});
+      if(url.pathname==='/api/liquidity'&&request.method==='GET')return json({...await this.work('liquidity-info',()=>liquidityInfo(this.env)),keeper:await this.ctx.storage.get('liquidity:last')||null,feeCollection:await this.ctx.storage.get('liquidity:fees')||null});
       if(url.pathname.startsWith('/api/batch/')){
         if(this.env.BATCH_QUEUE_ENABLED!=='true'||!isAddress(this.env.BATCH_ADDRESS||''))return json({error:'合批队列尚未开放'},409);
         return await this.work('batch:'+url.pathname+url.search+(request.method==='POST'?crypto.randomUUID():''),()=>new BatchQueue(this.ctx.storage,this.env).handle(request));

@@ -23,6 +23,7 @@ export const WALLET_CATALOG:WalletEntry[]=[
  {id:'oneinch',name:'1inch Wallet',website:'https://1inch.com/wallet/',connectId:'oneinch',aliases:['1inch','oneinch']},
  {id:'crypto-com',name:'Crypto.com Onchain',website:'https://crypto.com/onchain',connectId:'crypto-com',aliases:['crypto.com']},
  {id:'safe',name:'Safe',website:'https://safe.global/',connectId:'safe',aliases:['safe.global']},
+ {id:'keeper',name:'Keeper（原 Tonkeeper）',website:'https://keeperwallet.com/',aliases:['keeperwallet','tonkeeper']},
 ];
 // Reown handles each wallet's current mobile links and desktop QR; no guessed app URLs.
 for(const entry of WALLET_CATALOG)if(!entry.connectId&&['okx','metamask','trust','bitget','tokenpocket','imtoken'].includes(entry.id))entry.connectId=entry.id as Wallet;

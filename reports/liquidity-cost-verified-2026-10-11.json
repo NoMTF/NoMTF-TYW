@@ -1,0 +1,73 @@
+{
+  "at": "2026-10-10T13:58:12.040Z",
+  "localDate": "2026-10-11",
+  "block": 126839762,
+  "method": "Actual deployed vault and underlying exchanges on a local fork. Each of the four cases buys and immediately sells with real local receipts.",
+  "realTransactionsSent": false,
+  "gasPriceWei": "50000000",
+  "bnbUsdt": "749.6097668452122309",
+  "verifiedCases": [
+    {
+      "inputUsdt": "1",
+      "spentUsdt": "0.991354597229995435",
+      "refundUsdt": "0.008645402770004565",
+      "shares": "0.990626166720279863",
+      "buyGasUsed": "702200",
+      "buyGasUsdt": "0.026318798913935401",
+      "buyUnderlyingCostUsdt": "0.001354597229995274",
+      "buyTotalPercent": 2.7673,
+      "sellGasUsed": "695698",
+      "roundTripUnderlyingCostUsdt": "0.002777830515471297",
+      "roundTripGasUsdt": "0.052393899692669424",
+      "roundTripTotalPercent": 5.5171,
+      "approvalExcluded": true
+    },
+    {
+      "inputUsdt": "5",
+      "spentUsdt": "4.95677912446553967",
+      "refundUsdt": "0.04322087553446033",
+      "shares": "4.953130833601399318",
+      "buyGasUsed": "702200",
+      "buyGasUsdt": "0.026318798913935401",
+      "buyUnderlyingCostUsdt": "0.006779124465538354",
+      "buyTotalPercent": 0.6619,
+      "sellGasUsed": "667013",
+      "roundTripUnderlyingCostUsdt": "0.013889164546798215",
+      "roundTripGasUsdt": "0.051318771884571678",
+      "roundTripTotalPercent": 1.3041,
+      "approvalExcluded": true
+    },
+    {
+      "inputUsdt": "10",
+      "spentUsdt": "9.913573594814679435",
+      "refundUsdt": "0.086426405185320565",
+      "shares": "9.906261667202798638",
+      "buyGasUsed": "709153",
+      "buyGasUsdt": "0.026579400749379139",
+      "buyUnderlyingCostUsdt": "0.013573594814677554",
+      "buyTotalPercent": 0.4015,
+      "sellGasUsed": "702660",
+      "roundTripUnderlyingCostUsdt": "0.027778359017467909",
+      "roundTripGasUsdt": "0.05291544068795198",
+      "roundTripTotalPercent": 0.8069,
+      "approvalExcluded": true
+    },
+    {
+      "inputUsdt": "20",
+      "spentUsdt": "19.827208573795014808",
+      "refundUsdt": "0.172791426204985192",
+      "shares": "19.812523334405597276",
+      "buyGasUsed": "708369",
+      "buyGasUsdt": "0.026550016046518807",
+      "buyUnderlyingCostUsdt": "0.027208573795012531",
+      "buyTotalPercent": 0.2687,
+      "sellGasUsed": "702669",
+      "roundTripUnderlyingCostUsdt": "0.055556837731880986",
+      "roundTripGasUsdt": "0.052886393309486728",
+      "roundTripTotalPercent": 0.5422,
+      "approvalExcluded": true
+    }
+  ],
+  "verifiedCaseCount": 4,
+  "limits": "First USDT approval excluded. The attempted 50-USDT case could not be completed because the upstream RPC rejected archive access. No result for that case is asserted. These results are distinct from the external LP fee and not future guarantees."
+}

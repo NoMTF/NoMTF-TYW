@@ -1,0 +1,40 @@
+{
+  "chainId": 56,
+  "startedAt": "2026-10-10T18:41:29.617Z",
+  "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "positions": "0x55f4c8abA71A1e923edC303eb4fEfF14608cC226",
+  "compilerFingerprint": "c230ab90204c5874813e2ba11730ee9ad05c18d46d4fab241a9cee7c33fab534",
+  "contracts": {
+    "TreasuryFeeCollector": "0x37f2964B322e014c8EA33D700bC94f28Fe7C9432"
+  },
+  "transactions": [
+    {
+      "label": "deploy:TreasuryFeeCollector",
+      "hash": "0xca272320d487c5a6a0fa69ba56696d7ff21d76317502cde6ead0fa432725241a",
+      "nonce": 37,
+      "status": "CONFIRMED",
+      "gasUsed": "720521",
+      "gasPrice": "50000000",
+      "blockNumber": 126877515
+    },
+    {
+      "label": "approve-fee-collector",
+      "hash": "0x9ff0ef0e91ee538fe53510e127ff9ed528699c1b09f2d6f4200357b5fab58cf6",
+      "nonce": 38,
+      "status": "CONFIRMED",
+      "gasUsed": "46591",
+      "gasPrice": "50000000",
+      "blockNumber": 126877530
+    }
+  ],
+  "spentGasWei": "38355600000000",
+  "status": "ACTIVE",
+  "controllerCodeHash": "0xe8198e5bc6a51432c7967de2e5abe0819ed788fcda818a55530e3d146cf8a210",
+  "positionIds": [
+    "1571663",
+    "1571939"
+  ],
+  "updatedAt": "2026-10-10T18:41:47.972Z",
+  "onlyCollectsFees": true,
+  "poolUnchanged": true
+}
