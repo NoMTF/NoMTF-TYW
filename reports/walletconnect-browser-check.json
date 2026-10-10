@@ -1,0 +1,389 @@
+{
+  "at": "2026-10-10T13:34:22.818Z",
+  "site": "https://xyn.lgbt/",
+  "status": "PASSED",
+  "catalogCount": 20,
+  "qr": {
+    "present": true,
+    "uriReady": true,
+    "svg": true
+  },
+  "checks": [
+    "Real relay-backed QR renders",
+    "Named Binance Wallet connection and QR",
+    "Cancel and retry restore controls",
+    "Wallet search, DApp and pool fallbacks",
+    "Mobile layout without horizontal overflow",
+    "Exact sell denomination and 18-decimal amount passed to pool",
+    "No browser exception or CSP violation"
+  ],
+  "requests": [
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Regular.woff2",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Light.woff2",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTekaMono-Regular.woff2",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Light.woff",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Regular.woff",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTekaMono-Regular.woff",
+      "status": 200
+    },
+    {
+      "host": "fonts.reown.com",
+      "path": "/KHTeka-Medium.woff2",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/public/getAssetImage/bba2c8be-7fd1-463e-42b1-796ecb0ad200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/public/getAssetImage/93564157-2e8e-4ce7-81df-b264dbee9b00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/41869009-80c0-4daa-ebfb-edfedfec1700",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/41869009-80c0-4daa-ebfb-edfedfec1700",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/appkit/v1/config",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/appkit/v1/project-limits",
+      "status": 200
+    },
+    {
+      "host": "verify.walletconnect.org",
+      "path": "/v3/attestation",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/252753e7-b783-4e03-7f77-d39864530900",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/cfe00608-cb9e-45e3-0d08-5ffc7f5ad200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/2b569b7f-e6c6-4faa-8e5a-ecd4dec8cf00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/45f2f08e-fc0c-4d62-3e63-404e72170500",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/a7f416de-aa03-4c5e-3280-ab49269aef00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/bff9cf1f-df19-42ce-f62a-87f04df13c00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/73f6f52f-7862-49e7-bb85-ba93ab72cc00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/88388eb4-4471-4e72-c4b4-852d496fea00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/3e60118c-b9a9-43df-7975-33ebc8014400",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/c84b4d9d-9525-4bb5-b373-934b46eafc00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/553e8fff-37c9-4a62-5bfe-02ff22e1e200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/3cdfc77d-fcb6-4a17-239c-5785fe847b00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/bd78de7e-36da-4552-ebdd-2e420ba05900",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/dfe0e3e3-5746-4e2b-12ad-704608531500",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/8909e826-63e4-42b3-60b2-8a6a54060900",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/4c16cad4-cac9-4643-6726-c696efaf5200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/71ca9daf-a31e-4d2a-fd01-f5dc2dc66900",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7601bec3-144f-4c9d-30a1-2d4a372ede00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/b6ec7b81-bb4f-427d-e290-7631e6e50d00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/a03bfa44-ce98-4883-9b2a-75e2b68f5700",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/b9e64f74-0176-44fd-c603-673a45ed5b00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/62040f22-2ffd-4942-92fc-71ce68c64300",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/34c0e38d-66c4-470e-1aed-a6fabe2d1e00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/6133c399-ae32-4eba-0c5a-0fb84492bf00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/79285c9f-2630-451e-0680-c71b42fb7400",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/a78c4d48-32c1-4a9d-52f2-ec7ee08ce200",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/8cecad66-73e3-46ee-f45f-01503c032f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/215158d2-614b-49c9-410f-77aa661c3900",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/b2a00908-f144-4a49-cc0a-9d7422ad5e00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/e7c6d5d0-b986-4348-de22-fc940e1aee00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/95c9f957-b1e4-4619-fa7c-a77569d2fe00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/2fc9a263-56c0-4e00-2fd8-dadb9d9ad400",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/0153454e-9313-4441-b6cf-838e3d023000",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/785e20ef-c68c-4a85-6cb9-053443871e00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/92f1ead4-0bc4-4932-10d3-761c509b4d00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/594627bd-6d35-406a-8d2b-31e0b5f03c00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/8fa87652-b043-4992-3a45-78e438d1cd00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ee242aea-3ffd-4ad8-db88-e29a1ccd2000",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/9ba07b43-3db1-4e8d-100e-8c91d8430c00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWallets",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/41869009-80c0-4daa-ebfb-edfedfec1700",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/7677b54f-3486-46e2-4e37-bf8747814f00",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/eebe4a7f-7166-402f-92e0-1f64ca2aa800",
+      "status": 200
+    },
+    {
+      "host": "api.web3modal.org",
+      "path": "/getWalletImage/ebac7b39-688c-41e3-7912-a4fefba74600",
+      "status": 200
+    },
+    {
+      "host": "verify.walletconnect.org",
+      "path": "/v3/attestation",
+      "status": 200
+    }
+  ],
+  "realPhoneConnectionTested": false,
+  "signaturesOrTransactionsRequested": false
+}

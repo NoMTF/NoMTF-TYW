@@ -16,6 +16,7 @@
     "@openzeppelin/contracts": "5.4.0",
     "@reown/appkit": "1.8.24",
     "@reown/appkit-adapter-ethers": "1.8.24",
+    "@reown/appkit-wallet-button": "1.8.24",
     "@uniswap/v4-core": "1.0.2",
     "ethers": "6.17.0",
     "viem": "2.57.4"

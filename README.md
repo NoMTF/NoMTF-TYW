@@ -107,6 +107,8 @@ node --import tsx scripts/fork-auto-liquidity.mjs
 
 测试只修改本地分叉。Windows 可使用随项目安装的可选 Anvil；其他系统安装 Anvil 到 PATH，或设置 `ANVIL_BIN`。需要时使用 `FORK_RPC_URL` 指定 RPC。
 
-网站首屏和恢复代码内嵌在 HTML 中，资源失败会有限重试，历史构建资源保留 30 天。正在运行的交易页面不会被自动刷新。钱包支持已安装的 EVM 扩展、EIP-6963 发现和移动钱包入口；跨设备 WalletConnect 扫码需要配置 Project ID。
+网站首屏和恢复代码内嵌在 HTML 中，资源失败会有限重试，历史构建资源保留 30 天。正在运行的交易页面不会被自动刷新。钱包支持已安装的 EVM 扩展、EIP-6963 发现、移动钱包入口及 WalletConnect 扫码连接。自行部署时，通过 Worker 的 `WALLETCONNECT_PROJECT_ID` 环境配置启用扫码入口；API 密钥不进入客户端。
+
+钱包列表提供 20 个常用入口，更多钱包通过 WalletConnect 选择支持 BNB Chain 的版本。可以直接连接，也可以一键打开官网 DApp 或带入币对与金额的 PancakeSwap 页面。OKX 交易所 App 与独立 OKX Wallet 分开提供入口。外部平台是否接受兑换路线，由其自身决定。
 
 项目代码采用 MIT 许可证，依赖沿用各自许可证。头像素材的权利与软件许可证分开。私钥、助记词、运行日志和用户邮件不在公开仓库中。

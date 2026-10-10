@@ -1,0 +1,35 @@
+async (page) => {
+ const failures=[],requests=[],errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ page.on('response',r=>{const u=new URL(r.url());if(u.hostname!=='xyn.lgbt')requests.push({host:u.hostname,path:u.pathname,status:r.status()});});
+ await page.addInitScript(()=>{window.__wcCsp=[];document.addEventListener('securitypolicyviolation',e=>window.__wcCsp.push({directive:e.effectiveDirective,blocked:e.blockedURI.split('?')[0]}));});
+ await page.goto('https://xyn.lgbt/');await page.waitForFunction(()=>window.__TYW_STARTUP?.ready);
+ await page.locator('#wallet').click();await page.locator('#walletconnect').waitFor({state:'visible'});
+ const catalogCount=await page.locator('.catalog-row').count();if(catalogCount<20)throw Error('Wallet catalog not deployed');
+ const unusableCopyEntries=await page.locator('.catalog-connect').allTextContents();if(unusableCopyEntries.some(s=>s.includes('复制链接')))throw Error('Copy-only catalog entry');
+ await page.locator('#walletconnect').click();await page.waitForFunction(()=>document.querySelector('w3m-modal')?.open===true);
+ await page.getByRole('button',{name:/WalletConnect.*qr code/i}).click();
+ await page.locator('wui-qr-code').waitFor({state:'visible',timeout:30000});
+ const qr=await page.locator('wui-qr-code').evaluate(e=>({present:true,uriReady:typeof e.uri==='string'&&e.uri.startsWith('wc:'),svg:!!e.shadowRoot?.querySelector('svg')}));
+ if(!qr.uriReady||!qr.svg)throw Error('WalletConnect QR is not ready');
+ await page.screenshot({path:'output/playwright/walletconnect-qr.png'});
+ await page.locator('[data-testid="w3m-header-close"]').click();await page.waitForFunction(()=>document.querySelector('w3m-modal')?.open===false);
+ await page.locator('#wallet').click();await page.locator('.catalog-row[data-wallet="binance"] .catalog-connect').click();
+ await page.waitForFunction(()=>document.querySelector('w3m-modal')?.open===true);
+ await page.locator('wui-qr-code').waitFor({state:'visible',timeout:30000});
+ const binance=await page.locator('[data-testid="w3m-header-text"]').innerText();if(!binance.includes('Binance'))throw Error('Named wallet selection was not retained');
+ await page.screenshot({path:'output/playwright/walletconnect-binance.png'});
+ await page.locator('[data-testid="w3m-header-close"]').click();
+ await page.waitForFunction(()=>!document.querySelector('#walletconnect').disabled);
+ await page.setViewportSize({width:390,height:844});await page.locator('#wallet').click();
+ await page.locator('#wallet-search').fill('safepal');if(await page.locator('.catalog-row').count()!==1)throw Error('Wallet search failed');
+ const walletActions=await page.locator('.catalog-actions a').allTextContents();if(!walletActions.some(s=>s.includes('打开 DApp'))||!walletActions.some(s=>s.includes('池子兑换')))throw Error('Wallet fallback actions missing');
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);if(overflow)throw Error('Mobile horizontal overflow');
+ await page.screenshot({path:'output/playwright/walletconnect-mobile.png'});
+ await page.locator('#close-wallet').click();
+ await page.locator('#sell-tab').click();await page.locator('#amount').fill('0.123456789012345678');
+ const swap=new URL(await page.locator('.pool-entry [data-pool-swap]').getAttribute('href'));if(swap.searchParams.get('exactAmount')!=='0.123456789012345678'||swap.searchParams.get('inputCurrency').toLowerCase()!=='0xae7ea21fbf3613ffc17fe962ee66bfe03015fba7')throw Error('Pool swap lost sell input');
+ const csp=await page.evaluate(()=>window.__wcCsp);failures.push(...csp);if(failures.length||errors.length)throw Error('Browser errors or CSP violations: '+JSON.stringify({failures,errors}));
+ const report={at:new Date().toISOString(),site:'https://xyn.lgbt/',status:'PASSED',catalogCount,qr,checks:['Real relay-backed QR renders','Named Binance Wallet connection and QR','Cancel and retry restore controls','Wallet search, DApp and pool fallbacks','Mobile layout without horizontal overflow','Exact sell denomination and 18-decimal amount passed to pool','No browser exception or CSP violation'],requests,realPhoneConnectionTested:false,signaturesOrTransactionsRequested:false};
+ return report;
+}

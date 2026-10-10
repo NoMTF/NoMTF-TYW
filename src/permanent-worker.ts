@@ -89,7 +89,11 @@ export default {
    let response:Response;try{response=await handle(request,env);}catch(e){if(e instanceof HttpError){response=json({error:e.message},e.status);if(e.retryAfter)response.headers.set('Retry-After',String(e.retryAfter));}else if(e instanceof BatchError)response=json({error:e.message},e.status);else response=json({error:'服务暂时不可用，请稍后重试'},503);}
    const headers=new Headers(response.headers),wcEnabled=/^[a-f0-9]{32}$/i.test(env.WALLETCONNECT_PROJECT_ID||'');for(const [k,v]of Object.entries(securityHeaders(wcEnabled)))headers.set(k,v);
    if(new URL(request.url).pathname==='/exit.html')headers.set('Content-Security-Policy',EXIT_CSP);
-   if(new URL(request.url).pathname==='/')headers.set('Content-Security-Policy',headers.get('Content-Security-Policy')!.replace("script-src 'self'",`script-src 'self' ${BOOT_SCRIPT_HASH}`).replace("style-src 'self'",`style-src 'self' ${BOOT_STYLE_HASH}`));
+   if(new URL(request.url).pathname==='/'){
+    let policy=headers.get('Content-Security-Policy')!.replace("script-src 'self'",`script-src 'self' ${BOOT_SCRIPT_HASH}`);
+    if(!wcEnabled)policy=policy.replace("style-src 'self'",`style-src 'self' ${BOOT_STYLE_HASH}`);
+    headers.set('Content-Security-Policy',policy);
+   }
    if(new URL(request.url).pathname.startsWith('/api/'))headers.set('X-Robots-Tag','noindex, nofollow');
    if(new URL(request.url).pathname.startsWith('/api/')){headers.set('Cache-Control','no-store');headers.set('Cross-Origin-Resource-Policy','same-origin');}
    return new Response(response.body,{status:response.status,headers});

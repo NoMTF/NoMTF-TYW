@@ -7,6 +7,9 @@ User reserves live exclusively in the non-upgradeable PermanentVault at
   oracle replacement, proxy upgrade, or unbacked mint entry point.
 - The owner can pause ordinary purchases, sales and rebalances. `redeemInKind` is outside
   that pause gate. Ownership transfer does not create additional powers.
+- Ownership is retained for this pause/unpause role, not reserve custody. Renouncing it
+  is irreversible: neither pause nor unpause remains callable afterward. Renouncing while
+  paused would permanently disable normal trading; in-kind redemption remains available.
 - Purchases require real proportional asset delivery before minting. Redemptions burn the
   caller's shares and deliver only their proportional assets to that same caller.
 - Rebalance is permissionless but requires an actual threshold crossing, cooldown,
