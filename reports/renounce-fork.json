@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-10T19:17:42.962Z",
+  "realTransactionsSent": false,
+  "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+  "chainId": 56,
+  "status": "PASSED",
+  "checks": [
+    "Ownership is zero; pending transfer cleared; vault stays unpaused; former owner cannot regain or pause it",
+    "Actual website quote, backed mint, stablecoin sale and ERC20 transfer succeed after renunciation",
+    "Existing automatic controller converts single-sided treasury USDT and adds LP to the original treasury",
+    "Existing official Infinity router buys and sells through the unchanged external pool",
+    "Fee-only collection still pays treasury and preserves both original LP principals and NFT owners",
+    "Production restoration planner and a non-owner execute a genuinely triggered bounded rebalance",
+    "Independent in-kind redemption survives renunciation plus unavailable oracle and underlying exchange pools"
+  ],
+  "block": 126882336,
+  "vaultRuntimeHash": "0xfb951933e9632103f4a0e07553a20b5cc069a974dfe4bb448cc4a7e8f8ed97de",
+  "ownerBefore": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "pausedBefore": false,
+  "stage": "independent-redemption",
+  "newPositionId": "1577282",
+  "poolRoundTrip": {
+    "tyw": "0.947761084005523509",
+    "usdtBack": "0.904257976635667713"
+  },
+  "collectedFees": {
+    "usdt": "0.067198902703931876",
+    "tyw": "0.020957739313413836"
+  },
+  "rebalanceWeights": [
+    2501,
+    2498,
+    2500,
+    2498
+  ],
+  "onlyLostCapabilities": [
+    "pause",
+    "unpause",
+    "ownership transfer"
+  ],
+  "lpPrincipalAndOwnershipUnchanged": true
+}

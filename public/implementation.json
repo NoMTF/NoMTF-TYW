@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T18:43:39.163Z",
+  "at": "2026-10-10T19:19:34.318Z",
   "version": "permanent-v2",
   "deployment": {
     "chainId": 56,
@@ -1093,12 +1093,25 @@
     "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
     "userVaultHasAdministratorWithdrawal": false,
     "userVaultUpgradeable": false,
-    "administratorMayPauseTrading": true,
+    "administratorMayPauseTrading": false,
     "inKindRedemptionAvailableDuringPause": true,
     "inKindRedemptionNeedsWebsiteOracleOrDex": false,
     "exitPage": "https://xyn.lgbt/exit.html",
     "exitMirror": "https://nomtf.github.io/NoMTF-TYW/",
     "underlyingTransferFreezeAndDefaultRisk": true,
-    "thirdPartyAudit": false
+    "thirdPartyAudit": false,
+    "ownership": {
+      "renounced": true,
+      "owner": "0x0000000000000000000000000000000000000000",
+      "pendingOwner": "0x0000000000000000000000000000000000000000",
+      "paused": false,
+      "transaction": "0xdd101a9ee5aaf9d932a063f09bfefbd2c43db08646f885c7b421a11d9a0d2676",
+      "blockNumber": 126882483,
+      "confirmedAt": "2026-10-10T19:18:51.724Z",
+      "localDate": "2026-10-11",
+      "timezone": "Australia/Adelaide",
+      "emergencyPauseAvailable": false,
+      "treasuryAndLpOwnershipRetained": true
+    }
   }
 }

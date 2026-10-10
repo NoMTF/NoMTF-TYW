@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-10T08:25:31.646Z",
-  "block": 126795386,
+  "at": "2026-10-10T19:19:51.596Z",
+  "block": 126882585,
   "chainId": 56,
   "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
   "oracle": "0x178436E1750Be2Bb1fff667245DF80c77D89Bb97",
@@ -16,17 +16,17 @@
   "comparisonMethod": "Compile archived deployment source; strip Solidity metadata footer; validate immutable address operands at compiler-provided immutableReferences offsets, then compare all other bytes exactly.",
   "currentDevelopmentVaultIsRefactored": true,
   "sourceDifference": "After deployment, local PermanentVault was refactored to expose internal helpers for PermanentBatchVault. That refactoring changed bytecode but not the deployed contract. Archived original deployment source is now separate.",
-  "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "owner": "0x0000000000000000000000000000000000000000",
   "pendingOwner": "0x0000000000000000000000000000000000000000",
   "stable": "0x55d398326f99059fF775485246999027B3197955",
   "oracleAddress": "0x178436E1750Be2Bb1fff667245DF80c77D89Bb97",
   "paused": false,
-  "supply": "12855837805989847338",
+  "supply": "10481721128415994507",
   "weightsBps": [
-    2505,
-    2497,
-    2499,
-    2496
+    2501,
+    2511,
+    2492,
+    2494
   ],
   "assets": [
     "0x7138b48df7D98D7e3cc221BfE7192D0a178182D8",

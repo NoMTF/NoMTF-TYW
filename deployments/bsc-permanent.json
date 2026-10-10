@@ -97,5 +97,18 @@
       "gasPrice": "52328820",
       "gasBnb": "0.00003640447979934"
     }
-  ]
+  ],
+  "ownership": {
+    "renounced": true,
+    "owner": "0x0000000000000000000000000000000000000000",
+    "pendingOwner": "0x0000000000000000000000000000000000000000",
+    "paused": false,
+    "transaction": "0xdd101a9ee5aaf9d932a063f09bfefbd2c43db08646f885c7b421a11d9a0d2676",
+    "blockNumber": 126882483,
+    "confirmedAt": "2026-10-10T19:18:51.724Z",
+    "localDate": "2026-10-11",
+    "timezone": "Australia/Adelaide",
+    "emergencyPauseAvailable": false,
+    "treasuryAndLpOwnershipRetained": true
+  }
 }

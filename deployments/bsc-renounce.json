@@ -1,0 +1,65 @@
+{
+  "startedAt": "2026-10-10T19:18:44.173Z",
+  "chainId": 56,
+  "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+  "previousOwner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "status": "CONFIRMED",
+  "irreversible": true,
+  "onlyAction": "renounceOwnership",
+  "lpOwnershipRetained": true,
+  "lpBefore": [
+    {
+      "id": "1571663",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "203261577377164360005"
+    },
+    {
+      "id": "1571939",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "157319400093772036189"
+    }
+  ],
+  "hash": "0xdd101a9ee5aaf9d932a063f09bfefbd2c43db08646f885c7b421a11d9a0d2676",
+  "nonce": 39,
+  "beforeBlock": 126882473,
+  "vaultRuntimeHash": "0xfb951933e9632103f4a0e07553a20b5cc069a974dfe4bb448cc4a7e8f8ed97de",
+  "pausedBefore": false,
+  "supplyBefore": "10481721128415994507",
+  "forkReport": "reports/renounce-fork.json",
+  "verification": [
+    {
+      "block": 126882485,
+      "owner": "0x0000000000000000000000000000000000000000",
+      "pendingOwner": "0x0000000000000000000000000000000000000000",
+      "paused": false
+    },
+    {
+      "block": 126882487,
+      "owner": "0x0000000000000000000000000000000000000000",
+      "pendingOwner": "0x0000000000000000000000000000000000000000",
+      "paused": false
+    }
+  ],
+  "lpAfter": [
+    {
+      "id": "1571663",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "203261577377164360005"
+    },
+    {
+      "id": "1571939",
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "157319400093772036189"
+    }
+  ],
+  "confirmedAt": "2026-10-10T19:18:51.724Z",
+  "blockNumber": 126882483,
+  "gasUsed": "25719",
+  "gasPriceWei": "50000000",
+  "gasBnb": "0.00000128595",
+  "owner": "0x0000000000000000000000000000000000000000",
+  "pendingOwner": "0x0000000000000000000000000000000000000000",
+  "paused": false,
+  "lpPrincipalUnchanged": true,
+  "rateChange": false
+}

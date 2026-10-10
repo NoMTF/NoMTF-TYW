@@ -5,11 +5,14 @@ User reserves live exclusively in the non-upgradeable PermanentVault at
 
 - There is no administrator reserve withdrawal, rescue, arbitrary-call, asset replacement,
   oracle replacement, proxy upgrade, or unbacked mint entry point.
-- The owner can pause ordinary purchases, sales and rebalances. `redeemInKind` is outside
-  that pause gate. Ownership transfer does not create additional powers.
-- Ownership is retained for this pause/unpause role, not reserve custody. Renouncing it
-  is irreversible: neither pause nor unpause remains callable afterward. Renouncing while
-  paused would permanently disable normal trading; in-kind redemption remains available.
+- Vault ownership was renounced on 2026-10-11 (Australia/Adelaide), while unpaused, in
+  [transaction 0xdd101a9e…](https://bscscan.com/tx/0xdd101a9ee5aaf9d932a063f09bfefbd2c43db08646f885c7b421a11d9a0d2676).
+  Both `owner()` and `pendingOwner()` are zero. No account can pause, unpause or regain
+  ownership. This is irreversible and removes the emergency trading stop.
+- Purchases, sales, ERC20 transfers, bounded rebalances and independent in-kind redemption
+  do not require the former owner. Their existing price, liquidity and safety conditions
+  still apply. Treasury wallet access, LP NFT ownership and helper controls are separate
+  and were not renounced. See `deployments/bsc-renounce.json` and `reports/renounce-fork.json`.
 - Purchases require real proportional asset delivery before minting. Redemptions burn the
   caller's shares and deliver only their proportional assets to that same caller.
 - Rebalance is permissionless but requires an actual threshold crossing, cooldown,
