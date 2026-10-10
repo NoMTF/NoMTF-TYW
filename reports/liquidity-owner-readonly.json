@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-10T09:31:08.937Z",
+  "chainId": 56,
+  "block": 126804161,
+  "positions": [
+    {
+      "id": 1571663,
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "203261577377164360005"
+    },
+    {
+      "id": 1571939,
+      "owner": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "liquidity": "157319400093772036189"
+    }
+  ],
+  "controller": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+  "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "readOnly": true
+}

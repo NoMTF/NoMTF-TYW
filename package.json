@@ -7,7 +7,7 @@
     "compile": "node scripts/compile.mjs",
     "test": "npm run compile && node --import tsx --test test/*.test.mjs test/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "build": "npm run compile && node scripts/build-exit.mjs && npm run typecheck && vite build && wrangler deploy --dry-run --outdir build/worker",
+    "build": "npm run compile && node scripts/build-exit.mjs && node scripts/build-site.mjs && npm run typecheck && wrangler deploy --dry-run --outdir build/worker",
     "dev": "vite --host 127.0.0.1",
     "worker:dev": "wrangler dev",
     "deploy:worker": "wrangler deploy"

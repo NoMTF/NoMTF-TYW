@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 460" role="img" aria-labelledby="title">
+<title id="title">唐毓文币 TYW：真实持仓、源码公开、独立赎回</title>
+<defs><linearGradient id="bg"><stop stop-color="#0b1711"/><stop offset="1" stop-color="#172b1b"/></linearGradient></defs>
+<rect width="1440" height="460" rx="28" fill="url(#bg)"/>
+<g fill="none" stroke="#82a583" opacity=".15"><path d="M960 60v330m100-330v330m100-330v330m100-330v330m100-330v330M930 90h450M930 160h450M930 230h450M930 300h450M930 370h450"/><path stroke-width="5" stroke="#c8eea2" d="m950 322 68-44 60 15 62-88 64 20 65-73 89-51"/></g>
+<g font-family="Segoe UI,Microsoft YaHei,sans-serif"><text x="64" y="68" fill="#a0b5a3" font-size="23" letter-spacing="3">NoMTF · BNB CHAIN</text><text x="60" y="168" fill="#f1f6ec" font-size="74" font-weight="700">唐毓文币 <tspan fill="#c8eea2">TYW</tspan></text><text x="64" y="231" fill="#dde8d6" font-size="31">老唐的个人 meme 币，也是一份真实的永久组合。</text><text x="64" y="290" fill="#aec6b0" font-size="22">真实持仓　·　源码公开　·　独立赎回</text>
+<g font-size="19" fill="#d9e4d4"><text x="64" y="395">SPYB · 股票</text><text x="399" y="395">TLTon · 长债</text><text x="734" y="395">XAUm · 黄金</text><text x="1069" y="395">SGOVon · 短债</text></g></g>
+<rect x="64" y="348" width="319" height="10" rx="5" fill="#c8eea2"/><rect x="399" y="348" width="319" height="10" rx="5" fill="#88a8c3"/><rect x="734" y="348" width="319" height="10" rx="5" fill="#d6bd75"/><rect x="1069" y="348" width="307" height="10" rx="5" fill="#b6a4c8"/>
+</svg>

@@ -83,11 +83,13 @@ export class PortfolioCoordinator extends DurableObject<Env>{
   }
 }
 import {EXIT_CSP} from './exit-policy.ts';
+import {BOOT_SCRIPT_HASH,BOOT_STYLE_HASH} from './boot-policy.ts';
 export default {
  async fetch(request:Request,env:Env):Promise<Response>{
    let response:Response;try{response=await handle(request,env);}catch(e){if(e instanceof HttpError){response=json({error:e.message},e.status);if(e.retryAfter)response.headers.set('Retry-After',String(e.retryAfter));}else if(e instanceof BatchError)response=json({error:e.message},e.status);else response=json({error:'服务暂时不可用，请稍后重试'},503);}
    const headers=new Headers(response.headers),wcEnabled=/^[a-f0-9]{32}$/i.test(env.WALLETCONNECT_PROJECT_ID||'');for(const [k,v]of Object.entries(securityHeaders(wcEnabled)))headers.set(k,v);
    if(new URL(request.url).pathname==='/exit.html')headers.set('Content-Security-Policy',EXIT_CSP);
+   if(new URL(request.url).pathname==='/')headers.set('Content-Security-Policy',headers.get('Content-Security-Policy')!.replace("script-src 'self'",`script-src 'self' ${BOOT_SCRIPT_HASH}`).replace("style-src 'self'",`style-src 'self' ${BOOT_STYLE_HASH}`));
    if(new URL(request.url).pathname.startsWith('/api/'))headers.set('X-Robots-Tag','noindex, nofollow');
    if(new URL(request.url).pathname.startsWith('/api/')){headers.set('Cache-Control','no-store');headers.set('Cross-Origin-Resource-Policy','same-origin');}
    return new Response(response.body,{status:response.status,headers});
@@ -123,10 +125,11 @@ async function handle(request:Request,env:Env):Promise<Response>{
       return env.COORDINATOR.getByName('permanent-56').fetch(request);
     }
     if(!['GET','HEAD'].includes(request.method))throw new HttpError('请求方法不支持',405);
-    if(url.pathname!=='/'&&(!/^\/(assets\/[a-zA-Z0-9_.-]+|boot\.(?:js|css)|exit\.html|token-icon(?:-(?:64|120|200|256))?\.png|favicon\.svg|social-cover(?:-tyw)?\.(?:png|svg)|robots\.txt|sitemap\.xml|site\.webmanifest|tokenlist\.json|implementation\.json|token-profile\.json|market\.json)$/.test(url.pathname)))return new Response('Not found',{status:404});
+    if(url.pathname!=='/'&&(!/^\/(assets\/[a-zA-Z0-9_.-]+|app\.json|boot\.(?:js|css)|exit\.html|token-icon(?:-(?:64|120|200|256))?\.png|favicon\.svg|social-cover(?:-tyw)?\.(?:png|svg)|robots\.txt|sitemap\.xml|site\.webmanifest|tokenlist\.json|implementation\.json|token-profile\.json|market\.json)$/.test(url.pathname)))return new Response('Not found',{status:404});
     // Serve exact file paths; avoid HTML canonicalization redirecting exit.html outside the route allowlist.
     const assetRequest=url.pathname==='/'?new Request(new URL('/index.html',url),request):request;
     const response=await env.ASSETS.fetch(assetRequest),headers=new Headers(response.headers);
-    if(headers.get('Content-Type')?.includes('text/html'))headers.set('Cache-Control','public, max-age=0, must-revalidate, no-transform');
+    if(headers.get('Content-Type')?.includes('text/html')||url.pathname==='/app.json'||url.pathname.startsWith('/boot.'))headers.set('Cache-Control','no-store, no-transform');
+    else if(url.pathname.startsWith('/assets/')&&response.ok)headers.set('Cache-Control','public, max-age=31536000, immutable');
     return new Response(response.body,{status:response.status,headers});
 }

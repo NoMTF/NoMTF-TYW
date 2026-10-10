@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-10",
+  "environment": "Production Vite build, real Chromium, API mocked; no financial transactions",
+  "checks": {
+    "desktop_1440_no_overflow": true,
+    "mobile_390_no_overflow": true,
+    "first_manifest_failure_recovers": true,
+    "first_stylesheet_failure_recovers": true,
+    "first_entry_failure_recovers": true,
+    "all_assets_blocked_retains_styled_exit_links": true,
+    "automatic_attempts_bounded_at_three": true,
+    "manual_recovery_after_unblocking": true,
+    "uncaught_errors": 0,
+    "focused_security_quote_session_tests_passed": 18
+  },
+  "investigation": "Reported screenshot contains an older plain HTML fallback. Exact device-side failure was not captured. Current loading uses inline critical styles and recovery code, no-store HTML and manifest, and retains hashed assets for 30 days.",
+  "reference": "https://vite.dev/guide/build#load-error-handling"
+}
