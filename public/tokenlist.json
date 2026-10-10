@@ -1,0 +1,20 @@
+{
+  "name": "NoMTF TYW",
+  "timestamp": "2026-10-10T01:32:36.354Z",
+  "version": {
+    "major": 2,
+    "minor": 0,
+    "patch": 2
+  },
+  "logoURI": "https://xyn.lgbt/token-icon-256.png",
+  "tokens": [
+    {
+      "chainId": 56,
+      "address": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+      "name": "NoMTF",
+      "symbol": "TYW",
+      "decimals": 18,
+      "logoURI": "https://xyn.lgbt/token-icon-256.png"
+    }
+  ]
+}

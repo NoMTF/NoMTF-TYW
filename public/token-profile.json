@@ -1,0 +1,158 @@
+{
+  "at": "2026-10-10T03:11:40.218Z",
+  "name": "NoMTF",
+  "displayName": "唐毓文币",
+  "symbol": "TYW",
+  "chainId": 56,
+  "type": "BEP20",
+  "decimals": 18,
+  "address": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+  "website": "https://xyn.lgbt/",
+  "explorer": "https://bscscan.com/token/0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+  "logoURI": "https://xyn.lgbt/token-icon-256.png",
+  "description": "NoMTF (TYW), also known as Tang Yuwen Coin, is a BNB Smart Chain portfolio share token and a personal meme project. The vault holds SPYB, TLTon, XAUm and SGOVon with 25% target allocations. Shares are minted after actual asset acquisition and burned on redemption. Per-share NAV varies; TYW is not a USD-pegged stablecoin. Hourly monitoring prepares rebalance proposals, while execution currently requires a wallet signature. There is no team premint and no arbitrary owner reserve-withdrawal function. This does not remove underlying asset, price, oracle or smart-contract risk.",
+  "shareAccounting": "fixed-shares-variable-nav",
+  "marketPoolCreated": true,
+  "externallyListed": true,
+  "market": {
+    "chainId": 56,
+    "dex": "PancakeSwap Infinity CL",
+    "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "poolUrl": "https://pancakeswap.finance/liquidity/pool/bsc/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "hook": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+    "controller": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0",
+    "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+    "directPlatformFeeBps": 0,
+    "buyLpFeePpm": 47619,
+    "sellLpFeePpm": 50000,
+    "buyMarkupApproxPercent": 5,
+    "sellDiscountPercent": 5,
+    "extraPriceImpact": true,
+    "lpFeesAccrueToPositions": true,
+    "protocolFeeMayApply": true,
+    "keeper": {
+      "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+      "intervalMinutes": 5,
+      "dailyGasCapBnb": "0.0001"
+    },
+    "initialLiquidity": {
+      "usdt": "4.976483012813928666",
+      "tyw": "5.060162059048130611",
+      "liquidity": "203261577377164360005"
+    },
+    "lpPositionTokenId": "1571663",
+    "priceRange": "concentrated liquidity, approximately +/- 5% at each addition; finite inventory and range",
+    "matching": "TYW and USDT deposited into treasury are paired at current pool ratio; unmatched amounts stay in treasury",
+    "additionsPausedIf": "Oracle unavailable, vault paused, pool price differs from NAV by over 5%, insufficient matched inventory or gas budget",
+    "routesConfirmed": {
+      "officialInfinityQuoter": true,
+      "officialInfinityUniversalRouterOnFork": true,
+      "officialInfinityUniversalRouterMainnet": true,
+      "okx": false,
+      "binanceWallet": false
+    },
+    "externallyListed": true,
+    "priceChannels": {
+      "geckoTerminal": {
+        "indexed": true,
+        "checkedAt": "2026-10-10T03:09:02.839Z",
+        "url": "https://www.geckoterminal.com/bsc/pools/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+        "hookFeeLabelCorrect": false,
+        "feeCorrectionRequested": true
+      },
+      "dexScreener": {
+        "indexed": false,
+        "reviewRequested": true
+      },
+      "okx": {
+        "nativeRouteConfirmed": false,
+        "reviewRequested": true
+      },
+      "binanceWallet": {
+        "nativeRouteConfirmed": false,
+        "metadataPr": "https://github.com/bnb-chain/wallet-assets/pull/22"
+      }
+    }
+  },
+  "liquidity": {
+    "at": "2026-10-10T08:37:56.022Z",
+    "chainId": 56,
+    "dex": "PancakeSwap Infinity CL",
+    "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "poolUrl": "https://pancakeswap.finance/liquidity/pool/bsc/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "hook": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+    "controller": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+    "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+    "directPlatformFeeBps": 0,
+    "buyLpFeePpm": 47619,
+    "sellLpFeePpm": 50000,
+    "buyMarkupApproxPercent": 5,
+    "sellDiscountPercent": 5,
+    "extraPriceImpact": true,
+    "lpFeesAccrueToPositions": true,
+    "protocolFeeMayApply": true,
+    "keeper": {
+      "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+      "intervalMinutes": 5,
+      "dailyGasCapBnb": "0.0002"
+    },
+    "initialLiquidity": {
+      "usdt": "4.976483012813928666",
+      "tyw": "5.060162059048130611",
+      "liquidity": "203261577377164360005"
+    },
+    "lpPositionTokenId": "1571663",
+    "priceRange": "concentrated liquidity, approximately +/- 5% at each addition; finite inventory and range",
+    "matching": "Either single side or unequal balances are converted through the original backed vault, then atomically paired into the existing pool. Small/expensive amounts remain in treasury until safe to add.",
+    "additionsPausedIf": "Oracle unavailable, vault paused, pool price differs from NAV by over 5%, insufficient matched inventory or gas budget",
+    "routesConfirmed": {
+      "officialInfinityQuoter": true,
+      "officialInfinityUniversalRouterOnFork": true,
+      "officialInfinityUniversalRouterMainnet": true,
+      "okx": false,
+      "binanceWallet": false
+    },
+    "externallyListed": true,
+    "priceChannels": {
+      "geckoTerminal": {
+        "indexed": true,
+        "checkedAt": "2026-10-10T03:09:02.839Z",
+        "url": "https://www.geckoterminal.com/bsc/pools/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+        "hookFeeLabelCorrect": false,
+        "feeCorrectionRequested": true
+      },
+      "dexScreener": {
+        "indexed": false,
+        "reviewRequested": true
+      },
+      "okx": {
+        "nativeRouteConfirmed": false,
+        "reviewRequested": true
+      },
+      "binanceWallet": {
+        "nativeRouteConfirmed": false,
+        "metadataPr": "https://github.com/bnb-chain/wallet-assets/pull/22"
+      }
+    },
+    "matchedController": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0",
+    "conversionLossCapBps": 50,
+    "balanceToleranceBps": 50,
+    "minimumInventoryNavUsdt": "1.1",
+    "maximumTrancheNavUsdt": "1900",
+    "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
+    "independentExit": "https://xyn.lgbt/exit.html",
+    "independentExitMirror": "https://nomtf.github.io/NoMTF-TYW/"
+  },
+  "security": {
+    "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
+    "userVaultHasAdministratorWithdrawal": false,
+    "userVaultUpgradeable": false,
+    "administratorMayPauseTrading": true,
+    "inKindRedemptionAvailableDuringPause": true,
+    "inKindRedemptionNeedsWebsiteOracleOrDex": false,
+    "exitPage": "https://xyn.lgbt/exit.html",
+    "exitMirror": "https://nomtf.github.io/NoMTF-TYW/",
+    "underlyingTransferFreezeAndDefaultRisk": true,
+    "thirdPartyAudit": false
+  }
+}

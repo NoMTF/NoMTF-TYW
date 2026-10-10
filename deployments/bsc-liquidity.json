@@ -1,0 +1,117 @@
+{
+  "chainId": 56,
+  "startedAt": "2026-10-10T02:50:01.273Z",
+  "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "compilerFingerprint": "77cd1eebe2431e5ea2ca553d0005feae95ee139c6e193f51ee8447327e95158e",
+  "contracts": {
+    "PoolSpreadHook": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+    "TreasuryInfinityLiquidity": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0"
+  },
+  "transactions": [
+    {
+      "label": "deploy:PoolSpreadHook",
+      "hash": "0x0e1c4bf2491d3b5701ad7cf64d7167b2533d5de9540d390a026758e28db54940",
+      "status": "CONFIRMED",
+      "blockNumber": 126750704,
+      "gasUsed": "387180",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "deploy:TreasuryInfinityLiquidity",
+      "hash": "0x9d4c5025255795116430b52b2b76a1a1259ccb00d2f06880edb433959b673ad2",
+      "status": "CONFIRMED",
+      "blockNumber": 126750717,
+      "gasUsed": "2261213",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "initialize-pool",
+      "hash": "0x3fe1f68fbd78f5f3c8bdc43ef7e9d6492cd7a6d8d78ea6aee654b49ab2becd71",
+      "status": "CONFIRMED",
+      "blockNumber": 126750734,
+      "gasUsed": "177019",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "enable-future-matching:USDT",
+      "hash": "0x269b79c590e8d08f54727ba92b28b15cd6501b3cdc34e8713150327ec1a257ea",
+      "status": "CONFIRMED",
+      "blockNumber": 126750748,
+      "gasUsed": "46506",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "enable-future-matching:TYW",
+      "hash": "0x028b7ffd84cb02cca7c8256ab08e106aa25ce97a05a978b00d88b3df743b64de",
+      "status": "CONFIRMED",
+      "blockNumber": 126750762,
+      "gasUsed": "46269",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "initial-liquidity",
+      "hash": "0xfa70aa2abc8ccaccb63cb1bb022e8de43b5ad6c36d6f974a096191588181bd76",
+      "status": "CONFIRMED",
+      "blockNumber": 126750775,
+      "gasUsed": "940377",
+      "gasPrice": "50000000"
+    }
+  ],
+  "spentGasWei": "192928200000000",
+  "status": "ACTIVE",
+  "directPlatformFeeBps": 0,
+  "buyFeePpm": 47619,
+  "sellFeePpm": 50000,
+  "balancesBefore": {
+    "bnb": "0.004182181072796401",
+    "usdt": "4.976483012813928666",
+    "tyw": "12.855837805989847338"
+  },
+  "controllerCodeHash": "0x6ea57aedd838f982913060ddd1b1d6ab5a193d29c366d7d390c1052821f763d2",
+  "hookCodeHash": "0xbd108a52095df171c83790baf62fbd6485e9bd2e470e6d04311f2385f7f4f3e5",
+  "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+  "poolKey": {
+    "currency0": "0x55d398326f99059fF775485246999027B3197955",
+    "currency1": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+    "hooks": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+    "poolManager": "0xa0FfB9c1CE1Fe56963B0321B32E7A0302114058b",
+    "fee": 8388608,
+    "parameters": "0x00000000000000000000000000000000000000000000000000000000000a0041"
+  },
+  "poolUrl": "https://pancakeswap.finance/liquidity/pool/bsc/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+  "initialPreview": {
+    "usdt": "4.976483012813928666",
+    "tyw": "5.060162059048130611",
+    "liquidity": "203261577377164360005",
+    "tickLower": -490,
+    "tickUpper": 510
+  },
+  "positionTokenId": "1571663",
+  "initialLiquidity": {
+    "usdt": "4.976483012813928666",
+    "tyw": "5.060162059048130611",
+    "liquidity": "203261577377164360005"
+  },
+  "updatedAt": "2026-10-10T02:50:41.872Z",
+  "remaining": {
+    "bnb": "0.003989252872796401",
+    "usdt": "0.0",
+    "tyw": "7.795675746941716727"
+  },
+  "keeper": {
+    "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+    "initialFundingBnb": "0.0002",
+    "dailyGasCapBnb": "0.0001",
+    "cron": "*/5 * * * *",
+    "fundingTransactions": [
+      {
+        "hash": "0x488174d84d56c696a053dbdc9b52accfacb561c66e376f41768fa8384551251f",
+        "status": "CONFIRMED",
+        "gasUsed": "21000",
+        "gasPrice": "50000000"
+      }
+    ],
+    "balanceBnb": "0.0002",
+    "updatedAt": "2026-10-10T03:05:01.564Z"
+  }
+}

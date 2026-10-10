@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-10T08:45:25.449Z",
+  "scheduledKeeper": true,
+  "hash": "0x3f9607cbbe1b98b9878c0023cbbc1d1fcb9074bc283135a20d13d1bee4ff9a3c",
+  "blockNumber": 126797395,
+  "status": "SUCCESS",
+  "positionTokenId": "1571939",
+  "cashAfterConversion": "3.84081948560828641",
+  "tywAfterConversion": "3.933465923325012721",
+  "gasBnb": "0.00006829565",
+  "lpRecipient": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "noControllerResidual": true,
+  "remainingTreasury": {
+    "usdt": "0.0",
+    "tyw": "0.006156199673612027"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-10T08:25:36.688Z",
+  "scope": "Production dependency closure only; dev Ganache bundled dependencies are excluded from deployed browser and Worker",
+  "dependencies": {
+    "@openzeppelin/contracts": "5.4.0",
+    "@reown/appkit": "1.8.24",
+    "@reown/appkit-adapter-ethers": "1.8.24",
+    "@uniswap/v4-core": "1.0.2",
+    "ethers": "6.17.0",
+    "viem": "2.57.4"
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 169,
+      "dev": 0,
+      "optional": 102,
+      "peer": 8,
+      "peerOptional": 0,
+      "total": 276
+    }
+  },
+  "vulnerabilities": {}
+}

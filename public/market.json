@@ -1,0 +1,69 @@
+{
+  "at": "2026-10-10T08:37:56.022Z",
+  "chainId": 56,
+  "dex": "PancakeSwap Infinity CL",
+  "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+  "poolUrl": "https://pancakeswap.finance/liquidity/pool/bsc/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+  "hook": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+  "controller": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+  "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "directPlatformFeeBps": 0,
+  "buyLpFeePpm": 47619,
+  "sellLpFeePpm": 50000,
+  "buyMarkupApproxPercent": 5,
+  "sellDiscountPercent": 5,
+  "extraPriceImpact": true,
+  "lpFeesAccrueToPositions": true,
+  "protocolFeeMayApply": true,
+  "keeper": {
+    "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+    "intervalMinutes": 5,
+    "dailyGasCapBnb": "0.0002"
+  },
+  "initialLiquidity": {
+    "usdt": "4.976483012813928666",
+    "tyw": "5.060162059048130611",
+    "liquidity": "203261577377164360005"
+  },
+  "lpPositionTokenId": "1571663",
+  "priceRange": "concentrated liquidity, approximately +/- 5% at each addition; finite inventory and range",
+  "matching": "Either single side or unequal balances are converted through the original backed vault, then atomically paired into the existing pool. Small/expensive amounts remain in treasury until safe to add.",
+  "additionsPausedIf": "Oracle unavailable, vault paused, pool price differs from NAV by over 5%, insufficient matched inventory or gas budget",
+  "routesConfirmed": {
+    "officialInfinityQuoter": true,
+    "officialInfinityUniversalRouterOnFork": true,
+    "officialInfinityUniversalRouterMainnet": true,
+    "okx": false,
+    "binanceWallet": false
+  },
+  "externallyListed": true,
+  "priceChannels": {
+    "geckoTerminal": {
+      "indexed": true,
+      "checkedAt": "2026-10-10T03:09:02.839Z",
+      "url": "https://www.geckoterminal.com/bsc/pools/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+      "hookFeeLabelCorrect": false,
+      "feeCorrectionRequested": true
+    },
+    "dexScreener": {
+      "indexed": false,
+      "reviewRequested": true
+    },
+    "okx": {
+      "nativeRouteConfirmed": false,
+      "reviewRequested": true
+    },
+    "binanceWallet": {
+      "nativeRouteConfirmed": false,
+      "metadataPr": "https://github.com/bnb-chain/wallet-assets/pull/22"
+    }
+  },
+  "matchedController": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0",
+  "conversionLossCapBps": 50,
+  "balanceToleranceBps": 50,
+  "minimumInventoryNavUsdt": "1.1",
+  "maximumTrancheNavUsdt": "1900",
+  "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
+  "independentExit": "https://xyn.lgbt/exit.html",
+  "independentExitMirror": "https://nomtf.github.io/NoMTF-TYW/"
+}

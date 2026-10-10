@@ -1,0 +1,1077 @@
+{
+  "at": "2026-10-10T03:11:40.221Z",
+  "version": "permanent-v2",
+  "deployment": {
+    "chainId": 56,
+    "startedAt": "2026-10-09T18:29:10.040Z",
+    "deployer": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+    "compilerFingerprint": "5de0d25a6327a87ab021b23affc4fffccac4f2712c02a80e55158c47091b5f57",
+    "contracts": {
+      "PermanentOracle": "0x178436E1750Be2Bb1fff667245DF80c77D89Bb97",
+      "PermanentVault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7"
+    },
+    "transactions": [
+      {
+        "label": "deploy:PermanentOracle",
+        "hash": "0xcc7633dcbf5c3c077b43388d5615c393ac5f8ba75ace5a5af705a8ce2067f539",
+        "status": "CONFIRMED",
+        "blockNumber": 126683930,
+        "gasUsed": "1392314",
+        "gasPrice": "50000000"
+      },
+      {
+        "label": "deploy:PermanentVault",
+        "hash": "0x31bf9899f577765195c47cb51430acd9040bf951131f88ed683905a59837ab16",
+        "status": "CONFIRMED",
+        "blockNumber": 126683944,
+        "gasUsed": "3149021",
+        "gasPrice": "50000000"
+      },
+      {
+        "label": "oracle-history:0x77e6b624d664150d96e13d99c68144b2a047e554",
+        "hash": "0x918b29e7ec9d862643c6922fba1d6792136938080cb3c605ee23c5368984ea27",
+        "status": "CONFIRMED",
+        "blockNumber": 126683960,
+        "gasUsed": "5701530",
+        "gasPrice": "50000000"
+      },
+      {
+        "label": "oracle-history:0x497e224d7008fe47349035ddd98bedb773e1f4c5",
+        "hash": "0x0cf11f9c2c683c53002d0a56de4062e6e56d8047203b376021c1b1fa04714593",
+        "status": "CONFIRMED",
+        "blockNumber": 126683973,
+        "gasUsed": "5501388",
+        "gasPrice": "50000000"
+      },
+      {
+        "label": "activate:user-signed-experimental-test",
+        "hash": "0xf6faee8e79680ee729f47d1e7ecca79d1e5ff398b51ad9a53250ad7ed90da327",
+        "status": "CONFIRMED",
+        "blockNumber": 126685749,
+        "gasUsed": "24888",
+        "gasPrice": "50000000"
+      }
+    ],
+    "spentGasWei": "788457050000000",
+    "assets": [
+      "0x7138b48df7d98d7e3cc221bfe7192d0a178182d8",
+      "0xf69e40069ac227c11459e3f4e8a446b3401616b6",
+      "0x23ae4fd8e7844cdbc97775496ebd0e8248656028",
+      "0xc008c5f579ec1450f20099c39f587547e27c7523"
+    ],
+    "pools": [
+      "0x7aa6d92fc369a8c1edc631a3aac44efb0808ddbf",
+      "0x77e6b624d664150d96e13d99c68144b2a047e554",
+      "0x497e224d7008fe47349035ddd98bedb773e1f4c5",
+      "0xe0f4c53d777383cc77adfa89087a9c877586f0df"
+    ],
+    "stable": "0x55d398326f99059ff775485246999027b3197955",
+    "status": "ACTIVE_EXPERIMENTAL_ROUND_TRIP_VERIFIED_NO_CURRENT_HOLDINGS",
+    "seedCapitalUsdt": "0",
+    "platformFeeBps": 0,
+    "floors": [
+      "4039965918335143995117",
+      "319250650484260731967",
+      "118186328596584171192",
+      "7272984995393404861743"
+    ],
+    "twapPrices": [
+      "780135039449116281671",
+      "81408527638459924500",
+      "4166715117614892453080",
+      "102439106634815980437"
+    ],
+    "remainingBnb": "0.004670725185997633",
+    "updatedAt": "2026-10-09T19:46:09.286Z",
+    "publicUserRoundTrip": [
+      {
+        "hash": "0x35a5450d3b7b085b0f894e8b9dad82f85bd6cff166b2df5c95d097f3a9b54628",
+        "from": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+        "status": 1,
+        "gasUsed": "957424",
+        "gasPrice": "54721080",
+        "gasBnb": "0.00005239127529792"
+      },
+      {
+        "hash": "0xd12d6521aa28e622c7ad0142baab82bb346c1638fb947fc5e183dbc280bab8b2",
+        "from": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+        "status": 1,
+        "gasUsed": "695687",
+        "gasPrice": "52328820",
+        "gasBnb": "0.00003640447979934"
+      }
+    ]
+  },
+  "fork": {
+    "at": "2026-10-09T18:21:24.564Z",
+    "method": "Ganache isolated BSC fork. All asset buys/sells and USDT funding below occur exclusively in local state; no mainnet transaction or key.",
+    "realTransactionsSent": false,
+    "checks": [
+      "First purchase, sequential actual-pool round trip, last-share exit and proportional second mint all passed on a local fork."
+    ],
+    "roundTrips": [
+      {
+        "inputUsdt": "0.5",
+        "returnedUsdt": "0.498601595150220004",
+        "sequentialLossPercent": 0.27968096995599917,
+        "buyGas": "924274",
+        "sellGas": "695370",
+        "approvalGasExcluded": true,
+        "gasCostBnb": "0.0000809822",
+        "navAfterBuyUsdt": "0.99855982512874898",
+        "actualWeightsBps": [
+          2503,
+          2497,
+          2502,
+          2497
+        ],
+        "actualAssets": [
+          "160212758676600",
+          "1531660123389410",
+          "29981807924383",
+          "1217200925890144"
+        ]
+      },
+      {
+        "inputUsdt": "1",
+        "returnedUsdt": "0.997203190600903448",
+        "sequentialLossPercent": 0.2796809399096552,
+        "buyGas": "924224",
+        "sellGas": "695360",
+        "approvalGasExcluded": true,
+        "gasCostBnb": "0.0000809792",
+        "navAfterBuyUsdt": "0.998559669270309766",
+        "actualWeightsBps": [
+          2503,
+          2497,
+          2502,
+          2497
+        ],
+        "actualAssets": [
+          "320425513803994",
+          "3063318920749918",
+          "59963606029122",
+          "2434401810544703"
+        ]
+      },
+      {
+        "inputUsdt": "10",
+        "returnedUsdt": "9.972031960090535708",
+        "sequentialLossPercent": 0.27968039909464293,
+        "buyGas": "933101",
+        "sellGas": "702322",
+        "approvalGasExcluded": true,
+        "gasCostBnb": "0.00008177115",
+        "navAfterBuyUsdt": "0.998556863836651072",
+        "actualWeightsBps": [
+          2503,
+          2497,
+          2502,
+          2497
+        ],
+        "actualAssets": [
+          "3204254499182974",
+          "30632950524259869",
+          "599634292760660",
+          "24344010683044077"
+        ]
+      }
+    ],
+    "blockNumber": 126682891,
+    "liveGasPriceWei": "50000000",
+    "twapPricesUsdt": [
+      "780.0570337457417075",
+      "81.4085276384599245",
+      "4166.71511761489245308",
+      "102.439106634815980437"
+    ],
+    "status": "PASSED"
+  },
+  "websiteIdentity": {
+    "displayName": "唐毓文币",
+    "brand": "NoMTF",
+    "symbol": "TYW",
+    "personalMeme": true,
+    "websiteWalletTradingRequiresKyc": false,
+    "noTeamPremint": true,
+    "unbackedMintingUnsupported": true,
+    "automaticRebalanceExecution": false
+  },
+  "verification": {
+    "unitAndIntegrationTestsPassed": 121,
+    "newFourAssetTestsPassed": 18,
+    "batchTestsPassed": 14,
+    "rebalancePlannerTestsPassed": 3,
+    "gasRelayTestsPassed": 9,
+    "quoteSafetyTestsPassed": 3,
+    "quoteValidationTestsPassed": 6,
+    "walletSessionTestsPassed": 3,
+    "dependencyAudit": {
+      "reportedFindings": 30,
+      "allInGanacheDevTool": true,
+      "productionTreeIncludesGanache": false,
+      "nonGanacheFindings": 0
+    }
+  },
+  "websiteHardening": {
+    "at": "2026-10-10",
+    "walletConnectLive": false,
+    "walletConnectRequiresOwnedProjectId": true,
+    "walletCatalogEntries": 13,
+    "standardInjectedDiscovery": true,
+    "walletCatalogNotRealDeviceCertification": true,
+    "networkCheckBeforeSwitch": true,
+    "feeEstimatesIncludeGasAndApproval": true,
+    "oneWayAndRoundTripDisplayedSeparately": true,
+    "desktopAndMobileVerified": true,
+    "canonical": "https://xyn.lgbt/",
+    "tlsMinimum": "1.2",
+    "alwaysHttps": true,
+    "strictSsl": true,
+    "securityHeaders": true,
+    "edgeSensitivePathRule": true,
+    "ipRequestBudget": true,
+    "globalRpcBudget": true,
+    "googleWarningClearanceConfirmed": false
+  },
+  "latestUserRoundTrip": {
+    "at": "2026-10-09T21:04:32.826Z",
+    "readOnly": true,
+    "buyHash": "0xced62eb1332d12c55c2ddd3b291f238173000c4a9ff13ea365b5cbd52ab4de6a",
+    "sellHash": "0xf6119261210e5990fe6de453a703748b13638685e15696c79846854dbc956e57",
+    "spentUsdt": 2.9501000433135016,
+    "returnedUsdt": 2.941849179236794,
+    "exchangeLossUsdt": 0.008250864076707968,
+    "exchangeLossPercent": 0.2796808228727301,
+    "receipts": [
+      {
+        "hash": "0xced62eb1332d12c55c2ddd3b291f238173000c4a9ff13ea365b5cbd52ab4de6a",
+        "from": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+        "status": 1,
+        "gasUsed": "902012",
+        "gasPrice": "51150000",
+        "gasBnb": "0.0000461379138"
+      },
+      {
+        "hash": "0xf6119261210e5990fe6de453a703748b13638685e15696c79846854dbc956e57",
+        "from": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+        "status": 1,
+        "gasUsed": "709413",
+        "gasPrice": "52900000",
+        "gasBnb": "0.0000375279477"
+      }
+    ],
+    "gasBnb": 0.0000836658615,
+    "bnbUsdt": 739.2840878837594,
+    "priceObservedAt": "2026-10-09T20:43:59.856Z",
+    "gasUsdtAtQuotedPrice": 0.06185284010603645,
+    "totalCostPercentAtQuotedPrice": 2.3763161639767696,
+    "screenshotRoundedUsdFees": 0.05,
+    "totalCostPercentUsingScreenshotRoundedFees": 1.9745385994192117,
+    "approvalExcluded": true,
+    "note": "This pair only; a separate approval transaction, if any, is excluded. Dollar conversion uses the recorded quote time, not a verified transaction-time exchange rate. Screenshot dollars are rounded."
+  },
+  "minimumMarketPoolFork": {
+    "at": "2026-10-09T21:05:49.402Z",
+    "realTransactionsBroadcast": false,
+    "method": "Existing live contracts and public holder on an isolated Ganache fork. Local partial redemption funds the simulation; no real wallet assets change.",
+    "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+    "trials": [
+      {
+        "sizePerSide": "0.000001",
+        "totalNominalCapitalUsdt": "0.000002",
+        "tokenId": "7648544",
+        "liquidity": "100505833206951",
+        "amount0": "0.000001",
+        "amount1": "0.000001",
+        "pool": "0xab090b0B0AA034f926f94A4931FE11E530BFF560",
+        "createAndInitializeGas": "4808286",
+        "mintGas": "600607",
+        "createInitializeMintGasBnb": "0.00027044465",
+        "passed": true
+      },
+      {
+        "sizePerSide": "0.001",
+        "totalNominalCapitalUsdt": "0.002",
+        "tokenId": "7648544",
+        "liquidity": "100505833206951600",
+        "amount0": "0.001",
+        "amount1": "0.001",
+        "pool": "0xab090b0B0AA034f926f94A4931FE11E530BFF560",
+        "createAndInitializeGas": "4808286",
+        "mintGas": "596226",
+        "createInitializeMintGasBnb": "0.0002702256",
+        "passed": true
+      },
+      {
+        "sizePerSide": "0.01",
+        "totalNominalCapitalUsdt": "0.02",
+        "tokenId": "7648544",
+        "liquidity": "1005058332069516000",
+        "amount0": "0.01",
+        "amount1": "0.01",
+        "pool": "0xab090b0B0AA034f926f94A4931FE11E530BFF560",
+        "createAndInitializeGas": "4808286",
+        "mintGas": "596202",
+        "createInitializeMintGasBnb": "0.0002702244",
+        "passed": true
+      }
+    ],
+    "stage": "mint-0.01",
+    "blockNumber": 126704811,
+    "gasPriceWei": "50000000",
+    "status": "PASSED",
+    "note": "These tiny positions demonstrate protocol creation, not useful one-USDT depth, OKX indexing, a minimum that applies universally, or an active mainnet pool."
+  },
+  "dynamicPoolFork": {
+    "at": "2026-10-09T21:21:41.559Z",
+    "realTransactionsBroadcast": false,
+    "method": "Official Pancake V3 create/initialize + LP mint in one multicall, with repeated provisioning on isolated real-state fork. Assets already supplied; USDT-only vault-to-LP adapter is not implemented.",
+    "trials": [
+      {
+        "sizePerSide": ".01",
+        "pool": "0xab090b0B0AA034f926f94A4931FE11E530BFF560",
+        "created": true,
+        "reusedExisting": false,
+        "tokenId": "7648586",
+        "liquidity": "1005058332069516000",
+        "gasUsed": "5379638",
+        "gasBnb": "0.0002689819",
+        "lpOwnedByContributor": true,
+        "oneProvisioningTransaction": true,
+        "passed": true
+      },
+      {
+        "sizePerSide": ".005",
+        "pool": "0xab090b0B0AA034f926f94A4931FE11E530BFF560",
+        "created": false,
+        "reusedExisting": true,
+        "tokenId": "7648587",
+        "liquidity": "502529166034758000",
+        "gasUsed": "339474",
+        "gasBnb": "0.0000169737",
+        "lpOwnedByContributor": true,
+        "oneProvisioningTransaction": true,
+        "passed": true
+      }
+    ],
+    "stage": "atomic-provision-.005",
+    "blockNumber": 126706927,
+    "status": "PASSED"
+  },
+  "dynamicPoolStatus": {
+    "planCancelledByUser": true,
+    "mainnetPoolCreated": false,
+    "usdtOnlyAdapterImplemented": false,
+    "userOptInRequired": true,
+    "nativeOkxRouteConfirmed": false
+  },
+  "shareModel": {
+    "kind": "fixed-shares-variable-nav",
+    "usdPegPromised": false,
+    "rebaseEnabled": false,
+    "actualWeightsAndNavDisplayed": true
+  },
+  "tradeProtection": {
+    "freshQuoteBeforeSigning": true,
+    "quoteBoundToChainContractDirectionAndAmount": true,
+    "quoteExpiryAndMinimumOutputValidated": true,
+    "walletAccountAndNetworkReadImmediatelyBeforeSigning": true,
+    "boundedJsonResponses": true,
+    "allocationDisplayDecimalPlaces": 2,
+    "maxCostIncreasePercentagePoints": 0.1,
+    "maxGasPriceIncreasePercent": 10,
+    "maxOutputDecreasePercent": 0.5,
+    "hypotheticalSaleQuoteSupported": true,
+    "hypotheticalQuoteExecutable": false
+  },
+  "gasRelay": {
+    "candidateImplemented": true,
+    "localTestsPassed": 9,
+    "mainnetDeployed": false,
+    "serviceEnabled": false,
+    "feeAssets": [
+      "USDT",
+      "TYW"
+    ],
+    "initialApprovalRequiresWalletOrSponsorship": true
+  },
+  "tokenListingStatus": {
+    "at": "2026-10-09T21:46:31.927Z",
+    "address": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+    "externallySubmitted": 0,
+    "platforms": [
+      {
+        "id": "bscscan",
+        "size": 64,
+        "status": "REQUIRES_OWNER_LOGIN_AND_CONTRACT_OWNERSHIP_VERIFICATION",
+        "source": "https://info.bscscan.com/how-to-update-token-info/",
+        "form": "https://bscscan.com/tokenupdate",
+        "fee": "Standard review is free; priority review is optional."
+      },
+      {
+        "id": "binance-wallet",
+        "size": 256,
+        "status": "METADATA_INDEXED_BUT_ICON_EMPTY",
+        "source": "https://www.binance.com/en/skills/detail/binance-web3/query-token-info",
+        "note": "Official read-only metadata endpoint recognizes TYW; icon is empty. No unauthenticated write endpoint or guaranteed universal ingestion was verified."
+      },
+      {
+        "id": "okx-wallet",
+        "size": 256,
+        "status": "PUBLIC_LOGO_READY_BUT_GLOBAL_INGESTION_NOT_CONFIRMED",
+        "source": "https://web3.okx.com/onchainos/dev-docs/wallet/dapp-connect/chains/evm/provider",
+        "note": "wallet_watchAsset is a user-requested import, not a global token-metadata submission. BRC-20 logo submission instructions do not apply to this BSC contract."
+      },
+      {
+        "id": "trust-wallet",
+        "size": 256,
+        "status": "ELIGIBILITY_AND_NONREFUNDABLE_FEE_BLOCKED",
+        "source": "https://developer.trustwallet.com/developer/new-asset/requirements",
+        "form": "https://assets.trustwallet.com/",
+        "fee": "500 TWT or 2.5 BNB per official process; no payment made.",
+        "note": "Current guidelines include audit, CMC, 10,000 holders and 15,000 transactions; meeting them does not guarantee acceptance."
+      },
+      {
+        "id": "tokenpocket",
+        "size": 200,
+        "status": "NONREFUNDABLE_PAYMENT_AND_REVIEW_REQUIRED",
+        "source": "https://help.tokenpocket.pro/en/developer/how-to-submit-a-token-logo",
+        "form": "https://www.tokenpocket.pro/zh/submit/token",
+        "fee": "1,000 USDT/USDC per official guide; no payment made."
+      },
+      {
+        "id": "metamask",
+        "size": 256,
+        "status": "LOCAL_WATCHASSET_IMPLEMENTED_GLOBAL_LOGO_NOT_CONFIRMED",
+        "source": "https://support.metamask.io/managing-my-tokens/custom-tokens/how-to-add-a-token-logo/",
+        "note": "Site supplies explicit image in wallet_watchAsset. This does not guarantee global search, mobile rendering or a fiat price feed."
+      },
+      {
+        "id": "imtoken",
+        "size": 120,
+        "status": "ASSETS_READY_BSC_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "source": "https://github.com/consenlabs/token-profile",
+        "note": "Official legacy ERC20 repository is not evidence that it accepts BSC token logos today; no wrong-chain PR submitted."
+      },
+      {
+        "id": "bitget-wallet",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      },
+      {
+        "id": "mathwallet",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      },
+      {
+        "id": "onekey",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      },
+      {
+        "id": "rabby",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      },
+      {
+        "id": "safepal",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      },
+      {
+        "id": "coinbase-wallet",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      },
+      {
+        "id": "brave-wallet",
+        "size": 256,
+        "status": "ASSETS_READY_GLOBAL_SUBMISSION_ROUTE_NOT_VERIFIED",
+        "note": "Website connection support is distinct from global token catalog acceptance. No external submission or acceptance claimed."
+      }
+    ],
+    "binanceMetadataEvidence": "reports/binance-token-metadata.json"
+  },
+  "minimumBootstrapFork": {
+    "at": "2026-10-09T20:31:56.808Z",
+    "method": "Actual deployed four-asset contract and public wallet state on isolated Ganache fork. No private keys; no transaction broadcast to BSC.",
+    "realTransactionsSent": false,
+    "wallet": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+    "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+    "blockNumber": 126700294,
+    "stage": "sell",
+    "status": "PASSED",
+    "initialUsdt": "2.950100043313501858",
+    "spentUsdt": "0.1",
+    "mintedTyw": "0.1",
+    "returnedUsdt": "0.099720319005999832",
+    "heldAssetsRaw": [
+      "32037848800997",
+      "305821503382830",
+      "5982181231231",
+      "243440574564815"
+    ],
+    "approvalGas": "29094",
+    "buyGas": "931548",
+    "sellGas": "695397",
+    "finalSupply": "0"
+  },
+  "batchCandidate": {
+    "deployed": true,
+    "liveQueueEnabled": false,
+    "deployment": {
+      "chainId": 56,
+      "startedAt": "2026-10-09T19:14:39.474Z",
+      "deployer": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "compilerFingerprint": "46a135706bc09dd84bbb1d7bbbfd11a60c21d437991ee0bdc206af20ed7f4aa4",
+      "oracle": "0x178436E1750Be2Bb1fff667245DF80c77D89Bb97",
+      "assets": [
+        "0x7138b48df7d98d7e3cc221bfe7192d0a178182d8",
+        "0xf69e40069ac227c11459e3f4e8a446b3401616b6",
+        "0x23ae4fd8e7844cdbc97775496ebd0e8248656028",
+        "0xc008c5f579ec1450f20099c39f587547e27c7523"
+      ],
+      "pools": [
+        "0x7aa6d92fc369a8c1edc631a3aac44efb0808ddbf",
+        "0x77e6b624d664150d96e13d99c68144b2a047e554",
+        "0x497e224d7008fe47349035ddd98bedb773e1f4c5",
+        "0xe0f4c53d777383cc77adfa89087a9c877586f0df"
+      ],
+      "stable": "0x55d398326f99059ff775485246999027b3197955",
+      "transactions": [
+        {
+          "label": "deploy:paused-batch-candidate",
+          "hash": "0x7c8fc3e2290b27b05c493b9518bccb53bc29c64a1cb0dae4401903e2ea565061",
+          "status": "CONFIRMED",
+          "blockNumber": 126689992,
+          "gasUsed": "4607250",
+          "gasPrice": "50000000"
+        }
+      ],
+      "status": "DEPLOYED_PAUSED_CANDIDATE",
+      "seedCapitalUsdt": "0",
+      "realAssetTransactionsSent": false,
+      "vault": "0x17EE9B0e5eC4D006A816dEf32733E9f577fE00Af",
+      "spentGasWei": "230362500000000",
+      "updatedAt": "2026-10-09T19:14:46.556Z",
+      "remainingBnb": "0.004440362685997633"
+    },
+    "fork": {
+      "at": "2026-10-09T19:05:47.837Z",
+      "method": "Native signed batching on isolated Ganache fork with 64 distinct synthetic accounts. Actual pools and underlying token code. No real trades.",
+      "realTransactionsSent": false,
+      "rows": [
+        {
+          "orders": 1,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "986146",
+          "sellGas": "714108",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "1746448",
+          "gasUsdtPerBuyer": 0.06457536636543668,
+          "underlyingWearPercent": 0.2796809399554734,
+          "allInRoundTripWearPercent": 6.737217576499141,
+          "minReturnUsdt": "0.99720319060044529",
+          "maxReturnUsdt": "0.99720319060044529",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        },
+        {
+          "orders": 8,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "1476116",
+          "sellGas": "925228",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "346362",
+          "gasUsdtPerBuyer": 0.012806824506120638,
+          "underlyingWearPercent": 0.27968051964548657,
+          "allInRoundTripWearPercent": 1.5603629702575503,
+          "minReturnUsdt": "0.997203194803545161",
+          "maxReturnUsdt": "0.997203194803545162",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        },
+        {
+          "orders": 32,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "3261749",
+          "sellGas": "1656464",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "199888",
+          "gasUsdtPerBuyer": 0.007390910483480989,
+          "underlyingWearPercent": 0.2796790786182779,
+          "allInRoundTripWearPercent": 1.0187701269663767,
+          "minReturnUsdt": "0.997203209213817169",
+          "maxReturnUsdt": "0.99720320921381717",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        },
+        {
+          "orders": 64,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "5644945",
+          "sellGas": "2674864",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "176191",
+          "gasUsdtPerBuyer": 0.00651470778133254,
+          "underlyingWearPercent": 0.2796771573344681,
+          "allInRoundTripWearPercent": 0.9311479354677221,
+          "minReturnUsdt": "0.997203228426655348",
+          "maxReturnUsdt": "0.997203228426655349",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        }
+      ],
+      "blockNumber": 126688806,
+      "gasPriceWei": "50000000",
+      "bnbUsdt": 739.5051712439955,
+      "firstApprovalGas": "46194",
+      "status": "PASSED"
+    },
+    "explicitFeeFork": {
+      "at": "2026-10-09T19:09:49.785Z",
+      "method": "Native signed batching on isolated Ganache fork with 64 distinct synthetic accounts. Actual pools and underlying token code. No real trades.",
+      "realTransactionsSent": false,
+      "rows": [
+        {
+          "orders": 1,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "986146",
+          "sellGas": "714108",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "1746448",
+          "gasUsdtPerBuyer": 0.06457536636543668,
+          "underlyingWearPercent": 0.2796809399554734,
+          "allInRoundTripWearPercent": 6.737217576499141,
+          "minReturnUsdt": "0.99720319060044529",
+          "maxReturnUsdt": "0.99720319060044529",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        },
+        {
+          "orders": 8,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "1476116",
+          "sellGas": "925228",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "346362",
+          "gasUsdtPerBuyer": 0.012806824506120638,
+          "underlyingWearPercent": 0.27968051964548657,
+          "allInRoundTripWearPercent": 1.5603629702575503,
+          "minReturnUsdt": "0.997203194803545161",
+          "maxReturnUsdt": "0.997203194803545162",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        },
+        {
+          "orders": 32,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "3261749",
+          "sellGas": "1656464",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "199888",
+          "gasUsdtPerBuyer": 0.007390910483480989,
+          "underlyingWearPercent": 0.2796790786182779,
+          "allInRoundTripWearPercent": 1.0187701269663767,
+          "minReturnUsdt": "0.997203209213817169",
+          "maxReturnUsdt": "0.99720320921381717",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        },
+        {
+          "orders": 64,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "5644945",
+          "sellGas": "2674864",
+          "approvalGasPerBuyer": "46194",
+          "allInGasPerBuyer": "176191",
+          "gasUsdtPerBuyer": 0.00651470778133254,
+          "underlyingWearPercent": 0.2796771573344681,
+          "allInRoundTripWearPercent": 0.9311479354677221,
+          "minReturnUsdt": "0.997203228426655348",
+          "maxReturnUsdt": "0.997203228426655349",
+          "feeMode": "No fees in benchmark; measured executor gas allocated equally, plus each buyer initial USDT approval. Production must reimburse executor explicitly."
+        }
+      ],
+      "paidFeeRows": [
+        {
+          "orders": 64,
+          "perBuyerBudgetUsdt": 1,
+          "buyGas": "5681797",
+          "sellGas": "2695804",
+          "explicitBuyFeeUsdt": "0.003424775050461932",
+          "explicitSellFeeUsdt": "0.001622833790334327",
+          "firstApprovalUsdt": 0.0017082387964700253,
+          "minUserReturnUsdt": "0.992165197768221302",
+          "allInRoundTripWearPercent": 0.9543041028248708,
+          "executorReceivedUsdt": "0.323046965810960576",
+          "executorActualGasUsdt": "0.309800905951986822",
+          "noGasSubsidy": true
+        }
+      ],
+      "referenceBenchmarkBlock": 126688806,
+      "blockNumber": 126689344,
+      "gasPriceWei": "50000000",
+      "bnbUsdt": 739.5933655756268,
+      "firstApprovalGas": "46194",
+      "status": "PASSED"
+    },
+    "queueEndToEndFork": {
+      "at": "2026-10-09T19:53:30.645Z",
+      "method": "64 synthetic wallets, actual paused deployed batch contract, real underlying assets and pools, off-chain queue, full simulation, and verified receipts exclusively on isolated local BSC fork.",
+      "realAssetTransactionsSent": false,
+      "checks": [
+        "All 64 signed orders stay unfunded until settlement; no shares are issued while queued."
+      ],
+      "blockNumber": 126695169,
+      "status": "FAILED",
+      "reason": "完整批次无法在已签执行费允许的 gas 上限内模拟，请等待或重新签名",
+      "diagnostic": {}
+    }
+  },
+  "state": "ACTIVE_EXPERIMENTAL_ROUND_TRIP_VERIFIED_NO_CURRENT_HOLDINGS; no operator asset trades executed. Trading is signed explicitly by the user wallet.",
+  "openRequirements": [
+    "Native four-asset batching, explicit executor fees and first approvals pass local-fork tests at 0.9543% for 64 orders. A live queue is still required; individual one-USDT settlement remains above the 1% full-cycle target.",
+    "Hourly monitor is deployed; bounded rebalance proposals can be simulated and signed by the user wallet. No automatic asset trades are broadcast.",
+    "OKX custom token display / DApp connection is distinct from OKX aggregator Swap integration."
+  ],
+  "currentLiveState": {
+    "at": 1791582423249,
+    "chainId": 56,
+    "blockNumber": "126710304",
+    "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+    "oracle": "0x178436E1750Be2Bb1fff667245DF80c77D89Bb97",
+    "assets": [
+      {
+        "symbol": "SPYB",
+        "role": "股票 · S&P 500",
+        "address": "0x7138b48df7d98d7e3cc221bfe7192d0a178182d8",
+        "pool": "0x7aa6d92fc369a8c1edc631a3aac44efb0808ddbf",
+        "fee": 100
+      },
+      {
+        "symbol": "TLTon",
+        "role": "长期美国国债",
+        "address": "0xf69e40069ac227c11459e3f4e8a446b3401616b6",
+        "pool": "0x77e6b624d664150d96e13d99c68144b2a047e554",
+        "fee": 2500
+      },
+      {
+        "symbol": "XAUm",
+        "role": "黄金",
+        "address": "0x23ae4fd8e7844cdbc97775496ebd0e8248656028",
+        "pool": "0x497e224d7008fe47349035ddd98bedb773e1f4c5",
+        "fee": 500
+      },
+      {
+        "symbol": "SGOVon",
+        "role": "短期美国国债 · 现金替代",
+        "address": "0xc008c5f579ec1450f20099c39f587547e27c7523",
+        "pool": "0xe0f4c53d777383cc77adfa89087a9c877586f0df",
+        "fee": 2500
+      }
+    ],
+    "stable": "0x55d398326f99059ff775485246999027b3197955",
+    "supply": "2.941849179236793889",
+    "balances": [
+      "942505483471643",
+      "8996785155870434",
+      "175986585673597",
+      "7161653851700974"
+    ],
+    "paused": false,
+    "oracleReady": true,
+    "valuation": {
+      "totalUsdt": "2.937771098068448781",
+      "perShareUsdt": "0.998613769462714914",
+      "weightsBps": [
+        2503,
+        2497,
+        2501,
+        2497
+      ],
+      "pricesUsdt": [
+        "780.369103365782335068",
+        "81.547032906420073739",
+        "4176.309111557597773411",
+        "102.439106634815980437"
+      ]
+    },
+    "status": "ACTIVE",
+    "nonce": "0",
+    "rebalanceCostUsdt": "0",
+    "executionMode": "monitor-and-user-sign",
+    "lastCheck": {
+      "at": 1791579647093,
+      "result": "IN_BAND",
+      "blockNumber": "126704135"
+    },
+    "task": null,
+    "noSeedCapital": true,
+    "platformFeeBps": 0,
+    "okxDexIntegrated": false,
+    "experimental": true,
+    "batchVault": null,
+    "batchQueueEnabled": false
+  },
+  "liquidityAssessment": {
+    "at": "2026-10-09T20:43:59.856Z",
+    "blockNumber": 126701894,
+    "realTransactionsBroadcast": false,
+    "bnbUsdt": 739.2840878837594,
+    "gasPriceWei": "50000000",
+    "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+    "existingTywUsdtPools": {
+      "100": "0x0000000000000000000000000000000000000000",
+      "500": "0x0000000000000000000000000000000000000000",
+      "2500": "0x0000000000000000000000000000000000000000",
+      "10000": "0x0000000000000000000000000000000000000000"
+    },
+    "userRoundTrip": {
+      "buyHash": "0x35a5450d3b7b085b0f894e8b9dad82f85bd6cff166b2df5c95d097f3a9b54628",
+      "sellHash": "0xd12d6521aa28e622c7ad0142baab82bb346c1638fb947fc5e183dbc280bab8b2",
+      "buyUsdt": 1,
+      "returnedUsdt": 0.99720247997228,
+      "underlyingWearPercent": 0.2797520027720046,
+      "buySellGasBnb": 0.00008879575509726,
+      "approvalReceipts": [
+        {
+          "hash": "0x7616ef7e0eeee2ccd19b7ef749a284a99a40c5e6e70892854d501c70b1b28323",
+          "gasUsed": "46506",
+          "gasPrice": "50150000",
+          "gasBnb": "0.0000023322759"
+        }
+      ],
+      "gasUsdtAtCurrentPrice": 0.06564528881502754,
+      "firstApprovalUsdtAtCurrentPrice": 0.001724214461424774,
+      "allInWearPercentAtCurrentPrice": 7.016702330417235
+    },
+    "createPool": {
+      "gasEstimate": "4907471",
+      "feeBnb": "0.00024537355",
+      "feeUsdt": 0.18140076110255002,
+      "includesInitializationApprovalsAndDeposits": false
+    },
+    "fullRangeLiquidityExamples": [
+      {
+        "orderUsdt": 1,
+        "oneWaySlippageTargetPercent": 0.5,
+        "usdtReserve": 199,
+        "tywValueAtNav": 199,
+        "totalCapitalUsdt": 398,
+        "method": "Constant-product reserve formula q/(reserve+q); no fees, gas, arbitrage or price movement included. Full-range conservative example, not a minimum for concentrated V3 liquidity."
+      },
+      {
+        "orderUsdt": 10,
+        "oneWaySlippageTargetPercent": 0.5,
+        "usdtReserve": 1990,
+        "tywValueAtNav": 1990,
+        "totalCapitalUsdt": 3980,
+        "method": "Constant-product reserve formula q/(reserve+q); no fees, gas, arbitrage or price movement included. Full-range conservative example, not a minimum for concentrated V3 liquidity."
+      },
+      {
+        "orderUsdt": 100,
+        "oneWaySlippageTargetPercent": 0.5,
+        "usdtReserve": 19900,
+        "tywValueAtNav": 19900,
+        "totalCapitalUsdt": 39800,
+        "method": "Constant-product reserve formula q/(reserve+q); no fees, gas, arbitrage or price movement included. Full-range conservative example, not a minimum for concentrated V3 liquidity."
+      }
+    ],
+    "concentratedLiquidityExamples": [
+      {
+        "orderUsdt": 1,
+        "navAssumedUsdt": 1,
+        "priceRange": [
+          0.9803921568627451,
+          1.02
+        ],
+        "oneWayAveragePriceImpactPercent": 0.5,
+        "usdtReserve": 1.9606389476418165,
+        "tywValueAtNav": 1.9606389476418165,
+        "totalCapitalUsdt": 3.921277895283633,
+        "maximumOneWayUsdtBeforeBoundary": 1.9801482734053582,
+        "method": "Ideal symmetric V3 at price 1; q/(L+q) = 0.5% for q=1. Excludes tick rounding, pool fees, mint/buy/sell gas, price movement and front-running. At boundary active liquidity is depleted and requires inventory/repositioning. No OKX routing confirmation."
+      },
+      {
+        "orderUsdt": 1,
+        "navAssumedUsdt": 1,
+        "priceRange": [
+          0.9523809523809523,
+          1.05
+        ],
+        "oneWayAveragePriceImpactPercent": 0.5,
+        "usdtReserve": 4.795885483241914,
+        "tywValueAtNav": 4.795885483241914,
+        "totalCapitalUsdt": 9.591770966483828,
+        "maximumOneWayUsdtBeforeBoundary": 4.914320242596026,
+        "method": "Ideal symmetric V3 at price 1; q/(L+q) = 0.5% for q=1. Excludes tick rounding, pool fees, mint/buy/sell gas, price movement and front-running. At boundary active liquidity is depleted and requires inventory/repositioning. No OKX routing confirmation."
+      },
+      {
+        "orderUsdt": 1,
+        "navAssumedUsdt": 1,
+        "priceRange": [
+          0.9090909090909091,
+          1.1
+        ],
+        "oneWayAveragePriceImpactPercent": 0.5,
+        "usdtReserve": 9.260944740127144,
+        "tywValueAtNav": 9.260944740127144,
+        "totalCapitalUsdt": 18.521889480254288,
+        "maximumOneWayUsdtBeforeBoundary": 9.712960785860174,
+        "method": "Ideal symmetric V3 at price 1; q/(L+q) = 0.5% for q=1. Excludes tick rounding, pool fees, mint/buy/sell gas, price movement and front-running. At boundary active liquidity is depleted and requires inventory/repositioning. No OKX routing confirmation."
+      }
+    ],
+    "seedlessDynamicRoute": {
+      "atomicBuyAlreadyImplemented": true,
+      "standardPoolNeedsFundedReserves": true,
+      "okxNativeRouteConfirmed": false,
+      "infinityHookCandidateSupportedByProtocol": true,
+      "okxCustomAccountingRouteSupportUnverified": true
+    },
+    "costCap": "No universal maximum: gas price, desired depth and slippage, price movement, and market-maker inventory are variable. Website/deeplinks use existing hosting; LP inventory is capital at risk, not a deployment fee."
+  },
+  "website": "https://xyn.lgbt",
+  "historicalMethod": "ETF proxies, adjusted prices, 2007-05-30 through 2026-10-08. Not token performance or a future loss guarantee.",
+  "market": {
+    "chainId": 56,
+    "dex": "PancakeSwap Infinity CL",
+    "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "poolUrl": "https://pancakeswap.finance/liquidity/pool/bsc/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "hook": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+    "controller": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0",
+    "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+    "directPlatformFeeBps": 0,
+    "buyLpFeePpm": 47619,
+    "sellLpFeePpm": 50000,
+    "buyMarkupApproxPercent": 5,
+    "sellDiscountPercent": 5,
+    "extraPriceImpact": true,
+    "lpFeesAccrueToPositions": true,
+    "protocolFeeMayApply": true,
+    "keeper": {
+      "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+      "intervalMinutes": 5,
+      "dailyGasCapBnb": "0.0001"
+    },
+    "initialLiquidity": {
+      "usdt": "4.976483012813928666",
+      "tyw": "5.060162059048130611",
+      "liquidity": "203261577377164360005"
+    },
+    "lpPositionTokenId": "1571663",
+    "priceRange": "concentrated liquidity, approximately +/- 5% at each addition; finite inventory and range",
+    "matching": "TYW and USDT deposited into treasury are paired at current pool ratio; unmatched amounts stay in treasury",
+    "additionsPausedIf": "Oracle unavailable, vault paused, pool price differs from NAV by over 5%, insufficient matched inventory or gas budget",
+    "routesConfirmed": {
+      "officialInfinityQuoter": true,
+      "officialInfinityUniversalRouterOnFork": true,
+      "officialInfinityUniversalRouterMainnet": true,
+      "okx": false,
+      "binanceWallet": false
+    },
+    "externallyListed": true,
+    "priceChannels": {
+      "geckoTerminal": {
+        "indexed": true,
+        "checkedAt": "2026-10-10T03:09:02.839Z",
+        "url": "https://www.geckoterminal.com/bsc/pools/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+        "hookFeeLabelCorrect": false,
+        "feeCorrectionRequested": true
+      },
+      "dexScreener": {
+        "indexed": false,
+        "reviewRequested": true
+      },
+      "okx": {
+        "nativeRouteConfirmed": false,
+        "reviewRequested": true
+      },
+      "binanceWallet": {
+        "nativeRouteConfirmed": false,
+        "metadataPr": "https://github.com/bnb-chain/wallet-assets/pull/22"
+      }
+    }
+  },
+  "liquidity": {
+    "at": "2026-10-10T08:37:56.022Z",
+    "chainId": 56,
+    "dex": "PancakeSwap Infinity CL",
+    "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "poolUrl": "https://pancakeswap.finance/liquidity/pool/bsc/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+    "hook": "0xC146249412d9eB47a5e6719b29fE37e443fB4870",
+    "controller": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+    "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+    "directPlatformFeeBps": 0,
+    "buyLpFeePpm": 47619,
+    "sellLpFeePpm": 50000,
+    "buyMarkupApproxPercent": 5,
+    "sellDiscountPercent": 5,
+    "extraPriceImpact": true,
+    "lpFeesAccrueToPositions": true,
+    "protocolFeeMayApply": true,
+    "keeper": {
+      "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+      "intervalMinutes": 5,
+      "dailyGasCapBnb": "0.0002"
+    },
+    "initialLiquidity": {
+      "usdt": "4.976483012813928666",
+      "tyw": "5.060162059048130611",
+      "liquidity": "203261577377164360005"
+    },
+    "lpPositionTokenId": "1571663",
+    "priceRange": "concentrated liquidity, approximately +/- 5% at each addition; finite inventory and range",
+    "matching": "Either single side or unequal balances are converted through the original backed vault, then atomically paired into the existing pool. Small/expensive amounts remain in treasury until safe to add.",
+    "additionsPausedIf": "Oracle unavailable, vault paused, pool price differs from NAV by over 5%, insufficient matched inventory or gas budget",
+    "routesConfirmed": {
+      "officialInfinityQuoter": true,
+      "officialInfinityUniversalRouterOnFork": true,
+      "officialInfinityUniversalRouterMainnet": true,
+      "okx": false,
+      "binanceWallet": false
+    },
+    "externallyListed": true,
+    "priceChannels": {
+      "geckoTerminal": {
+        "indexed": true,
+        "checkedAt": "2026-10-10T03:09:02.839Z",
+        "url": "https://www.geckoterminal.com/bsc/pools/0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+        "hookFeeLabelCorrect": false,
+        "feeCorrectionRequested": true
+      },
+      "dexScreener": {
+        "indexed": false,
+        "reviewRequested": true
+      },
+      "okx": {
+        "nativeRouteConfirmed": false,
+        "reviewRequested": true
+      },
+      "binanceWallet": {
+        "nativeRouteConfirmed": false,
+        "metadataPr": "https://github.com/bnb-chain/wallet-assets/pull/22"
+      }
+    },
+    "matchedController": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0",
+    "conversionLossCapBps": 50,
+    "balanceToleranceBps": 50,
+    "minimumInventoryNavUsdt": "1.1",
+    "maximumTrancheNavUsdt": "1900",
+    "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
+    "independentExit": "https://xyn.lgbt/exit.html",
+    "independentExitMirror": "https://nomtf.github.io/NoMTF-TYW/"
+  },
+  "security": {
+    "sourceRepository": "https://github.com/NoMTF/NoMTF-TYW",
+    "userVaultHasAdministratorWithdrawal": false,
+    "userVaultUpgradeable": false,
+    "administratorMayPauseTrading": true,
+    "inKindRedemptionAvailableDuringPause": true,
+    "inKindRedemptionNeedsWebsiteOracleOrDex": false,
+    "exitPage": "https://xyn.lgbt/exit.html",
+    "exitMirror": "https://nomtf.github.io/NoMTF-TYW/",
+    "underlyingTransferFreezeAndDefaultRisk": true,
+    "thirdPartyAudit": false
+  }
+}

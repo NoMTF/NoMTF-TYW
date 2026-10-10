@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-10T08:29:49.438Z",
+  "realTransactionsSent": false,
+  "compilerFingerprint": "cd0f65a260d49adae6209ec8bd3f003a3bbf77898089fe84001cd072b7b3e61d",
+  "checks": [
+    "Only treasury can disable; no public arbitrary-call or withdrawal function",
+    "Both single sides and unequal inventory convert through actual backed vault then LP atomically",
+    "Bad/expired/long-deadline/oversized quotes revert before any funds leave",
+    "No controller custody or persistent vault approval; NFT directly owned by treasury",
+    "Balanced funds add without an unnecessary swap",
+    "Disabling helper or pausing vault blocks new investment",
+    "Actual Worker code, isolated gas-only key and pinned bytecode complete single-sided addition",
+    "Actual deployed in-kind redemption works with pause, broken oracle, unavailable DEX and no website/API"
+  ],
+  "cases": [
+    {
+      "label": "TYW only",
+      "operation": "REDEEM_EXCESS_TYW",
+      "cashBefore": "0.0",
+      "tokensBefore": "7.0",
+      "cashAfterConversion": "3.453737086430044611",
+      "tokensAfterConversion": "3.536629925689085729",
+      "gasUsed": "1374242",
+      "lpTreasury": true
+    },
+    {
+      "label": "USDT only",
+      "operation": "MINT_EXCESS_USDT",
+      "cashBefore": "8.0",
+      "tokensBefore": "0.0",
+      "cashAfterConversion": "3.952660354311304578",
+      "tokensAfterConversion": "4.047269308143602777",
+      "gasUsed": "1439927",
+      "lpTreasury": true
+    },
+    {
+      "label": "5 USDT plus 3 TYW",
+      "operation": "MINT_EXCESS_USDT",
+      "cashBefore": "5.0",
+      "tokensBefore": "3.0",
+      "cashAfterConversion": "3.954740962500547521",
+      "tokensAfterConversion": "4.045241857170788477",
+      "gasUsed": "1429283",
+      "lpTreasury": true
+    }
+  ],
+  "status": "PASSED",
+  "block": 126795994,
+  "keeperStarted": {
+    "at": 1791621201549,
+    "status": "PENDING",
+    "operation": "REDEEM_EXCESS_TYW",
+    "hash": "0xe266bbb1b9e96d38b96edc74351f35181cde4fff767bf139f82b12ae2d7d5184",
+    "matchedUsdt": "0",
+    "matchedTyw": "7"
+  },
+  "keeperDone": {
+    "at": 1791621250463,
+    "status": "ADDED",
+    "hash": "0xe266bbb1b9e96d38b96edc74351f35181cde4fff767bf139f82b12ae2d7d5184",
+    "blockNumber": "126796000",
+    "gasSpentWei": "3755848735986"
+  },
+  "shutdownRedemption": {
+    "assets": [
+      {
+        "address": "0x7138b48df7D98D7e3cc221BfE7192D0a178182D8",
+        "amount": "320378587088600"
+      },
+      {
+        "address": "0xf69e40069aC227C11459E3f4e8a446b3401616b6",
+        "amount": "3058207476905555"
+      },
+      {
+        "address": "0x23AE4fd8E7844cdBc97775496eBd0E8248656028",
+        "amount": "59821756640581"
+      },
+      {
+        "address": "0xc008c5F579ec1450F20099c39F587547e27c7523",
+        "amount": "2434405510060487"
+      }
+    ],
+    "sharesBurned": "1000000000000000000",
+    "noWebsiteApiOrOracleNeeded": true
+  }
+}

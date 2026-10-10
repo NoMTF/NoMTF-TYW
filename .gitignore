@@ -1,0 +1,15 @@
+node_modules/
+.playwright-cli/
+output/
+.qa/
+build/
+dist/
+.wrangler/
+.env
+.env.*
+!.env.example
+.dev.vars*
+output/
+deployments/private*
+*.key
+*.pem

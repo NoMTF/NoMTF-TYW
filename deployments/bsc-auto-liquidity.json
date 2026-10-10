@@ -1,0 +1,57 @@
+{
+  "chainId": 56,
+  "startedAt": "2026-10-10T08:35:29.442Z",
+  "treasury": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "matchedController": "0x9722A21a3df964A4Dce56E23AfCaDc4A1080aCb0",
+  "compilerFingerprint": "cd0f65a260d49adae6209ec8bd3f003a3bbf77898089fe84001cd072b7b3e61d",
+  "contracts": {
+    "TreasuryAutoLiquidity": "0x913591050C1f9047f4B825697D3A2302D7F82D8b"
+  },
+  "transactions": [
+    {
+      "label": "deploy:TreasuryAutoLiquidity",
+      "hash": "0xba6670675fdea943a77b826e054153005fb59391bdb59c2bdb66a7be31d334c2",
+      "status": "CONFIRMED",
+      "gasUsed": "1810523",
+      "gasPrice": "50000000",
+      "blockNumber": 126796754
+    },
+    {
+      "label": "approve:0x55d398326f99059fF775485246999027B3197955",
+      "hash": "0x52a38ecec9b3af27b0590204f164dc2e7e383bb3eda3681b7090f22e065578d9",
+      "status": "CONFIRMED",
+      "gasUsed": "46506",
+      "gasPrice": "50000000",
+      "blockNumber": 126796770
+    },
+    {
+      "label": "approve:0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+      "hash": "0x4c30c83af84885510a201570bd36b7a6906c87d602dbd772b05371f31d2ed18f",
+      "status": "CONFIRMED",
+      "gasUsed": "46269",
+      "gasPrice": "50000000",
+      "blockNumber": 126796785
+    }
+  ],
+  "spentGasWei": "95164900000000",
+  "status": "ACTIVE",
+  "poolId": "0xda9f38117db4572febb150af16c262e6f1b5f8f4502b0c3281a8215edfdb188b",
+  "controllerCodeHash": "0xebf16b8f13ccb09360f88fe64398137dce7bfa66ced074243b358ca96c41c0b0",
+  "keeper": {
+    "address": "0xEa1DB88D5693Ebd500Bd46e7C94af4FD3422a8ec",
+    "initialFundingBnb": "0.0002",
+    "dailyGasCapBnb": "0.0001",
+    "cron": "*/5 * * * *",
+    "fundingTransactions": [
+      {
+        "hash": "0x488174d84d56c696a053dbdc9b52accfacb561c66e376f41768fa8384551251f",
+        "status": "CONFIRMED",
+        "gasUsed": "21000",
+        "gasPrice": "50000000"
+      }
+    ],
+    "balanceBnb": "0.0002",
+    "updatedAt": "2026-10-10T03:05:01.564Z"
+  },
+  "updatedAt": "2026-10-10T08:35:49.868Z"
+}

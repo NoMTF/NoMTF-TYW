@@ -1,0 +1,53 @@
+import {before,after,test}from'node:test';
+import assert from'node:assert/strict';
+import fs from'node:fs';
+import ganache from'ganache';
+import {BrowserProvider,ContractFactory,Wallet,parseEther,ZeroHash,MaxUint256}from'ethers';
+let gp,provider,admin,user,other,signer,vault,tokens,stable,adapter,snapshot;
+const prices=[parseEther('500'),parseEther('100'),parseEther('2000')];
+const amounts=[parseEther('0.05'),parseEther('0.5'),12500n];
+const artifact=n=>JSON.parse(fs.readFileSync(`build/contracts/${n}.json`));
+async function deploy(n,args=[]){const a=artifact(n);const c=await new ContractFactory(a.abi,a.bytecode,admin).deploy(...args);await c.waitForDeployment();return c;}
+async function tx(p){return(await p).wait();}
+async function report(p=prices,nonce=1n,offset=120){
+ const block=await provider.getBlock('latest');const data={p0:p[0],p1:p[1],p2:p[2],validUntil:block.timestamp+offset,nonce};
+ const sig=await signer.signTypedData({name:'NoMTF',version:'1',chainId:1337,verifyingContract:await vault.getAddress()},{Prices:[{name:'p0',type:'uint256'},{name:'p1',type:'uint256'},{name:'p2',type:'uint256'},{name:'validUntil',type:'uint256'},{name:'nonce',type:'uint256'}]},data);
+ return{data,sig};
+}
+async function fresh(){if(snapshot)await gp.request({method:'evm_revert',params:[snapshot]});snapshot=await gp.request({method:'evm_snapshot',params:[]});}
+before(async()=>{
+ gp=ganache.provider({logging:{quiet:true},chain:{chainId:1337,hardfork:'shanghai'},wallet:{totalAccounts:4}});
+ provider=new BrowserProvider(gp,1337,{cacheTimeout:-1,pollingInterval:10});
+ admin=await provider.getSigner(0);user=await provider.getSigner(1);other=await provider.getSigner(2);
+ signer=new Wallet(Object.values(gp.getInitialAccounts())[0].secretKey);
+ tokens=await Promise.all([deploy('MockToken',['SPYB',18]),deploy('MockToken',['IEFon',18]),deploy('MockToken',['XAUt',6])]);
+ stable=await deploy('MockToken',['USDT',18]);const tokenAddresses=await Promise.all(tokens.map(t=>t.getAddress()));
+ vault=await deploy('NoMTF',[tokenAddresses,await stable.getAddress(),await admin.getAddress()]);
+ adapter=await deploy('MockAdapter',[await vault.getAddress(),await stable.getAddress(),tokenAddresses,prices]);
+ await tx(vault.configure(await admin.getAddress(),signer.address,await adapter.getAddress()));
+ for(let i=0;i<3;i++){
+  await tx(tokens[i].mint(await admin.getAddress(),amounts[i]));await tx(tokens[i].approve(await vault.getAddress(),MaxUint256));
+  await tx(tokens[i].mint(await user.getAddress(),i===2?1000000000n:parseEther('100000')));await tx(tokens[i].connect(user).approve(await vault.getAddress(),MaxUint256));
+ }
+ await tx(stable.mint(await user.getAddress(),parseEther('1000')));await tx(stable.connect(user).approve(await vault.getAddress(),MaxUint256));
+ const r=await report();await tx(vault.seed(amounts,r.data,r.sig));await tx(vault.unpause());
+ snapshot=await gp.request({method:'evm_snapshot',params:[]});
+});
+after(async()=>{await gp.disconnect();});
+test('真实三资产支持的初始净值是1美元，份额上限100亿',async()=>{await fresh();const r=await report();const nav=await vault.netAssetValue(r.data,r.sig);assert.equal(nav[0],parseEther('100'));assert.equal(nav[1],parseEther('1'));assert.deepEqual([...nav[2]],[2500n,5000n,2500n]);assert.equal(await vault.CAP(),parseEther('10000000000'));});
+test('1美元篮子申购和赎回保护已有份额，XAUt精度为6位',async()=>{await fresh();const need=await vault.previewMint(parseEther('1'));assert.equal(need[2],125n);await tx(vault.connect(user).mintBasket(parseEther('1'),[...need],0,await user.getAddress()));assert.equal(await vault.balanceOf(await user.getAddress()),parseEther('1'));const before=await tokens[2].balanceOf(await user.getAddress());await tx(vault.connect(user).redeemBasket(parseEther('1'),[0,0,0],await user.getAddress()));assert.equal((await tokens[2].balanceOf(await user.getAddress()))-before,125n);assert.equal(await vault.totalSupply(),parseEther('100'));});
+test('动态铸造必须交付完整组合，不能裸增发',async()=>{await fresh();await assert.rejects(vault.connect(user).mintBasket(parseEther('1'),[0,0,0],0,await user.getAddress()));assert.equal(await vault.balanceOf(await user.getAddress()),0n);await assert.rejects(vault.connect(user).configure(await user.getAddress(),await user.getAddress(),await adapter.getAddress()));});
+test('种子完成后管理员不能替换交易适配器',async()=>{await fresh();await tx(vault.pause());await assert.rejects(vault.configure(await admin.getAddress(),signer.address,await adapter.getAddress()));});
+test('价格签名不能被第三方伪造，也不能接受过期报告',async()=>{await fresh();const r=await report();await assert.rejects(vault.netAssetValue({...r.data,p0:r.data.p0+1n},r.sig));const old=await report(prices,1n,-1);await assert.rejects(vault.netAssetValue(old.data,old.sig));});
+test('未投资的排队资金不增加已有用户净值',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.99'),b.timestamp+3600));assert.equal(await vault.pendingStable(),parseEther('1'));assert.equal(await vault.balanceOf(await user.getAddress()),0n);const r=await report();assert.equal((await vault.netAssetValue(r.data,r.sig))[0],parseEther('100'));});
+test('暂停时也允许用户取回未执行订单和自己的真实资产',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.99'),b.timestamp+3600));await tx(vault.pause());await tx(vault.connect(user).cancelRequest(1));assert.equal(await vault.pendingStable(),0n);await tx(vault.redeemBasket(parseEther('1'),[0,0,0],await admin.getAddress()));await assert.rejects(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.9'),b.timestamp+3600));});
+test('他人不能取消我的订单，过期后可清理但退款仍回本人',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.9'),b.timestamp+100));await assert.rejects(vault.connect(other).cancelRequest(1));await gp.request({method:'evm_increaseTime',params:[101]});await gp.request({method:'evm_mine',params:[]});const before=await stable.balanceOf(await user.getAddress());await tx(vault.connect(other).cancelRequest(1));assert.equal((await stable.balanceOf(await user.getAddress()))-before,parseEther('1'));});
+test('多笔合并只在三腿全部入库后铸造，资金、份额精确分配',async()=>{await fresh();const b=await provider.getBlock('latest');for(let i=0;i<2;i++)await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.99'),b.timestamp+3600));await tx(vault.settleDeposits([1,2],parseEther('2'),[parseEther('0.5'),parseEther('1'),parseEther('0.5')]));assert.equal(await vault.balanceOf(await user.getAddress()),parseEther('2'));assert.equal(await vault.pendingStable(),0n);assert.equal((await vault.requests(1)).status,2n);});
+test('少交付一腿必须原子回滚，用户资金与订单均未丢失',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.99'),b.timestamp+3600));await tx(adapter.setBroken(true));await assert.rejects(vault.settleDeposits([1],parseEther('1'),[parseEther('0.25'),parseEther('0.5'),parseEther('0.25')]));assert.equal(await vault.balanceOf(await user.getAddress()),0n);assert.equal(await vault.pendingStable(),parseEther('1'));assert.equal((await vault.requests(1)).status,1n);});
+test('重复订单和越权结算都会失败',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.99'),b.timestamp+3600));await assert.rejects(vault.settleDeposits([1,1],parseEther('2'),[1,1,1]));await assert.rejects(vault.connect(user).settleDeposits([1],parseEther('1'),[1,1,1]));assert.equal((await vault.requests(1)).status,1n);});
+test('组合真实净值涨10%时，一美元份额可退出1.10美元（模拟零交易成本）',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('1'),parseEther('0.99'),b.timestamp+3600));await tx(vault.settleDeposits([1],parseEther('1'),[parseEther('0.25'),parseEther('0.5'),parseEther('0.25')]));const higher=prices.map(p=>p*11n/10n);await tx(adapter.setPrices(higher));await tx(vault.connect(user).requestRedeem(parseEther('1'),parseEther('1.09'),b.timestamp+3600));const before=await stable.balanceOf(await user.getAddress());await tx(vault.settleRedemptions([2],[0,0,0]));assert.equal((await stable.balanceOf(await user.getAddress()))-before,parseEther('1.10'));});
+test('退出成本太高不能强卖；取消后份额和收益权仍归用户',async()=>{await fresh();const need=await vault.previewMint(parseEther('1'));await tx(vault.connect(user).mintBasket(parseEther('1'),[...need],0,await user.getAddress()));const b=await provider.getBlock('latest');await tx(vault.connect(user).requestRedeem(parseEther('1'),parseEther('0.99'),b.timestamp+3600));await tx(adapter.setFee(500));await assert.rejects(vault.settleRedemptions([1],[0,0,0]));await tx(vault.connect(user).cancelRequest(1));assert.equal(await vault.balanceOf(await user.getAddress()),parseEther('1'));});
+test('区间内不会执行调仓',async()=>{await fresh();const r=await report();await assert.rejects(vault.rebalance(ZeroHash,0,r.data,r.sig,[0,0,0],[0,0,0],[0,0,0],[0,0,0],0));assert.equal(await vault.rebalanceNonce(),0n);});
+test('跨线后仅一次调仓恢复25/50/25，重复任务和旧nonce被拒绝',async()=>{await fresh();const p=[parseEther('1000'),prices[1],prices[2]];await tx(adapter.setPrices(p));const r=await report(p,2n);const id='0x'+'01'.repeat(32);await tx(vault.rebalance(id,0,r.data,r.sig,[parseEther('0.01875'),0,0],[parseEther('18.75'),0,0],[0,parseEther('0.125'),3125n],[0,parseEther('12.5'),parseEther('6.25')],0));const nav=await vault.netAssetValue(r.data,r.sig);assert.deepEqual([...nav[2]],[2500n,5000n,2500n]);assert.equal(await vault.rebalanceNonce(),1n);assert.equal(await vault.cumulativeRebalanceCostUsd(),0n);await assert.rejects(vault.rebalance(id,0,r.data,r.sig,[0,0,0],[0,0,0],[0,0,0],[0,0,0],0));});
+test('调仓不能动用未投资的排队资金',async()=>{await fresh();const b=await provider.getBlock('latest');await tx(vault.connect(user).requestDeposit(parseEther('50'),parseEther('49'),b.timestamp+3600));const p=[parseEther('1000'),prices[1],prices[2]];await tx(adapter.setPrices(p));const r=await report(p,2n);await assert.rejects(vault.rebalance('0x'+'02'.repeat(32),0,r.data,r.sig,[0,0,0],[0,0,0],[0,parseEther('0.125'),3125],[0,parseEther('12.5'),parseEther('6.25')],0));assert.equal(await vault.pendingStable(),parseEther('50'));assert.equal(await stable.balanceOf(await vault.getAddress()),parseEther('50'));});
+test('调仓成本及gas超限不会消耗任务编号',async()=>{await fresh();const p=[parseEther('1000'),prices[1],prices[2]];const r=await report(p,2n);await assert.rejects(vault.rebalance('0x'+'03'.repeat(32),0,r.data,r.sig,[0,0,0],[0,0,0],[0,0,0],[0,0,0],parseEther('1')));assert.equal(await vault.rebalanceNonce(),0n);});

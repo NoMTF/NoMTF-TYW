@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-10T08:37:56.019Z",
+  "controller": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+  "operation": "REDEEM_EXCESS_TYW",
+  "cash": "0.009435704680938261",
+  "tyw": "7.776099658848233155",
+  "estimatedGas": "1713981",
+  "gasPriceWei": "50000000",
+  "simulationPassed": true,
+  "realTransactionsSent": false
+}

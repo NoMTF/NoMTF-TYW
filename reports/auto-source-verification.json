@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-10T08:36:23.783Z",
+  "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
+  "contracts": [
+    {
+      "name": "TreasuryAutoLiquidity",
+      "address": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+      "submission": {
+        "verificationId": "5f4b3e5b-602d-43c4-8292-26dfa74c5ac7"
+      },
+      "verification": {
+        "isJobCompleted": true,
+        "verificationId": "5f4b3e5b-602d-43c4-8292-26dfa74c5ac7",
+        "jobStartTime": "2026-10-10T08:36:25Z",
+        "jobFinishTime": "2026-10-10T08:36:26Z",
+        "compilationTime": "976",
+        "externalVerifications": {
+          "etherscan": {
+            "verificationId": "rqdnaiakcixxrmclgkwnbrpk3srwxainvnb9esdd9cy63v2wx3",
+            "statusUrl": "https://api.etherscan.io/v2/api?chainid=56&module=contract&action=checkverifystatus&guid=rqdnaiakcixxrmclgkwnbrpk3srwxainvnb9esdd9cy63v2wx3",
+            "explorerUrl": "https://bscscan.com//address/0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+            "contractApiUrl": "https://api.etherscan.io/v2/api?chainid=56&module=contract&action=getabi&address=0x913591050C1f9047f4B825697D3A2302D7F82D8b"
+          }
+        },
+        "contract": {
+          "match": "exact_match",
+          "creationMatch": "exact_match",
+          "runtimeMatch": "exact_match",
+          "chainId": "56",
+          "address": "0x913591050C1f9047f4B825697D3A2302D7F82D8b",
+          "verifiedAt": "2026-10-10T08:36:26Z",
+          "matchId": "55865956"
+        }
+      },
+      "url": "https://repo.sourcify.dev/56/0x913591050C1f9047f4B825697D3A2302D7F82D8b"
+    }
+  ]
+}

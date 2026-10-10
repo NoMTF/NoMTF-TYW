@@ -1,0 +1,10 @@
+export type Injected={request:(a:{method:string;params?:any})=>Promise<any>;on?:(event:string,cb:(...args:any[])=>void)=>void;removeListener?:(event:string,cb:(...args:any[])=>void)=>void;disconnect?:()=>Promise<void>};
+export type Discovered={info:{uuid:string;name:string;rdns:string};provider:Injected};
+export function injectedWallets(scope:any):Discovered[]{
+ const generic=scope.ethereum,identified=generic?.isOneKey?'OneKey':generic?.isImToken||scope.imToken?'imToken':generic?.isSafePal?'SafePal':generic?.isMathWallet?'MathWallet':generic?.isRabby?'Rabby Wallet':generic?.isCoinbaseWallet?'Coinbase Wallet':generic?.isTrust?'Trust Wallet':generic?.isBraveWallet?'Brave Wallet':generic?.isMetaMask?'MetaMask':'浏览器钱包';
+ const options=[['binance','Binance Wallet',scope.binancew3w?.ethereum],['okx','OKX Wallet',scope.okxwallet?.ethereum||scope.okxwallet],['onekey','OneKey',scope.$onekey?.ethereum],['trust','Trust Wallet',scope.trustwallet?.ethereum||scope.trustwallet],['bitget','Bitget Wallet',scope.bitkeep?.ethereum||scope.bitget?.ethereum],['tokenpocket','TokenPocket',scope.tokenpocket?.ethereum],['coinbase','Coinbase Wallet',scope.coinbaseWalletExtension],['rabby','Rabby Wallet',scope.rabby],['brave','Brave Wallet',scope.braveEthereum],['injected',identified,generic]];
+ const out:Discovered[]=[];for(const [uuid,name,p]of options){if(p&&typeof p.request==='function'&&!out.some(d=>d.provider===p))out.push({info:{uuid,name,rdns:''},provider:p});}
+ if(Array.isArray(scope.ethereum?.providers))for(const p of scope.ethereum.providers.slice(0,32))if(p?.request&&!out.some(d=>d.provider===p))out.push({info:{uuid:'legacy-'+out.length,name:p.isMetaMask?'MetaMask':p.isCoinbaseWallet?'Coinbase Wallet':p.isRabby?'Rabby':'浏览器钱包',rdns:''},provider:p});
+ return out;
+}
+export function validAnnouncement(d:any):d is Discovered{return !!d?.provider&&typeof d.provider.request==='function'&&typeof d.info?.uuid==='string'&&d.info.uuid.length<=100&&typeof d.info?.name==='string'&&d.info.name.length<=80&&typeof d.info?.rdns==='string'&&d.info.rdns.length<=128;}

@@ -1,0 +1,1 @@
+Exported from the local project using an explicit file allowlist. Known local wallet and Cloudflare secrets were scanned without printing their values. Runtime logs, mail receipts, browser profiles, node_modules and private files are excluded.

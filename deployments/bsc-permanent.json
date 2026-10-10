@@ -1,0 +1,101 @@
+{
+  "chainId": 56,
+  "startedAt": "2026-10-09T18:29:10.040Z",
+  "deployer": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+  "compilerFingerprint": "5de0d25a6327a87ab021b23affc4fffccac4f2712c02a80e55158c47091b5f57",
+  "contracts": {
+    "PermanentOracle": "0x178436E1750Be2Bb1fff667245DF80c77D89Bb97",
+    "PermanentVault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7"
+  },
+  "transactions": [
+    {
+      "label": "deploy:PermanentOracle",
+      "hash": "0xcc7633dcbf5c3c077b43388d5615c393ac5f8ba75ace5a5af705a8ce2067f539",
+      "status": "CONFIRMED",
+      "blockNumber": 126683930,
+      "gasUsed": "1392314",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "deploy:PermanentVault",
+      "hash": "0x31bf9899f577765195c47cb51430acd9040bf951131f88ed683905a59837ab16",
+      "status": "CONFIRMED",
+      "blockNumber": 126683944,
+      "gasUsed": "3149021",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "oracle-history:0x77e6b624d664150d96e13d99c68144b2a047e554",
+      "hash": "0x918b29e7ec9d862643c6922fba1d6792136938080cb3c605ee23c5368984ea27",
+      "status": "CONFIRMED",
+      "blockNumber": 126683960,
+      "gasUsed": "5701530",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "oracle-history:0x497e224d7008fe47349035ddd98bedb773e1f4c5",
+      "hash": "0x0cf11f9c2c683c53002d0a56de4062e6e56d8047203b376021c1b1fa04714593",
+      "status": "CONFIRMED",
+      "blockNumber": 126683973,
+      "gasUsed": "5501388",
+      "gasPrice": "50000000"
+    },
+    {
+      "label": "activate:user-signed-experimental-test",
+      "hash": "0xf6faee8e79680ee729f47d1e7ecca79d1e5ff398b51ad9a53250ad7ed90da327",
+      "status": "CONFIRMED",
+      "blockNumber": 126685749,
+      "gasUsed": "24888",
+      "gasPrice": "50000000"
+    }
+  ],
+  "spentGasWei": "788457050000000",
+  "assets": [
+    "0x7138b48df7d98d7e3cc221bfe7192d0a178182d8",
+    "0xf69e40069ac227c11459e3f4e8a446b3401616b6",
+    "0x23ae4fd8e7844cdbc97775496ebd0e8248656028",
+    "0xc008c5f579ec1450f20099c39f587547e27c7523"
+  ],
+  "pools": [
+    "0x7aa6d92fc369a8c1edc631a3aac44efb0808ddbf",
+    "0x77e6b624d664150d96e13d99c68144b2a047e554",
+    "0x497e224d7008fe47349035ddd98bedb773e1f4c5",
+    "0xe0f4c53d777383cc77adfa89087a9c877586f0df"
+  ],
+  "stable": "0x55d398326f99059ff775485246999027b3197955",
+  "status": "ACTIVE_EXPERIMENTAL_ROUND_TRIP_VERIFIED_NO_CURRENT_HOLDINGS",
+  "seedCapitalUsdt": "0",
+  "platformFeeBps": 0,
+  "floors": [
+    "4039965918335143995117",
+    "319250650484260731967",
+    "118186328596584171192",
+    "7272984995393404861743"
+  ],
+  "twapPrices": [
+    "780135039449116281671",
+    "81408527638459924500",
+    "4166715117614892453080",
+    "102439106634815980437"
+  ],
+  "remainingBnb": "0.004670725185997633",
+  "updatedAt": "2026-10-09T19:46:09.286Z",
+  "publicUserRoundTrip": [
+    {
+      "hash": "0x35a5450d3b7b085b0f894e8b9dad82f85bd6cff166b2df5c95d097f3a9b54628",
+      "from": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "status": 1,
+      "gasUsed": "957424",
+      "gasPrice": "54721080",
+      "gasBnb": "0.00005239127529792"
+    },
+    {
+      "hash": "0xd12d6521aa28e622c7ad0142baab82bb346c1638fb947fc5e183dbc280bab8b2",
+      "from": "0x9979Ba992c6aAf7cDd068A82d14F7Afa6c7f4cD1",
+      "status": 1,
+      "gasUsed": "695687",
+      "gasPrice": "52328820",
+      "gasBnb": "0.00003640447979934"
+    }
+  ]
+}
