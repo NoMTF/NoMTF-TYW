@@ -9,11 +9,15 @@ import {BatchQueue,boundedBody} from './batch-queue.ts';
 import {BatchError} from './batch-orders.ts';
 import {HttpError,RequestBudget,requestPolicy,securityHeaders} from './http-security.ts';
 import {liquidityTick,type LiquidityEnv} from './liquidity-keeper.ts';import {liquidityInfo} from './liquidity-info.ts';
-type Env=LiquidityEnv&{RPC_URL:string;VAULT_ADDRESS:string;WALLETCONNECT_PROJECT_ID?:string;BATCH_ADDRESS?:string;BATCH_QUEUE_ENABLED?:string;ASSETS:Fetcher;COORDINATOR:DurableObjectNamespace<PortfolioCoordinator>};
+import {relayInfo,relaySubmit,relayDrip,relayTick,relayConfirm,type RelayEnv} from './gas-relay.ts';
+type Env=LiquidityEnv&RelayEnv&{RPC_URL:string;VAULT_ADDRESS:string;WALLETCONNECT_PROJECT_ID?:string;BATCH_ADDRESS?:string;BATCH_QUEUE_ENABLED?:string;ASSETS:Fetcher;COORDINATOR:DurableObjectNamespace<PortfolioCoordinator>};
 const json=(data:unknown,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 export class PortfolioCoordinator extends DurableObject<Env>{
   quoteCache=new Map<string,any>();
   budget=new RequestBudget();pending=new Map<string,Promise<any>>();starts:number[]=[];
+  // The relay executor has one nonce sequence: sends are serialised; waiting for inclusion happens outside the lock.
+  relayQueue:Promise<unknown>=Promise.resolve();relayInfoCache:{at:number;value:any}|null=null;
+  relay<T>(fn:()=>Promise<T>):Promise<T>{const run=this.relayQueue.then(fn,fn);this.relayQueue=run.catch(()=>{});return run;}
   async work<T>(key:string,fn:()=>Promise<T>):Promise<T>{
     const existing=this.pending.get(key);if(existing)return existing;
     const now=Date.now();this.starts=this.starts.filter(at=>now-at<60000);
@@ -54,6 +58,13 @@ export class PortfolioCoordinator extends DurableObject<Env>{
         this.budget.take(key,heavy);return json({ok:true});
       }
       if(url.pathname==='/__liquidity_tick'&&request.method==='POST')return json(await this.work('liquidity-tick',()=>liquidityTick(this.env,this.ctx.storage)));
+      if(url.pathname==='/__relay_tick'&&request.method==='POST')return json(await this.relay(()=>relayTick(this.env,this.ctx.storage)));
+      if(url.pathname==='/api/relay'&&request.method==='GET'){
+        if(this.relayInfoCache&&Date.now()-this.relayInfoCache.at<15000)return json(this.relayInfoCache.value);
+        const value=await this.work('relay-info',()=>relayInfo(this.env,this.ctx.storage));this.relayInfoCache={at:Date.now(),value};return json(value);
+      }
+      if(url.pathname==='/api/relay/submit'&&request.method==='POST'){const body=await request.json();this.relayInfoCache=null;const sent=await this.relay(()=>relaySubmit(this.env,this.ctx.storage,body));return json({...sent,status:await relayConfirm(this.env,sent.hash)});}
+      if(url.pathname==='/api/relay/drip'&&request.method==='POST'){const body=await request.json();this.relayInfoCache=null;const sent=await this.relay(()=>relayDrip(this.env,this.ctx.storage,body));return json({...sent,status:await relayConfirm(this.env,sent.hash)});}
       if(url.pathname==='/api/liquidity'&&request.method==='GET')return json({...await this.work('liquidity-info',()=>liquidityInfo(this.env)),keeper:await this.ctx.storage.get('liquidity:last')||null,feeCollection:await this.ctx.storage.get('liquidity:fees')||null});
       if(url.pathname.startsWith('/api/batch/')){
         if(this.env.BATCH_QUEUE_ENABLED!=='true'||!isAddress(this.env.BATCH_ADDRESS||''))return json({error:'合批队列尚未开放'},409);
@@ -98,7 +109,10 @@ export default {
    if(new URL(request.url).pathname.startsWith('/api/')){headers.set('Cache-Control','no-store');headers.set('Cross-Origin-Resource-Policy','same-origin');}
    return new Response(response.body,{status:response.status,headers});
  },
- async scheduled(c:ScheduledController,env:Env,ctx:ExecutionContext){const path=c.cron==='0 * * * *'?'/api/check':'/__liquidity_tick';ctx.waitUntil(env.COORDINATOR.getByName('permanent-56').fetch('https://internal'+path,{method:'POST'}));},
+ async scheduled(c:ScheduledController,env:Env,ctx:ExecutionContext){
+  const coordinator=env.COORDINATOR.getByName('permanent-56'),call=(path:string)=>ctx.waitUntil(coordinator.fetch('https://internal'+path,{method:'POST'}));
+  if(c.cron==='0 * * * *')call('/api/check');else{call('/__liquidity_tick');call('/__relay_tick');}
+ },
 };
 async function handle(request:Request,env:Env):Promise<Response>{
     const url=new URL(request.url);
@@ -116,8 +130,8 @@ async function handle(request:Request,env:Env):Promise<Response>{
     if(url.pathname.startsWith('/api/')){
       if(request.method==='POST'){
         const origin=request.headers.get('Origin');if(origin&&origin!==url.origin)return json({error:'拒绝跨站操作'},403);
-        if(url.pathname==='/api/batch/submit'||url.pathname==='/api/batch/confirm'){
-          try{const body=await boundedBody(request,url.pathname.endsWith('/confirm')?256:16384);request=new Request(request.url,{method:'POST',headers:request.headers,body});}catch(e){if(e instanceof BatchError)return json({error:e.message},e.status);throw e;}
+        if(url.pathname==='/api/batch/submit'||url.pathname==='/api/batch/confirm'||url.pathname==='/api/relay/submit'||url.pathname==='/api/relay/drip'){
+          try{const body=await boundedBody(request,url.pathname.endsWith('/confirm')?256:url.pathname==='/api/relay/drip'?512:url.pathname==='/api/relay/submit'?4096:16384);request=new Request(request.url,{method:'POST',headers:request.headers,body});}catch(e){if(e instanceof BatchError)return json({error:e.message},e.status);throw e;}
         }else{
         if(url.pathname!=='/api/check')return json({error:'接口不存在'},404);
         if(Number(request.headers.get('Content-Length')||0)>0)return json({error:'此接口不接受请求正文'},422);

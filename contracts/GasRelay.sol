@@ -11,10 +11,10 @@ interface IRelayVault is IERC20 {
  function buy(uint256,uint256,uint256[4] calldata,uint256) external returns(uint256);
  function sell(uint256,uint256,uint256[4] calldata,uint256) external returns(uint256);
 }
-/// @notice Candidate only: a BNB-funded executor settles a user's explicitly signed trade and fee.
-/// Existing ERC20 allowances are required; this cannot bootstrap approval from a zero-BNB EOA.
-/// No owner withdrawals, arbitrary routers, token enumeration or unsigned deductions.
-contract GasRelayCandidate is EIP712,ReentrancyGuard {
+/// @notice A BNB-funded executor settles a user's explicitly signed trade and takes only the signed fee.
+/// The user still needs a one-time token allowance to this contract; it cannot spend without a signature.
+/// No owner, no withdrawals, no arbitrary routers, token enumeration or unsigned deductions.
+contract GasRelay is EIP712,ReentrancyGuard {
  using SafeERC20 for IERC20;
  IRelayVault public immutable vault;IERC20 public immutable stable;
  mapping(address=>uint256) public nonces;

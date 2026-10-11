@@ -1,0 +1,31 @@
+{
+  "chainId": 56,
+  "startedAt": "2026-10-11T16:27:10.016Z",
+  "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+  "compilerFingerprint": "141d16c7082175bef68348ad6fbe1d2d1c5616f738577b9a6f79b993c67f7f20",
+  "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
+  "contracts": {
+    "GasRelay": "0x44D13A0E6a4534540dE627b220d60562e534EC48"
+  },
+  "transactions": [
+    {
+      "label": "deploy:GasRelay",
+      "hash": "0x1f6b2020b938d805912ac734ef3998587d12dbc80de04029839e70535281d9b9",
+      "nonce": 40,
+      "status": "CONFIRMED",
+      "gasUsed": "1443379",
+      "gasPrice": "50000000",
+      "blockNumber": 127051552
+    }
+  ],
+  "spentGasWei": "72168950000000",
+  "status": "ACTIVE",
+  "runtimeHash": "0x89200739d5b8f0c177aea27f0858bf04549e02b43a3a2791303de6a57c536ab8",
+  "failure": {
+    "at": "2026-10-11T16:27:17.863Z",
+    "reason": "Runtime code differs from the tested deployment"
+  },
+  "updatedAt": "2026-10-11T16:28:19.632Z",
+  "owner": null,
+  "holdsFundsBetweenTransactions": false
+}

@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-11T16:28:30.706Z",
+  "address": "0x44D13A0E6a4534540dE627b220d60562e534EC48",
+  "httpStatus": 202,
+  "body": {
+    "verificationId": "bb5cced4-2e46-4c6c-ab5f-cc2db596c514"
+  },
+  "url": "https://repo.sourcify.dev/56/0x44D13A0E6a4534540dE627b220d60562e534EC48",
+  "result": {
+    "checkedAt": "2026-10-11T16:29:10.765Z",
+    "match": "exact_match",
+    "creationMatch": "exact_match",
+    "runtimeMatch": "exact_match",
+    "verifiedAt": "2026-10-11T16:28:31Z"
+  }
+}

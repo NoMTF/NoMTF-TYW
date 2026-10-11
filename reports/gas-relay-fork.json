@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-11T16:18:57.635Z",
+  "realTransactionsSent": false,
+  "vault": "0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7",
+  "chainId": 56,
+  "status": "PASSED",
+  "compilerFingerprint": "141d16c7082175bef68348ad6fbe1d2d1c5616f738577b9a6f79b993c67f7f20",
+  "checks": [
+    "Relay info verifies contract code hash and vault, quotes buy/sell fees from live gas and BNB price",
+    "A second approval-gas request is refused once the wallet holds enough BNB for the approval",
+    "A zero-BNB wallet receives exactly enough BNB for one 70k-gas approval and approves the relay",
+    "No approval gas once the relay is already approved",
+    "A request changed after signing is refused before broadcast",
+    "Relayed buy: user receives the signed shares, pays at most budget + signed fee, executor gets exactly the fee, relay keeps nothing, fee covers gas",
+    "Replaying a used signature is refused (nonce)",
+    "A fee below the current gas quote is refused",
+    "Relayed sell: user gets at least the signed net minimum, executor gets exactly the fee, relay keeps nothing, fee covers gas",
+    "Approval gas is refused for wallets without USDT",
+    "Collected USDT fees are converted to BNB through PancakeSwap V2 with a V3-priced minimum",
+    "BNB above the 0.02 working float is returned to the treasury, keeping 0.01 for gas",
+    "A journal entry whose nonce is already used (a lagging RPC node) is dropped instead of blocking the relay",
+    "A transaction stuck past every signed deadline is replaced at the same nonce with a 25% higher gas price"
+  ],
+  "block": 127050452,
+  "stage": "done",
+  "relay": "0x644414d9B32D4ffc478b1B1C6621e20da4a6b4A4",
+  "relayRuntimeHash": "0x3d4e4d3b39b365a0c615f39bbee7cdbe86b055b2cb4703bb06a303dab65a5566",
+  "fees": {
+    "buyUsdt": "0.034",
+    "sellUsdt": "0.031",
+    "gasPriceWei": "33700530",
+    "usdtPerBnb": "754.7896224138208344"
+  },
+  "approvalGasUsed": "46506",
+  "buyGasUsed": "849532",
+  "buy": {
+    "paidUsdt": "9.957171450174778772",
+    "sharesTyw": "9.900584785365618903",
+    "feeUsdt": "0.043",
+    "executorGasBnb": "0.000037167025"
+  },
+  "sellGasUsed": "774660",
+  "sell": {
+    "receivedUsdt": "4.961857305956574266",
+    "minimumNetUsdt": "4.936893019426791394",
+    "feeUsdt": "0.031",
+    "executorGasBnb": "0.00002595520950072"
+  },
+  "feeConversion": {
+    "usdt": "2.074",
+    "bnbGainedAfterGas": "0.002734529722722945"
+  }
+}

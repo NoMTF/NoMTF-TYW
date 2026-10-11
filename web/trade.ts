@@ -1,5 +1,5 @@
 import './trade.css';
-import {BrowserProvider,Contract,parseEther,formatEther,isAddress} from 'ethers';
+import {BrowserProvider,Contract,parseEther,formatEther,isAddress,MaxUint256,keccak256} from 'ethers';
 import {USDT} from '../src/permanent-assets.ts';import {PERMANENT_ABI} from '../src/permanent-chain.ts';import {TOKEN_ABI} from '../src/chain.ts';
 import {walletLink,walletPage,poolSwapPage,initialTrade,isMobileAgent,type WalletKind} from '../src/wallet-links.ts';
 import type {Wallet} from '@reown/appkit-wallet-button';
@@ -12,6 +12,7 @@ import {validateTradeQuote,readJsonResponse,type TradeQuote} from '../src/quote-
 import {assertWalletSession} from '../src/wallet-session.ts';
 import {parseTradeInput} from '../src/trade-input.ts';
 import {withWalletGasPrice} from '../src/wallet-gas.ts';
+import {RELAY_TYPES,RELAY_ADDRESS,RELAY_RUNTIME_HASH,relayDomain,relayMessage,relayWire,type RelayRequest} from '../src/relay-typed-data.ts';
 // Lazy chunks share code through this entry; if a browser ever evaluates it twice, only the first copy runs the app.
 function main(){
 const VAULT='0xaE7eA21fBf3613fFc17fe962EE66bfe03015fBa7',boot=initialTrade(location.search),app=document.querySelector<HTMLDivElement>('#app')!;
@@ -20,6 +21,8 @@ const esc=(v:unknown)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 const short=(v:string)=>v?`${v.slice(0,6)}…${v.slice(-4)}`:'—',n=(v:unknown,p=6)=>v==null?'—':Number(v).toLocaleString('en-US',{maximumFractionDigits:p});
 let state:any=null,provider:BrowserProvider|null=null,injected:Injected|null=null,address='',mode:'buy'|'sell'=boot.mode,quote:TradeQuote|null=null,busy=false,revision=0,directMode=false;
 let balances={tyw:0n,usdt:0n,bnb:0n},balanceReady=false,allowance:bigint|null=null,quoteSeq=0,quoteBusy=false;const discovered=new Map<string,Discovered>();let quoteTimer:ReturnType<typeof setTimeout>|undefined,quoteAbort:AbortController|undefined,projectId:string|null=null,lastQuoteAt=0,walletCleanup:()=>void=()=>{},connecting=false;
+type Relay={enabled:boolean;available?:boolean;relay?:string;executor?:string;fees?:{buy:string;sell:string};gasPriceWei?:string;approveGas?:string;approvalGasWei?:string};
+let relay:Relay|null=null,relayAt=0;
 type Transaction={hash:string;mode:string;status:string;at:number};const storageKey='nomtf:permanent-transactions';let transactions:Transaction[]=[];
 try{transactions=JSON.parse(localStorage.getItem(storageKey)||'[]').filter((t:any)=>/^0x[0-9a-f]{64}$/i.test(t.hash)).slice(-20);}catch{}
 // [data-open] kind, label shown on the tile, catalog id used to find an installed extension.
@@ -48,7 +51,7 @@ app.innerHTML=`<div class="flag" aria-hidden="true"><i></i><i></i><i></i><i></i>
  <div id="fee-summary" class="fee-summary" aria-live="polite"><span>预计本次买入总成本</span><strong>—</strong><small>输入金额就自动估算，这一步不会下单。</small></div>
  <details class="fee-details"><summary>费用明细 · 官网平台费 0%</summary><div id="roundtrip-summary" class="roundtrip-summary" hidden><span>预计买卖往返总成本</span><b>—</b></div><div id="quote-details" class="quote-box" hidden aria-live="polite"></div></details>
  <button class="primary" id="trade">连接钱包</button>
- <p class="execution-note">确认前会重新核对一次费用，明显变贵会先停下来问你。</p>
+ <p class="execution-note" id="execution-note">确认前会重新核对一次费用，明显变贵会先停下来问你。</p>
  <div id="message" class="message" role="status" aria-live="polite"></div>
  <details id="sell-options" hidden><summary>其他赎回方式</summary><p>USDT 赎回不可用时，可以按输入的份额直接取回四种底层代币和现金。</p><button id="in-kind" class="secondary">赎回底层资产</button></details>
  <details class="direct-trade"><summary>直连链上 · 官网报价出故障时用</summary><p>不走官网报价接口，直接从 BNB Chain 读价格。最高支付、最低到账和费用照样核对。</p><label><input type="checkbox" id="direct-mode"> 改用链上直连</label><p><a href="/exit.html">卖不成 USDT？独立赎回四种原资产 ↗</a></p></details>
@@ -138,7 +141,17 @@ async function connectRemote(wallet?:Wallet,name='钱包'){
  finally{remoteConnecting=false;button.disabled=false;}
 }
 window.addEventListener('eip6963:announceProvider',(e:any)=>{const d=e.detail;if(validAnnouncement(d)&&(discovered.has(d.info.uuid)||discovered.size<100)){discovered.set(d.info.uuid,d);renderDiscovered();}});window.dispatchEvent(new Event('eip6963:requestProvider'));
-function renderFees(){const summary=el('fee-summary');summary.querySelector('span')!.textContent=mode==='buy'?'预计本次买入总成本':'预计本次卖出总成本';el('roundtrip-summary').hidden=mode!=='buy'||!quote;el('receive').textContent=quote?(mode==='buy'?n(formatEther(quote.shares),6):n(quote.expectedOutputUsdt,6)):quoteBusy?'估算中…':'—';if(!quote){summary.querySelector('strong')!.textContent=quoteBusy?'估算中…':'—';summary.querySelector('small')!.textContent='输入金额就自动估算，这一步不会下单。';summary.classList.remove('cost-high');return;}const f=tradeFees(quote,allowance===null||allowance<BigInt(quote.budget)),percent=f.oneWayTotalCostPercent;summary.querySelector('strong')!.textContent=percent===null?'暂无法完整估算':n(percent,2)+'%';summary.querySelector('small')!.textContent=(f.oneWayTotalCostUsdt===null?'净值或 gas 换算不可用；可以看费用明细里的网络费。':`≈ ${n(f.oneWayTotalCostUsdt,6)} USDT${f.approvalNeeded?' · 含本次授权':''}`)+(mode==='sell'?` · 最低到账 ${n(formatEther(quote.minimumStable),6)} USDT`:'');el('roundtrip-summary').querySelector('b')!.textContent=f.totalCostPercent===null?'暂不可用':`${n(f.totalCostPercent,2)}% · ≈ ${n(f.totalCostUsdt,6)} USDT`;summary.classList.toggle('cost-high',percent!==null&&percent>1);}
+async function loadRelay(force=false){if(!force&&relay&&Date.now()-relayAt<30000)return relay;try{relay=await api('/api/relay');relayAt=Date.now();}catch{if(force)relay=null;}render();return relay;}
+const relayFeeWei=()=>relay?.fees?BigInt(relay.fees[mode]):null;
+// Direct trades need BNB for gas. Without enough, the page uses the relay: one signature, gas paid by us, fee taken in USDT.
+function bnbShort(){if(!balanceReady)return false;const price=BigInt(quote?.gasPriceWei||relay?.gasPriceWei||'50000000'),units=mode==='buy'?930000n+(allowance===null||allowance<BigInt(quote?.budget||'0')?50000n:0n):720000n;return balances.bnb<units*price*110n/100n;}
+function relayActive(){return !!address&&!!relay?.enabled&&!!relay.available&&bnbShort();}
+function renderFees(){const summary=el('fee-summary');summary.querySelector('span')!.textContent=mode==='buy'?'预计本次买入总成本':'预计本次卖出总成本';el('roundtrip-summary').hidden=mode!=='buy'||!quote;el('receive').textContent=quote?(mode==='buy'?n(formatEther(quote.shares),6):n(quote.expectedOutputUsdt,6)):quoteBusy?'估算中…':'—';if(!quote){summary.querySelector('strong')!.textContent=quoteBusy?'估算中…':'—';summary.querySelector('small')!.textContent='输入金额就自动估算，这一步不会下单。';summary.classList.remove('cost-high');return;}const relayFee=relayActive()?relayFeeWei():null;
+ if(relayFee!==null){const g=tradeFees(quote,false),fee=Number(formatEther(relayFee)),total=Number(g.oneWayUnderlyingCostUsdt??0)+fee,reference=mode==='buy'?Number(formatEther(BigInt(quote.budget))):Number(g.referenceUsdt??0),share=reference>0?total/reference*100:null;
+  if(mode==='sell')el('receive').textContent=n(Math.max(0,Number(quote.expectedOutputUsdt)-fee),6);
+  summary.querySelector('strong')!.textContent=share===null?'暂无法完整估算':n(share,2)+'%';summary.querySelector('small')!.textContent=`≈ ${n(total,6)} USDT · 含代付网络费 ${n(fee,4)} USDT`+(mode==='sell'?` · 最低到账 ${n(Number(formatEther(quote.minimumStable))-fee,6)} USDT`:'');
+  el('roundtrip-summary').hidden=true;summary.classList.toggle('cost-high',share!==null&&share>1);return;}
+ const f=tradeFees(quote,allowance===null||allowance<BigInt(quote.budget)),percent=f.oneWayTotalCostPercent;summary.querySelector('strong')!.textContent=percent===null?'暂无法完整估算':n(percent,2)+'%';summary.querySelector('small')!.textContent=(f.oneWayTotalCostUsdt===null?'净值或 gas 换算不可用；可以看费用明细里的网络费。':`≈ ${n(f.oneWayTotalCostUsdt,6)} USDT${f.approvalNeeded?' · 含本次授权':''}`)+(mode==='sell'?` · 最低到账 ${n(formatEther(quote.minimumStable),6)} USDT`:'');el('roundtrip-summary').querySelector('b')!.textContent=f.totalCostPercent===null?'暂不可用':`${n(f.totalCostPercent,2)}% · ≈ ${n(f.totalCostUsdt,6)} USDT`;summary.classList.toggle('cost-high',percent!==null&&percent>1);}
 function render(){
  const allocation=portfolioAllocation(state);el('allocation-caption').textContent=allocation.kind==='target'?'目标比例 · 尚未建仓':allocation.kind==='actual'?'实际资产占比':'资产占比暂不可用';
  const labels=LEGS.map(([name])=>name);for(let i=0;i<4;i++){const weight=allocation.weights?.[i];(document.querySelector(`[data-leg="${i}"]`) as HTMLElement).style.width=(weight===undefined?0:weight/100)+'%';document.querySelector(`[data-weight="${i}"]`)!.textContent=weight===undefined?'—':(weight/100).toFixed(2)+'%';}
@@ -150,8 +163,10 @@ function render(){
  for(const [id,v]of Object.entries(balances))el(id==='tyw'?'balance':id).textContent=balanceReady?n(formatEther(v)):'—';el('balance').classList.toggle('placeholder',!balanceReady);
  el('value').textContent=balanceReady?(state?.valuation?.perShareUsdt?`≈ ${n(Number(formatEther(balances.tyw))*Number(state.valuation.perShareUsdt),4)} USDT`:'估值暂不可用'):'连接钱包后查看';el('account').textContent=address?short(address):'';el('wallet').textContent=address?short(address):'连接钱包';el('wallet').classList.toggle('connected',!!address);
  el('available').textContent=balanceReady?`可用 ${n(formatEther(mode==='buy'?balances.usdt:balances.tyw))} ${mode==='buy'?'USDT':'TYW'}`:'连接钱包查看可用余额';
- let insufficient=false;try{insufficient=balanceReady&&parseEther(amount())>(mode==='buy'?balances.usdt:balances.tyw);}catch{}
- const b=el('trade') as HTMLButtonElement;b.disabled=busy||(!!address&&(quoteBusy||!!state?.paused||!state||insufficient||!!quote?.indicative));b.textContent=busy?'处理中…':!address?'连接钱包':!state?'读取链上状态…':state.paused?'当前交易暂停':insufficient?'余额不够 · 可以先看报价':quote?.indicative?'测算报价 · 暂无法成交':quote?(mode==='buy'?'确认买入 TYW':'确认卖出 TYW'):(mode==='buy'?'买入 TYW':'卖出 TYW');(el('in-kind') as HTMLButtonElement).disabled=busy||!address;(el('amount') as HTMLInputElement).disabled=busy;el('amount').classList.toggle('long-amount',amount().length>12);for(const id of ['max','buy-tab','sell-tab','wallet'])(el(id) as HTMLButtonElement).disabled=busy;(el('estimate') as HTMLButtonElement).disabled=busy||quoteBusy;el('disconnect').hidden=!address;renderFees();updateLinks();
+ const relaying=relayActive();let insufficient=false;try{insufficient=balanceReady&&parseEther(amount())+(relaying&&mode==='buy'?relayFeeWei()??0n:0n)>(mode==='buy'?balances.usdt:balances.tyw);}catch{}
+ const b=el('trade') as HTMLButtonElement;b.disabled=busy||(!!address&&(quoteBusy||!!state?.paused||!state||insufficient||!!quote?.indicative));b.textContent=busy?'处理中…':!address?'连接钱包':!state?'读取链上状态…':state.paused?'当前交易暂停':insufficient?'余额不够 · 可以先看报价':quote?.indicative?'测算报价 · 暂无法成交':quote?(mode==='buy'?'确认买入 TYW':'确认卖出 TYW'):(mode==='buy'?'买入 TYW':'卖出 TYW');if(relaying&&!busy&&state&&!state.paused&&!insufficient&&!quote?.indicative)b.textContent=quote?(mode==='buy'?'确认买入 · 网络费代付':'确认卖出 · 网络费代付'):(mode==='buy'?'买入 TYW · 网络费代付':'卖出 TYW · 网络费代付');
+ const relayFee=relayFeeWei();el('execution-note').textContent=relaying&&relayFee!==null?`钱包里没有 BNB 也能交易：网络费由我们先垫，约 ${n(formatEther(relayFee),3)} USDT，从这笔里扣。第一次用要授权一次，授权的 gas 也是我们送。`:bnbShort()&&relay?.enabled?'钱包里的 BNB 不够付网络费（一笔约 0.00005 BNB），代付暂时不可用，可以先换一点 BNB。':'确认前会重新核对一次费用，明显变贵会先停下来问你。';
+ (el('in-kind') as HTMLButtonElement).disabled=busy||!address;(el('amount') as HTMLInputElement).disabled=busy;el('amount').classList.toggle('long-amount',amount().length>12);for(const id of ['max','buy-tab','sell-tab','wallet'])(el(id) as HTMLButtonElement).disabled=busy;(el('estimate') as HTMLButtonElement).disabled=busy||quoteBusy;el('disconnect').hidden=!address;renderFees();updateLinks();
 }
 async function walletBalance(){if(!provider||!address)return;const p=provider,a=address,r=revision;try{const stable=new Contract(USDT,TOKEN_ABI,p),[tyw,usdt,bnb,allowed]=await Promise.all([new Contract(VAULT,PERMANENT_ABI,p).balanceOf(a),stable.balanceOf(a),p.getBalance(a),stable.allowance(a,VAULT)]);if(r!==revision||a!==address||p!==provider)return;balances={tyw,usdt,bnb};allowance=allowed;balanceReady=true;render();if(quote)renderQuote();}catch{if(r===revision){balanceReady=false;render();message('余额读取暂时失败，请刷新。',true);}}}
 async function directState(){
@@ -184,7 +199,7 @@ async function checkWallet(p:BrowserProvider,a:string,r:number,q?:TradeQuote){if
 function operationError(e:any,fallback:string){if(e?.code==='NETWORK_ERROR'&&e?.event==='changed'){resetWallet();return '钱包网络已变化，请切回 BNB Chain 并重新连接。';}return e?.code===4001?'已取消签名。':e?.shortMessage||e?.message||fallback;}
 function renderQuote(){const q=quote;if(!q)return;const f=tradeFees(q,allowance===null||allowance<BigInt(q.budget)),row=(name:string,value:string)=>`<div><span>${esc(name)}</span><b>${esc(value)}</b></div>`,money=(v:string|null)=>v===null?'暂不可用':n(v,6)+' USDT';
  el('quote-details').hidden=false;el('quote-details').innerHTML=(mode==='buy'?row('预计获得',n(formatEther(q.shares),8)+' TYW')+row('预计找零',n(q.estimatedRefundUsdt,6)+' USDT'):row('预计到账',n(q.expectedOutputUsdt,8)+' USDT')+row('最低到账',n(formatEther(q.minimumStable),8)+' USDT'))+
- row('平台费','0 USDT · 0%')+row(mode==='buy'?'本次兑换磨损 / 净值偏差':'兑换磨损 / 净值偏差',money(f.oneWayUnderlyingCostUsdt))+row('本次网络 gas',money(f.executionGasUsdt))+row('本次网络 gas（BNB）',n(f.executionGasBnb,8)+' BNB')+(mode==='buy'?row('本次 USDT 授权 gas',f.approvalNeeded?money(f.approvalGasUsdt):'已足额授权 · 0 USDT')+row('底层往返兑换磨损',money(f.underlyingCostUsdt))+row('买卖往返网络 gas',money(f.roundTripGasUsdt)):'')+
+ row('平台费','0 USDT · 0%')+row(mode==='buy'?'本次兑换磨损 / 净值偏差':'兑换磨损 / 净值偏差',money(f.oneWayUnderlyingCostUsdt))+(relayActive()&&relayFeeWei()!==null?row('代付网络费（从 USDT 扣）',n(formatEther(relayFeeWei()!),4)+' USDT')+row('你要付的 BNB','0 · 第一次授权的 gas 由我们送'):row('本次网络 gas',money(f.executionGasUsdt))+row('本次网络 gas（BNB）',n(f.executionGasBnb,8)+' BNB')+(mode==='buy'?row('本次 USDT 授权 gas',f.approvalNeeded?money(f.approvalGasUsdt):'已足额授权 · 0 USDT')+row('底层往返兑换磨损',money(f.underlyingCostUsdt))+row('买卖往返网络 gas',money(f.roundTripGasUsdt)):''))+
  '<small>'+(q.indicative?'这是按比例放大的估算，当前发行量不够，没法按这个数量成交。':'')+(mode==='buy'?'买入成本 = 付出的 USDT 减去买到的资产（按净值）和找零，再加 gas；池子手续费、价差和冲击都已算在里面。往返成本是假设买完马上卖掉。':'成本按份额净值算；跟你当初买入价比的盈亏另算。')+'0.5% 滑点只是保护线，不收钱。没连钱包时按需要授权一次来估算。报价 45 秒内有效，gas 以钱包为准。</small>';renderFees();}
 function scheduleQuote(){clearTimeout(quoteTimer);try{parseTradeInput(new URLSearchParams({amount:amount(),mode}));}catch{return;}quoteTimer=setTimeout(()=>{if(!busy&&document.visibilityState!=='hidden')void getQuote().catch(e=>{if(e.name!=='AbortError')message(e.message,true);});},Math.max(800,6000-(Date.now()-lastQuoteAt)));}
 async function record(promise:Promise<any>,label:string){const sent=await promise,t={hash:sent.hash,mode:label,status:'等待链上确认',at:Date.now()};transactions.push(t);transactions=transactions.slice(-20);renderTransactions();(el('activity') as HTMLDetailsElement).open=true;try{const receipt=await sent.wait(2);if(!receipt||receipt.status!==1)throw Error('交易执行失败');t.status='已完成';renderTransactions();return receipt;}catch(e){t.status='未确认成功，点击查询';renderTransactions();throw e;}}
@@ -197,7 +212,42 @@ function offerForce(q:TradeQuote,reason:string){
  el('force-gas').textContent=f.executionGasUsdt===null?`网络 gas 约 ${n(f.executionGasBnb,8)} BNB`:`其中本次网络 gas 约 ${n(f.executionGasUsdt,6)} USDT`;
  el('force-continue').textContent=mode==='buy'?'仍然强制买入':'仍然强制卖出';const dialog=el('force-dialog') as HTMLDialogElement;if(!dialog.open)dialog.showModal();
 }
-async function trade(force=false){if(busy)return;if(!address){await connect();return;}if(!state||!provider)return;let submitted=false,reviewedForForce=quote;busy=true;render();try{
+async function post(path:string,body:unknown){const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(60000)}),data:any=await readJsonResponse(r);if(!r.ok)throw new Error(data.error||'代付暂时不可用');return data;}
+async function relayTrade(){
+ const info=await loadRelay(true);if(!info?.available||!info.relay||!info.executor||!info.fees)throw Error('代付暂时不可用，可以先在钱包里换一点 BNB 再交易。');
+ const p=provider!,a=address,r=revision,direction=mode,token=direction==='buy'?USDT:VAULT,relayAddress=info.relay as `0x${string}`,executor=info.executor as `0x${string}`;
+ const fresh=async()=>{const delay=Math.max(0,6000-(Date.now()-lastQuoteAt));if(delay)await new Promise(res=>setTimeout(res,delay));await getQuote(true);if(r!==revision||direction!==mode||!quote)throw Error('钱包或报价已变化，请重新确认。');return quote;};
+ // The page only trusts the published relay: fixed address, and the code there must still be the verified contract.
+ if(relayAddress.toLowerCase()!==RELAY_ADDRESS.toLowerCase()||keccak256(await p.getCode(relayAddress))!==RELAY_RUNTIME_HASH)throw Error('代付合约和公开源码对不上，已停止，不会授权也不会签名。');
+ const fee=()=>BigInt(relay!.fees![direction]);let q=await fresh();
+ const funding=()=>direction==='buy'?BigInt(q.budget)+fee():BigInt(q.shares);
+ if((direction==='buy'?balances.usdt:balances.tyw)<funding())throw Error(direction==='buy'?'USDT 不够：代付要在这笔之外再扣一点网络费。':'TYW 余额不够。');
+ if(await new Contract(token,TOKEN_ABI,p).allowance(a,relayAddress)<funding()){
+  let gasPrice=BigInt(info.gasPriceWei!),gasLimit=BigInt(info.approveGas!);
+  if(await p.getBalance(a)<BigInt(info.approvalGasWei!)){
+   message('正在给你的钱包送一点授权要用的 gas…');const drip=await post('/api/relay/drip',{owner:a,mode:direction});gasPrice=BigInt(drip.gasPriceWei);gasLimit=BigInt(drip.gasLimit);
+   const end=Date.now()+30000;while(await p.getBalance(a)<gasLimit*gasPrice&&Date.now()<end)await new Promise(res=>setTimeout(res,1000));
+  }
+  await checkWallet(p,a,r);message(`请在钱包里把${direction==='buy'?' USDT':' TYW'}授权给代付合约，只需要这一次。`);
+  await record(new Contract(token,TOKEN_ABI,await p.getSigner()).approve(relayAddress,MaxUint256,{gasPrice,gasLimit}),direction==='buy'?'USDT 授权 · 代付':'TYW 授权 · 代付');
+  if(r!==revision)throw Error('钱包已变化。');lastQuoteAt=0;await loadRelay(true);q=await fresh();
+ }
+ const nonce=await new Contract(relayAddress,['function nonces(address) view returns(uint256)'],p).nonces(a) as bigint,deadline=BigInt(Math.floor(Date.now()/1000)+600);
+ const limits=q.limits.map(BigInt) as unknown as readonly [bigint,bigint,bigint,bigint],owner=a as `0x${string}`;
+ const request:RelayRequest=direction==='buy'?{owner,executor,mode:0,feeAsset:0,budget:BigInt(q.budget),shares:BigInt(q.shares),limits,minNetStable:0n,fee:fee(),nonce,deadline}
+  :{owner,executor,mode:1,feeAsset:0,budget:0n,shares:BigInt(q.shares),limits,minNetStable:BigInt(q.minimumStable)-fee(),fee:fee(),nonce,deadline};
+ if(direction==='buy'&&request.fee*2n>request.budget)throw Error('金额太小，代付的网络费超过了一半。多买一点，或者自备一点 BNB。');
+ if(direction==='sell'&&request.minNetStable<=0n)throw Error('卖出金额太小，扣掉代付的网络费就不剩了。');
+ await checkWallet(p,a,r,q);message('请在钱包里签名确认。签名不花 gas，网络费由代付钱包垫付。');
+ const signature=await(await p.getSigner()).signTypedData(relayDomain(relayAddress),{TradeRequest:RELAY_TYPES.TradeRequest.map(f=>({...f}))},relayMessage(request));
+ if(r!==revision)throw Error('钱包已变化，请重新确认。');message('签名好了，正在由代付钱包发出交易…');
+ const sent=await post('/api/relay/submit',{request:relayWire(request),signature});
+ await record(Promise.resolve({hash:sent.hash,wait:(confirms:number)=>p.waitForTransaction(sent.hash,confirms,120000)}),direction==='buy'?'代付买入 TYW':'代付卖出 TYW');
+ invalidate();await loadState();message('交易完成，余额已更新。网络费是代付钱包垫的，已经从这笔里扣掉。');
+}
+async function trade(force=false){if(busy)return;if(!address){await connect();return;}if(!state||!provider)return;
+ if(relayActive()){busy=true;render();try{await relayTrade();}catch(e:any){message(operationError(e,'代付没完成，请看一下钱包。'),true);}finally{busy=false;render();}return;}
+ let submitted=false,reviewedForForce=quote;busy=true;render();try{
  if(!quote||quote.expiresAt<Date.now()){const delay=Math.max(0,6000-(Date.now()-lastQuoteAt));if(delay)await new Promise(resolve=>setTimeout(resolve,delay));await getQuote(true);if(!force)return;}if(!quote)throw Error('未取得有效报价。');if(!balanceReady)throw Error('余额尚未读取，请刷新后重试。');if(parseEther(amount())>(mode==='buy'?balances.usdt:balances.tyw))throw Error('余额不足，仍可使用预估功能。');
  const reviewed=quote,p=provider,a=address,r=revision;if(parseEther(amount()).toString()!==reviewed.budget||mode!==reviewed.mode)throw Error('金额已变化，请重新报价。');
  message('正在重新核对报价和费用…');const delay=Math.max(0,6000-(Date.now()-lastQuoteAt));if(delay)await new Promise(resolve=>setTimeout(resolve,delay));await getQuote(true);if(r!==revision||!quote)throw Error('钱包或报价已变化。');const q=quote,changed=quoteCostChanged(reviewed,q,allowance===null||allowance<BigInt(q.budget));reviewedForForce=q;if(changed&&!force){message(changed,true);offerForce(q,changed);return;}
@@ -216,7 +266,7 @@ function setMode(next:'buy'|'sell'){if(busy)return;mode=next;invalidate();messag
 function openWalletDialog(){renderDiscovered();(el('wallet-dialog') as HTMLDialogElement).showModal();}
 for(const id of ['wallet-dialog','handoff-dialog'])el(id).onclick=e=>{const d=el(id) as HTMLDialogElement,r=d.getBoundingClientRect();if(e.target===d&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))d.close();};
 el('wallet').onclick=openWalletDialog;el('close-wallet').onclick=()=>(el('wallet-dialog') as HTMLDialogElement).close();el('handoff-close').onclick=()=>(el('handoff-dialog') as HTMLDialogElement).close();
-el('trade').onclick=()=>void trade();el('estimate').onclick=()=>{clearTimeout(quoteTimer);void getQuote().catch(e=>{if(e.name!=='AbortError')message(e.message,true);});};el('buy-tab').onclick=()=>setMode('buy');el('sell-tab').onclick=()=>setMode('sell');el('amount').oninput=()=>{invalidate();message('');scheduleQuote();};el('max').onclick=()=>{(el('amount') as HTMLInputElement).value=formatEther(mode==='buy'?balances.usdt:balances.tyw);invalidate();scheduleQuote();};el('in-kind').onclick=inKind;el('add-token').onclick=addToken;
+el('trade').onclick=()=>void trade();el('estimate').onclick=()=>{clearTimeout(quoteTimer);void getQuote().catch(e=>{if(e.name!=='AbortError')message(e.message,true);});};el('buy-tab').onclick=()=>setMode('buy');el('sell-tab').onclick=()=>setMode('sell');el('amount').oninput=()=>{invalidate();message('');scheduleQuote();};el('max').onclick=()=>{const reserve=relayActive()&&mode==='buy'?relayFeeWei()??0n:0n,held=mode==='buy'?balances.usdt:balances.tyw;(el('amount') as HTMLInputElement).value=formatEther(held>reserve?held-reserve:0n);invalidate();scheduleQuote();};el('in-kind').onclick=inKind;el('add-token').onclick=addToken;
 for(const id of['force-close','force-cancel'])el(id).onclick=()=>{forceSnapshot=null;(el('force-dialog') as HTMLDialogElement).close();};
 el('force-continue').onclick=async()=>{const snapshot=forceSnapshot;forceSnapshot=null;(el('force-dialog') as HTMLDialogElement).close();if(!snapshot||snapshot.revision!==revision||snapshot.address!==address||snapshot.mode!==mode||snapshot.amount!==amount()){message('钱包或金额已变化，请重新核对报价。',true);return;}await trade(true);};
 el('direct-mode').onchange=async()=>{if(busy){(el('direct-mode') as HTMLInputElement).checked=directMode;return;}directMode=(el('direct-mode') as HTMLInputElement).checked;invalidate();lastQuoteAt=0;await loadState();scheduleQuote();};
@@ -232,7 +282,8 @@ el('handoff-copy').onclick=async()=>{const field=el('handoff-link') as HTMLInput
 el('disconnect').onclick=async()=>{if(busy)return;const previous=injected;resetWallet();try{const {disconnectWalletConnect}=await import('./wallet-connect.ts');if(!await disconnectWalletConnect(previous))await previous?.disconnect?.();}catch{}(el('wallet-dialog') as HTMLDialogElement).close();message('已断开本站连接。');};
 el('walletconnect').onclick=()=>void connectRemote();
 void api('/api/config').then(c=>{if(/^[a-f0-9]{32}$/i.test(c.walletConnectProjectId||'')){projectId=c.walletConnectProjectId;el('walletconnect').hidden=false;el('wc-status').textContent=MOBILE?'点上面的按钮，选这台手机上的钱包 App 连接。':'电脑上没装插件也没关系：点上面的「手机扫码连接」，用手机钱包扫码就能在这里交易。';}else el('wc-status').textContent='扫码连接暂时用不了，可以连接已安装的钱包，或点「打开 DApp」在钱包里打开。';}).catch(()=>{el('wc-status').textContent='扫码连接暂时用不了，可以连接已安装的钱包，或点「打开 DApp」在钱包里打开。';});
-renderDiscovered();renderTransactions();render();void loadState().then(()=>scheduleQuote());setInterval(()=>{if(!busy&&quote&&quote.expiresAt<Date.now()){invalidate();message('报价已过期，正在更新预估…');scheduleQuote();}if(!busy&&document.visibilityState!=='hidden')void loadState();},20000);
+void loadRelay();
+renderDiscovered();renderTransactions();render();void loadState().then(()=>scheduleQuote());setInterval(()=>{if(!busy&&quote&&quote.expiresAt<Date.now()){invalidate();message('报价已过期，正在更新预估…');scheduleQuote();}if(!busy&&document.visibilityState!=='hidden'){void loadState();if(address&&Date.now()-relayAt>60000)void loadRelay();}},20000);
 // Quotes are skipped while the tab is hidden; fetch one as soon as it comes to the front.
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!quote&&!quoteBusy&&!busy)scheduleQuote();});
 window.dispatchEvent(new Event('nomtf:ready'));

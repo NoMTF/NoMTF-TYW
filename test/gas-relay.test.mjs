@@ -22,7 +22,7 @@ before(async()=>{
  stable=await deploy('MockToken',['USDT',18]);tokens=[];pools=[];
  for(let i=0;i<4;i++){tokens.push(await deploy('MockToken',[['SPYB','TLTon','XAUm','SGOVon'][i],18]));pools.push(await deploy('PermanentMockPool',[await stable.getAddress(),await tokens[i].getAddress(),prices[i],fees[i]]));await tx(stable.mint(await pools[i].getAddress(),parseEther('1000000')));await tx(tokens[i].mint(await pools[i].getAddress(),parseEther('1000000')));}
  const a=await Promise.all(tokens.map(t=>t.getAddress())),p=await Promise.all(pools.map(t=>t.getAddress()));const oracle=await deploy('PermanentMockOracle',[await stable.getAddress(),a,p,prices]);
- vault=await deploy('PermanentVault',[await stable.getAddress(),a,p,await oracle.getAddress(),await owner.getAddress()]);await tx(vault.unpause());relay=await deploy('GasRelayCandidate',[await vault.getAddress()]);
+ vault=await deploy('PermanentVault',[await stable.getAddress(),a,p,await oracle.getAddress(),await owner.getAddress()]);await tx(vault.unpause());relay=await deploy('GasRelay',[await vault.getAddress()]);
  domain={name:'NoMTF Gas Relay',version:'1',chainId:1337,verifyingContract:await relay.getAddress()};
  await tx(stable.mint(await user.getAddress(),parseEther('100')));await tx(stable.connect(user).approve(await relay.getAddress(),MaxUint256));await tx(vault.connect(user).approve(await relay.getAddress(),MaxUint256));snapshot=await gp.request({method:'evm_snapshot',params:[]});
 });

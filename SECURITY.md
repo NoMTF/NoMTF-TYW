@@ -58,6 +58,27 @@ Claiming and reinvestment are separate transactions, on separate eligible rounds
 collection pays the treasury even if a subsequent quote is unavailable; it never promises
 immediate or perpetual liquidity. Idle funds and unclaimed fees wait without being spent.
 
+## Gas relay
+
+Wallets without BNB can trade through `GasRelay` (see `deployments/bsc-gas-relay.json`).
+
+- The relay is immutable, has no owner and holds no funds between transactions; every
+  execution ends with its USDT and TYW balances unchanged.
+- It only executes an EIP-712 `TradeRequest` signed by the token owner: mode, budget,
+  shares, a hash of the four per-asset limits, a net USDT minimum for sales, the USDT fee,
+  the executor address, a per-owner nonce and a deadline at most 30 minutes ahead. The
+  submitting account must be the signed executor. Owners can invalidate open requests with
+  `cancel`.
+- The website asks for a token allowance to the relay (unlimited by default so later trades
+  need no BNB). The relay can only move it under a fresh valid signature; holders can revoke
+  it at any time.
+- The executor key lives in the Worker. It can submit signed requests, send the BNB for a
+  one-time approval (once per address and token, at most 50 a day), convert its collected
+  USDT fees to BNB on PancakeSwap with a minimum priced from the V3 WBNB/USDT pool, and
+  return BNB above a 0.02 BNB float to the treasury. Its gas spend is capped at 0.005 BNB
+  a day and it refuses requests whose gas would exceed the signed fee. A compromised Worker
+  exposes only that float, not user funds or vault reserves.
+
 ## Independent exit
 
 Use `public/exit.html` (fully self-contained), the GitHub Pages mirror, a compatible chain

@@ -217,7 +217,7 @@ dialog p{font-size:14px;color:var(--ink-2);line-height:1.75}
 @media(min-width:960px){
  .shell{padding:0 40px}
  .top{padding:26px 0 10px}
- .layout{grid-template-columns:minmax(0,1fr) 452px;column-gap:48px;row-gap:20px;padding-top:26px;grid-template-areas:"intro trade" "portfolio trade" "balance trade" "wallets wallets" "promises promises";align-items:start}
+ .layout{grid-template-columns:minmax(0,1fr) 452px;grid-template-rows:auto auto 1fr auto auto;column-gap:48px;row-gap:20px;padding-top:26px;grid-template-areas:"intro trade" "portfolio trade" "balance trade" "wallets wallets" "promises promises";align-items:start}
  .intro{padding-top:22px}
  .intro h2{font-size:52px;margin:18px 0 16px}
  .lede{font-size:17px}

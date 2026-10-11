@@ -9,6 +9,7 @@ export const API_ROUTES:Record<string,{method:string;params:string[];heavy?:bool
  '/api/batch/prepare':{method:'GET',params:['account','amount','mode'],heavy:true},
  '/api/batch/status':{method:'GET',params:['account']},'/api/batch/transaction':{method:'GET',params:['account','mode'],heavy:true},
  '/api/batch/submit':{method:'POST',params:[],heavy:true,body:16384},'/api/batch/confirm':{method:'POST',params:[],heavy:true,body:256},
+ '/api/relay':{method:'GET',params:[]},'/api/relay/submit':{method:'POST',params:[],heavy:true,body:4096},'/api/relay/drip':{method:'POST',params:[],heavy:true,body:512},
 };
 export function requestPolicy(request:Request){
  const url=new URL(request.url);

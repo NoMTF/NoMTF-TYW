@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-11T16:31:35.308Z",
+  "realTransactionsSent": false,
+  "status": "PASSED",
+  "checks": [
+    "Worker /api/relay reports the relay available with live fees",
+    "A 0-BNB wallet connects and the trade button switches to the relay (\"网络费代付\")",
+    "Relayed buy from the page: approval gas sent, USDT approved, typed data signed by the wallet, Worker broadcast, shares arrived",
+    "Relayed sell from the page: TYW approval gas, approval, signature, broadcast, USDT arrived"
+  ],
+  "shots": [
+    ".qa/final-shots/relay-buy-ready.png",
+    ".qa/final-shots/relay-buy-done.png"
+  ],
+  "stage": "done",
+  "compilerFingerprint": "141d16c7082175bef68348ad6fbe1d2d1c5616f738577b9a6f79b993c67f7f20",
+  "relay": "0x44D13A0E6a4534540dE627b220d60562e534EC48",
+  "user": "0x8c81Ae5a1b8B358A75342723d72C92a780a7B328",
+  "fees": {
+    "buy": "911000000000000000",
+    "sell": "820000000000000000"
+  },
+  "buy": {
+    "userTyw": "9.900088536296696885",
+    "userUsdtLeft": "9.175323858329873318",
+    "executorUsdtFees": "0.911"
+  },
+  "sell": {
+    "usdtReceived": "4.172858158485531347",
+    "userTywLeft": "4.900088536296696885"
+  },
+  "userBnbLeft": "0.000044731"
+}
