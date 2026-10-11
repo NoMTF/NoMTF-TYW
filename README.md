@@ -1,4 +1,4 @@
-<p align="center"><img src="public/readme-cover.svg" alt="唐毓文币 TYW" width="100%"></p>
+<p align="center"><img src="public/readme-cover.png" alt="唐毓文币 TYW：一枚币，一份永久组合" width="100%"></p>
 
 <p align="center">
   <a href="https://xyn.lgbt/">官网买卖</a> ·
