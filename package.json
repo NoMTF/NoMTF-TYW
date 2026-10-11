@@ -19,6 +19,7 @@
     "@reown/appkit-wallet-button": "1.8.24",
     "@uniswap/v4-core": "1.0.2",
     "ethers": "6.17.0",
+    "qrcode": "1.5.3",
     "viem": "2.57.4"
   },
   "devDependencies": {

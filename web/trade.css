@@ -1,1 +1,236 @@
-:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:#edf4ee;background:#0b1210;font-synthesis:none;color-scheme:dark;--green:#c4efa2;--muted:#92a497;--line:#293b2d}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{border:0;cursor:pointer;background:none;color:inherit}button:disabled{opacity:.5;cursor:default}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}[hidden]{display:none!important}.shell{max-width:540px;margin:auto;padding:0 24px}header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:30px 0 40px}.brand{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:600}.brand img{width:44px;height:44px;object-fit:cover;border-radius:12px}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:400;letter-spacing:1px;margin-top:4px}.wallet-button{min-height:44px;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:12px;color:var(--green)}.balance-card{padding:8px 8px 30px}.balance-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.balance-head button{font-size:22px;width:44px;height:44px}.balance-value{display:flex;align-items:baseline;gap:12px;margin:10px 0}.balance-value strong{font-size:52px;line-height:1.2;font-weight:500;letter-spacing:-1.5px;overflow-wrap:anywhere;min-width:0}.balance-value>span{color:var(--green);font-size:16px}.balance-sub{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}.cash-balances{display:flex;gap:24px;border-top:1px solid var(--line);margin-top:24px;padding-top:20px;font-size:12px;color:var(--muted);flex-wrap:wrap}.cash-balances b{color:#edf4ee;font-weight:500;margin-left:7px}.trade-card{background:#121e17;border:1px solid var(--line);border-radius:24px;padding:24px}.tabs{display:flex;gap:6px;background:#0b1510;border-radius:14px;padding:5px;margin-bottom:30px}.tabs button{flex:1;border-radius:10px;padding:12px;font-size:15px;color:var(--muted);min-height:44px}.tabs .active{background:#24382a;color:var(--green)}label{font-size:12px;color:var(--muted)}.amount-row{display:flex;align-items:center;gap:12px;margin:12px 0}.amount-row input{width:100%;min-width:0;border:0;background:none;color:inherit;font-size:38px;font-variant-numeric:tabular-nums;padding:4px 0}.amount-row>span{color:var(--green);font-size:16px}.available{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;align-items:center;min-height:36px}.available button{font-size:12px;color:var(--green);min-height:36px}.primary{width:100%;padding:17px;border-radius:14px;background:var(--green);color:#152212;font-weight:600;margin-top:24px;min-height:54px}.quote-box{border-top:1px solid var(--line);margin-top:18px;padding-top:12px}.quote-box div{display:flex;justify-content:space-between;gap:12px;font-size:12px;margin:10px 0}.quote-box span{color:var(--muted)}.quote-box b{font-weight:500;text-align:right;overflow-wrap:anywhere}.quote-box small{display:block;font-size:10px;color:var(--muted);line-height:1.8;margin-top:14px}.message{font-size:12px;color:var(--green);line-height:1.8;overflow-wrap:anywhere;margin-top:12px}.message:empty{margin:0}.message.bad{color:#efbca5}details{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}summary{cursor:pointer;color:var(--muted);font-size:12px;padding:6px 0}details p{font-size:11px;color:var(--muted);line-height:1.8}.secondary{color:var(--green);border:1px solid var(--line);padding:12px 16px;border-radius:10px;min-height:44px}.transaction{display:flex;justify-content:space-between;gap:12px;padding:14px 0;font-size:11px;border-bottom:1px solid var(--line)}.transaction>span:last-child{color:var(--muted);align-self:center}.transaction small{display:block;color:var(--muted);margin-top:7px}.wallets{padding:30px 8px 8px;font-size:12px;color:var(--muted)}.wallet-links{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.wallet-links a{display:flex;align-items:center;justify-content:center;min-height:44px;border:1px solid var(--line);border-radius:10px;color:var(--green);font-size:11px;white-space:nowrap}.wallets p{font-size:10px;line-height:1.7;margin:10px 0}footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:30px 8px;color:var(--muted);font-size:10px}footer button,footer a{color:var(--muted);font-size:10px;min-height:36px}dialog{max-width:420px;width:calc(100% - 40px);background:#121e17;color:#edf4ee;border:1px solid var(--line);border-radius:20px;padding:24px}dialog::backdrop{background:#000a;backdrop-filter:blur(5px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.dialog-head h2{font-size:18px;font-weight:500;margin:0}.dialog-head button{font-size:26px;min-width:44px;min-height:44px}dialog p{color:var(--muted);font-size:12px;line-height:1.8}.dialog-wallets{display:grid;grid-template-columns:1fr 1fr;gap:10px}.dialog-wallets a,.extension{display:block;padding:15px 12px;border:1px solid var(--line);border-radius:10px;color:var(--green);font-size:13px;min-height:48px}.extension{width:100%;margin-bottom:10px;text-align:left}.download{display:inline-block;margin-top:16px;color:var(--muted);font-size:11px;text-decoration:underline}@media(max-width:420px){.shell{padding:0 18px}header{padding-top:22px;padding-bottom:30px}.brand{font-size:19px}.wallet-button{font-size:11px;padding:10px 12px}.balance-value strong{font-size:44px}.trade-card{padding:20px}.wallet-links{grid-template-columns:1fr 1fr}.amount-row input{font-size:34px}.balance-sub{font-size:11px}}@media(prefers-reduced-motion:no-preference){button,a{transition:background .15s,color .15s,border-color .15s}button:hover,a:hover{border-color:#6d8a69}.primary:hover{background:#d1f7b4}}
+/* 浅色、粉蓝白，取自代币头像背后的那面旗。
+   不卡的规矩：只有 transform 和 opacity 进动画；filter / backdrop-filter / box-shadow /
+   background-position 一律不动，也没有常驻循环动画。悬停只换颜色，不做过渡。 */
+:root{--ink:#16242e;--ink-2:#34444f;--muted:#5f6e7a;--line:#e2eaf0;--soft:#f3f8fb;--pink-soft:#fff3f6;--blue:#5bcefa;--pink:#f5a9b8;--blue-ink:#086a96;--pink-ink:#b3355b;--good:#16754a;--grad:linear-gradient(100deg,#f7b3c2 0%,#dccbf4 50%,#8ad6fa 100%);--shadow:0 1px 2px rgba(22,36,46,.04),0 14px 34px -14px rgba(22,36,46,.14);
+ font-family:"PingFang SC","HarmonyOS Sans SC","MiSans","Microsoft YaHei UI","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:var(--ink);background:#fff;color-scheme:light;font-synthesis:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-size:15px;line-height:1.6}
+button,input,output{font:inherit;color:inherit}
+button,a,input{-webkit-tap-highlight-color:transparent}
+button,a{touch-action:manipulation}
+button{border:0;background:none;cursor:pointer;padding:0}
+button:disabled{opacity:.5;cursor:default}
+a{color:var(--blue-ink);text-decoration:none}
+:focus-visible{outline:2px solid #1d8cc4;outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+h1,h2,h3,p{margin:0}
+
+/* 页首那面旗：五条实色带，白带就是页面本身 */
+.flag{display:flex;flex-direction:column}
+.flag i{display:block;height:4px}
+.flag i:nth-child(1),.flag i:nth-child(5){background:var(--blue)}
+.flag i:nth-child(2),.flag i:nth-child(4){background:var(--pink)}
+.flag i:nth-child(3){background:#fff}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0 6px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink)}
+.brand img{width:44px;height:44px;border-radius:13px;object-fit:cover;border:1px solid var(--line)}
+.brand h1{font-size:19px;font-weight:800;line-height:1.2;letter-spacing:.01em}
+.brand small{display:block;font-size:12.5px;font-weight:500;color:var(--muted);letter-spacing:.06em;margin-top:2px}
+.wallet-button{min-height:42px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff;font-size:14px;font-weight:700;white-space:nowrap}
+.wallet-button.connected{background:#fff;color:var(--ink);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+
+.layout{display:grid;gap:18px;padding:18px 0 8px;grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "trade" "balance" "portfolio" "wallets" "promises"}
+.intro{grid-area:intro;padding:10px 2px 4px}
+.trade-card{grid-area:trade}
+.portfolio{grid-area:portfolio}
+.balance-card{grid-area:balance}
+.wallets{grid-area:wallets;margin-top:14px}
+.promises{grid-area:promises}
+
+.eyebrow{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--pink-soft);color:var(--pink-ink);font-size:13px;font-weight:700}
+.intro h2{font-size:32px;line-height:1.16;font-weight:800;letter-spacing:-.02em;margin:14px 0 12px}
+.intro h2 em{font-style:normal;background:linear-gradient(transparent 60%,rgba(245,169,184,.55) 60%,rgba(245,169,184,.55) 90%,transparent 90%)}
+.lede{font-size:16px;color:var(--ink-2);max-width:32em;line-height:1.75}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2px 12px}
+.card-head h3{white-space:nowrap}
+.card-head h3{font-size:16px;font-weight:800}
+.caption{display:block;font-size:13px;color:var(--muted)}
+.link-button{color:var(--blue-ink);font-size:13px;font-weight:600;min-height:40px}
+
+/* 买卖卡 */
+.tabs{display:flex;gap:4px;padding:4px;border-radius:15px;background:var(--soft);margin-bottom:14px}
+.tabs button{flex:1;min-height:44px;border-radius:11px;font-size:15px;font-weight:700;color:var(--muted)}
+.tabs button.active{background:#fff;box-shadow:0 1px 3px rgba(22,36,46,.12)}
+#buy-tab.active{color:var(--blue-ink)}
+#sell-tab.active{color:var(--pink-ink)}
+.field{position:relative;background:var(--soft);border:1px solid transparent;border-radius:18px;padding:12px 16px 14px}
+.field:focus-within{border-color:#1d8cc4}
+.field-head{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);min-height:28px}
+.field-head label{font-weight:600}
+.available{display:flex;align-items:center;gap:10px;text-align:right}
+#max,.estimate-button{color:var(--blue-ink);font-size:13px;font-weight:700;min-height:40px;padding:0 8px;margin:-6px -8px}
+.amount-row{display:flex;align-items:center;gap:12px;margin-top:4px}
+.amount-row input{flex:1;min-width:0;width:100%;border:0;background:none;padding:2px 0;font-size:34px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;outline:none}
+.amount-row input.long-amount{font-size:22px}
+.amount-row output{flex:1;min-width:0;font-size:28px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums;overflow-wrap:anywhere;line-height:1.3;padding:4px 0}
+.unit{flex:none;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:800}
+.field.receive{margin-top:8px}
+.field.receive::before{content:"↓";content:"↓"/"";position:absolute;left:50%;top:-19px;width:30px;height:30px;margin-left:-15px;display:grid;place-items:center;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:700}
+.fee-summary{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 16px;margin-top:14px;padding:12px 4px 4px}
+.fee-summary>span{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.fee-summary strong{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.fee-summary small{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.fee-summary.cost-high strong{color:var(--pink-ink)}
+.fee-details{margin:6px 0 0;padding:0 4px}
+.fee-details>summary{font-size:13px;font-weight:600;color:var(--blue-ink);cursor:pointer;padding:10px 0;list-style-position:inside}
+.roundtrip-summary{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 12px;font-size:13px;color:var(--muted);padding:8px 0 4px;border-bottom:1px dashed var(--line)}
+.roundtrip-summary b{font-weight:600;color:var(--ink-2);text-align:right;margin-left:auto;white-space:nowrap}
+.quote-box>div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 12px;font-size:13px;padding:5px 0}
+.quote-box span{color:var(--muted)}
+.quote-box b{font-weight:600;text-align:right;margin-left:auto;white-space:nowrap;font-variant-numeric:tabular-nums}
+.quote-box small{display:block;font-size:12.5px;color:var(--muted);line-height:1.75;margin-top:8px}
+.primary{display:block;width:100%;min-height:56px;margin-top:16px;border-radius:16px;background:var(--grad);color:var(--ink);font-size:17px;font-weight:800;letter-spacing:.02em}
+.primary:disabled{opacity:1;background:var(--soft);color:var(--muted)}
+.primary:active:not(:disabled),.secondary:active:not(:disabled),.wallet-tile:active,.option:active{transform:scale(.985)}
+.execution-note{font-size:13px;color:var(--muted);margin-top:10px}
+.message{font-size:13.5px;color:var(--blue-ink);line-height:1.7;overflow-wrap:anywhere;margin-top:10px}
+.message:empty{margin:0}
+.message.bad{color:var(--pink-ink)}
+.trade-card details:not(.fee-details){margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+.trade-card details:not(.fee-details)>summary{font-size:13px;color:var(--muted);cursor:pointer;padding:10px 0}
+.trade-card details p{font-size:13px;color:var(--muted);line-height:1.75;margin:6px 0}
+.direct-trade label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin:8px 0}
+.direct-trade input{width:18px;height:18px;accent-color:var(--blue-ink)}
+.secondary{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:9px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink-2);font-size:14px;font-weight:600;text-decoration:none}
+.secondary.wide{width:100%;margin-top:10px}
+.transaction{display:flex;justify-content:space-between;gap:12px;padding:12px 0;font-size:13px;border-bottom:1px solid var(--line);color:var(--ink)}
+.transaction small{display:block;color:var(--muted);margin-top:2px}
+.transaction>span:last-child{color:var(--blue-ink);align-self:center}
+
+/* 金库与持仓 */
+.nav{font-size:13.5px;font-weight:600;color:var(--ink-2);font-variant-numeric:tabular-nums;text-align:right}
+.portfolio .caption{margin-top:2px}
+.allocation-track{display:flex;gap:3px;height:12px;margin:14px 0 16px;border-radius:7px;overflow:hidden;background:var(--soft)}
+.allocation-track span{display:block;height:100%;border-radius:4px}
+.allocation-track span:nth-child(1),.dot.leg-0{background:#f39cb1}
+.allocation-track span:nth-child(2),.dot.leg-1{background:#5bc3f5}
+.allocation-track span:nth-child(3),.dot.leg-2{background:#efc157}
+.allocation-track span:nth-child(4),.dot.leg-3{background:#a7b3f3}
+.allocation-legend{list-style:none;margin:0 0 10px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+.allocation-legend li{display:grid;grid-template-columns:10px 1fr;column-gap:8px;align-items:center}
+.allocation-legend span{font-size:14px;font-weight:700}
+.allocation-legend small{font-size:12px;font-weight:500;color:var(--muted);margin-left:6px}
+.allocation-legend b{grid-column:2;font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.dot{width:10px;height:10px;border-radius:50%}
+.balance-value{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.balance-value strong{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.15;overflow-wrap:anywhere;min-width:0;font-variant-numeric:tabular-nums}
+.balance-value strong.placeholder{color:#c3d0d9;font-weight:500}
+.balance-value>span{font-size:15px;font-weight:700;color:var(--muted)}
+.balance-sub{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}
+.cash-balances{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.cash-balances b{color:var(--ink);font-weight:700;margin-left:6px;font-variant-numeric:tabular-nums}
+
+/* 钱包入口 */
+.section-head h3{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.section-head p{font-size:14px;color:var(--muted);margin-top:4px}
+.wallet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.wallet-tile{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-height:74px;padding:14px 16px;border-radius:18px;border:1px solid var(--line);background:#fff;color:var(--ink);text-align:left;cursor:pointer}
+.wallet-tile b{font-size:15px;font-weight:800}
+.wallet-tile small{font-size:13px;color:var(--muted);word-break:keep-all}
+.wallet-tile.installed small{color:var(--good);font-weight:600}
+.wallet-tile.more{background:var(--soft);border-color:transparent}
+.launch-fallback{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px;padding:16px;border-radius:18px;background:var(--pink-soft)}
+.launch-fallback p{width:100%;font-size:13.5px;color:var(--ink-2)}
+.pool-entry{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:12px;padding:16px 18px;border-radius:18px;background:var(--soft)}
+.pool-entry b{display:block;font-size:15px;font-weight:800}
+.pool-entry small{display:block;font-size:14px;color:var(--muted);margin-top:2px;max-width:44em}
+.pool-actions{display:flex;flex-wrap:wrap;gap:8px}
+
+/* 为什么放心 */
+.promises{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-top:6px}
+.promises>div{padding:21px 18px 16px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(var(--blue),var(--blue)) top/100% 4px no-repeat #fff}
+.promises>div:nth-child(even){background-image:linear-gradient(var(--pink),var(--pink))}
+.promises b{font-size:16px;font-weight:800}
+.promises p{font-size:14px;color:var(--muted);line-height:1.75;margin-top:6px}
+.promises a{white-space:nowrap;margin-left:4px}
+
+.about{margin-top:36px;padding:28px 2px 0;border-top:1px solid var(--line)}
+.about h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.about p{font-size:14.5px;color:var(--ink-2);line-height:1.85;max-width:68em;margin-top:6px}
+footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding:26px 2px 36px;margin-top:28px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;align-items:center;gap:4px 18px}
+footer nav a{display:inline-flex;align-items:center;min-height:40px;color:var(--muted)}
+
+/* 弹窗 */
+dialog{width:min(440px,calc(100% - 28px));max-height:88dvh;overflow:auto;overflow-x:hidden;margin:auto;border:0;border-radius:24px;padding:20px;background:#fff;color:var(--ink);box-shadow:0 24px 60px rgba(22,36,46,.24)}
+dialog::backdrop{background:rgba(22,36,46,.38)}
+dialog[open]{animation:pop .18s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.dialog-head h2{font-size:19px;font-weight:800}
+.close{flex:none;width:40px;height:40px;border-radius:50%;background:var(--soft);font-size:22px;line-height:1;color:var(--muted)}
+dialog p{font-size:14px;color:var(--ink-2);line-height:1.75}
+.hint{font-size:13px!important;color:var(--muted)!important;margin:6px 0 10px}
+.option{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;padding:13px 16px;margin-bottom:8px;border-radius:16px;border:1px solid var(--line);background:#fff;text-align:left}
+.option b{font-size:15px;font-weight:800}
+.option small{font-size:13px;color:var(--muted)}
+.option.installed small{color:var(--good);font-weight:600}
+.option.wc{background:var(--soft);border-color:#cfe6f3}
+.wallet-search{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:14px;margin-top:4px}
+.wallet-search:focus{border-color:#1d8cc4;outline:none}
+.wallet-catalog{display:grid;gap:8px;max-height:300px;overflow:auto;margin:4px 0 8px;overscroll-behavior:contain}
+#wallet-dialog[open]{display:flex;flex-direction:column}
+#wallet-dialog>*{flex:none}
+#wallet-dialog>.wallet-catalog{flex:1 1 auto;min-height:150px;max-height:none}
+.catalog-row{border:1px solid var(--line);border-radius:14px;padding:2px 0 4px}
+.catalog-connect{display:block;width:100%;min-height:44px;padding:10px 14px 2px;text-align:left;font-size:14px;font-weight:700;color:var(--ink)}
+.catalog-actions{display:flex;flex-wrap:wrap;gap:0 16px;padding:0 14px;font-size:13px}
+.catalog-actions a{display:inline-flex;align-items:center;min-height:40px}
+.catalog-actions a:last-child{margin-left:auto;color:var(--muted)}
+.manual-page{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--soft);font-size:13px;margin-bottom:8px}
+.dialog-foot{display:flex;flex-wrap:wrap;gap:0 18px;margin-top:8px;padding-top:6px;border-top:1px solid var(--line)}
+.download{display:inline-flex;align-items:center;min-height:40px;margin-top:4px;font-size:13px;color:var(--muted);text-decoration:underline}
+.qr{display:grid;place-items:center;width:min(232px,100%);aspect-ratio:1;margin:6px auto 2px;padding:10px;border-radius:20px;border:1px solid var(--line);background:#fff;font-size:13px;color:var(--muted);text-align:center}
+.qr svg{display:block;width:100%;height:100%}
+.qr.loading::after{content:"二维码生成中…"}
+.copy-row{display:flex;gap:8px;margin:4px 0 12px}
+.copy-row input{flex:1;min-width:0;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--soft);font-size:13px;color:var(--ink-2)}
+#handoff-installed{margin-top:2px}
+.force-fees{display:grid;gap:4px;padding:16px;margin:12px 0;border-radius:16px;background:var(--pink-soft)}
+.force-fees span{font-size:13px;color:var(--muted)}
+.force-fees strong{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums}
+.force-fees small{font-size:13px;color:var(--muted)}
+
+@media(hover:hover){
+ a:hover{text-decoration:underline}
+ .brand:hover,.secondary:hover,.wallet-tile:hover{text-decoration:none}
+ .secondary:hover{border-color:#bcd9ea}
+ .wallet-tile:hover,.option:hover{border-color:var(--blue)}
+ footer nav a:hover{color:var(--ink)}
+}
+.lede,.execution-note,.launch-fallback p,.section-head p,dialog p,.promises p{text-wrap:pretty}
+.launch-fallback:not([hidden])+.pool-entry [data-pool-swap]{display:none}
+@media(max-width:639px){.pool-actions{width:100%}.pool-actions .secondary,.launch-fallback .secondary{flex:1 1 auto}}
+@media(max-height:700px){.qr{width:min(200px,100%)}}
+@media(min-width:640px) and (max-width:959px){.shell{max-width:680px}}
+@media(min-width:640px){
+ .shell{padding:0 32px}
+ .wallet-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .promises{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .allocation-legend{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .intro h2{font-size:42px}
+}
+@media(min-width:960px){
+ .shell{padding:0 40px}
+ .top{padding:26px 0 10px}
+ .layout{grid-template-columns:minmax(0,1fr) 452px;column-gap:48px;row-gap:20px;padding-top:26px;grid-template-areas:"intro trade" "portfolio trade" "balance trade" "wallets wallets" "promises promises";align-items:start}
+ .intro{padding-top:22px}
+ .intro h2{font-size:52px;margin:18px 0 16px}
+ .lede{font-size:17px}
+ .trade-card{padding:22px}
+ .promises{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:400px){
+ .shell{padding:0 14px}
+ .card{padding:16px;border-radius:20px}
+ .intro h2{font-size:28px}
+ .amount-row input{font-size:30px}
+ .brand h1{font-size:17px}
+ .wallet-button{padding:0 14px;font-size:13px}
+ .wallet-tile{padding:12px 13px}
+}
+@media(prefers-reduced-motion:reduce){dialog[open]{animation:none}.primary:active,.secondary:active,.wallet-tile:active,.option:active{transform:none}}

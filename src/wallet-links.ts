@@ -6,11 +6,14 @@ export function poolSwapPage(mode:'buy'|'sell',amount:string){
  url.searchParams.set('inputCurrency',mode==='buy'?USDT:TYW);url.searchParams.set('outputCurrency',mode==='buy'?TYW:USDT);
  if(/^\d{1,4}(\.\d{1,18})?$/.test(amount)){url.searchParams.set('exactAmount',amount);url.searchParams.set('exactField','input');}return url.toString();
 }
-export function walletPage(mode:'buy'|'sell',amount:string,wallet:WalletKind){
+export function walletPage(mode:'buy'|'sell',amount:string,wallet?:WalletKind){
  const url=new URL('/',SITE_ORIGIN);url.searchParams.set('mode',mode);
  if(/^\d{1,4}(\.\d{1,18})?$/.test(amount))url.searchParams.set('amount',amount);
- url.searchParams.set('connect',wallet);return url.toString();
+ if(wallet)url.searchParams.set('connect',wallet);return url.toString();
 }
+// App schemes (okx://, tpdapp://, imtokenv2://) have no handler on desktop; desktop gets a QR code instead.
+// iPadOS and Android tablets in desktop mode send Mac / Linux agents; touch points give them away (ChromeOS excluded).
+export function isMobileAgent(ua:string,touchPoints=0){return /Android|iPhone|iPad|iPod|Mobile|HarmonyOS|OpenHarmony/i.test(ua)||(touchPoints>1&&(/Macintosh/i.test(ua)||(/X11; Linux/i.test(ua)&&!/CrOS/i.test(ua))));}
 export function walletLink(wallet:WalletKind,mode:'buy'|'sell',amount:string,destination:'site'|'pool'='site'){
  const page=destination==='pool'?poolSwapPage(mode,amount):walletPage(mode,amount,wallet);
  if(wallet==='okx')return 'okx://wallet/dapp/url?dappUrl='+encodeURIComponent(page);

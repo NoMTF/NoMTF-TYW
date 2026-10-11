@@ -45,7 +45,7 @@
   }
   async function start() {
     if (ready || running) return;
-    if (typeof BigInt !== 'function') { message('这个浏览器版本太旧，请升级钱包 App 后再打开。'); return; }
+    if (typeof BigInt !== 'function') { message('这个浏览器版本太旧，换个新一点的浏览器或钱包 App 再打开。'); return; }
     running = true; attempts++; status.attempts = attempts;
     var button = document.getElementById('boot-retry'); if (button) button.disabled = true;
     message(attempts === 1 ? '正在打开交易界面…' : '刚才的资源没有加载完成，正在重新连接…');
@@ -60,7 +60,9 @@
           !manifest.styles.every(function (path) { return assetPath(path, 'css'); })) throw new Error('manifest format');
       await Promise.all(manifest.styles.map(function (path) { return stylesheet(path, manifest.build, attempts); }));
       // Retry only rejected imports. A slow but pending import must never start a second application.
-      await import(manifest.entry + '?v=' + manifest.build + '&retry=' + attempts);
+      // Lazy chunks import the entry by its bare URL; the first attempt must use that same URL or the
+      // browser evaluates the entry twice (a second app renders over the first one).
+      await import(attempts === 1 ? manifest.entry : manifest.entry + '?v=' + manifest.build + '&retry=' + attempts);
       if (!ready) throw new Error('initialization');
     } catch (_) {
       if (!ready) {
